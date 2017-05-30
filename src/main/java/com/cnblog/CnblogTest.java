@@ -34,10 +34,11 @@ public class CnblogTest {
             homePage.login("sesa", "123123p@");
 
             MessagePage messagePage = PageFactory.initElements(driver, MessagePage.class);
+            messagePage.toMessagePage();
 
-            messagePage.createMsg("sesa", "Tes124", "Hello, world123!");
-            messagePage.createMsg("sesa", "Tes125", "Hello, world124!");
-            messagePage.createMsg("sesa", "Tes126", "Hello, world125!");
+            messagePage.createMsg("sesa", "Tes124", "Hello, world124!");
+            messagePage.createMsg("sesa", "Tes125", "Hello, world125!");
+            messagePage.createMsg("sesa", "Tes126", "Hello, world126!");
 
             messagePage.delFirstMsg();
 

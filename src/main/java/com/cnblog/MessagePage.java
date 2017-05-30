@@ -39,6 +39,7 @@ public class MessagePage {
     public MessagePage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
+
     }
 
 
@@ -53,7 +54,7 @@ public class MessagePage {
     }
 
     public void createMsg(String incept, String title, String content){
-        toMessagePage();
+//        toMessagePage();
         newMsgLink.click();
 
         logger.info("create a message.");
@@ -63,8 +64,7 @@ public class MessagePage {
     }
 
     public void delFirstMsg() throws InterruptedException {
-
-        toMessagePage();
+//        toMessagePage();
         toOutboxPage();
 
         OutboxPage outboxPage = PageFactory.initElements(driver, OutboxPage.class);
@@ -72,7 +72,7 @@ public class MessagePage {
     }
 
     public void delAllMsg(){
-        toMessagePage();
+//        toMessagePage();
         toOutboxPage();
 
         OutboxPage outboxPage = PageFactory.initElements(driver, OutboxPage.class);
