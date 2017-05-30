@@ -42,7 +42,6 @@ public class MessagePage {
 
     }
 
-
     public void toMessagePage(){
         shortMsgLink  = wait.until(visibilityOf(shortMsgLink));
         shortMsgLink.click();
@@ -54,7 +53,6 @@ public class MessagePage {
     }
 
     public void createMsg(String incept, String title, String content){
-//        toMessagePage();
         newMsgLink.click();
 
         logger.info("create a message.");
@@ -64,7 +62,6 @@ public class MessagePage {
     }
 
     public void delFirstMsg() throws InterruptedException {
-//        toMessagePage();
         toOutboxPage();
 
         OutboxPage outboxPage = PageFactory.initElements(driver, OutboxPage.class);
@@ -72,7 +69,6 @@ public class MessagePage {
     }
 
     public void delAllMsg(){
-//        toMessagePage();
         toOutboxPage();
 
         OutboxPage outboxPage = PageFactory.initElements(driver, OutboxPage.class);

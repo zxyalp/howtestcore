@@ -42,7 +42,8 @@ public class CnblogTest {
 
             messagePage.delFirstMsg();
 
-//            messagePage.delAllMsg();
+            messagePage.delAllMsg();
+
             homePage.logout();
         }
 
