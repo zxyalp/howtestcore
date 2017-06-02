@@ -19,7 +19,7 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>autocore</name>
+  <name>awsome</name>
   <url>http://maven.apache.org</url>
 
   <properties>
