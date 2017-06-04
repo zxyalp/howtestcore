@@ -9,10 +9,12 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.apache.commons.io.FileUtils;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 
 /**
@@ -48,7 +50,7 @@ public class FanLiCookie {
 
 
         Wait<WebDriver> wait = new WebDriverWait(driver, 10);
-        WebElement user = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
+        WebElement user = wait.until(visibilityOfElementLocated(By.id("username")));
         user.clear();
         user.sendKeys("18217410309");
 
@@ -63,7 +65,7 @@ public class FanLiCookie {
 
         driver.findElement(By.id("btn-login")).click();
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("side-menu")));
+        wait.until(presenceOfElementLocated(By.id("side-menu")));
         writeCookie(driver, "fanli.cookie.txt");
 
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

@@ -10,8 +10,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class FirefoxDemo {
     public static void main(String[] args) {
 
-//        System.setProperty("webdriver.firefox.marionette", "D:\\selenium\\geckodriver\\geckodriver.exe");
-//            System.setProperty("webdriver.gecko.driver", "D:\\selenium\\geckodriver\\geckodriver.exe");
+//        System.setProperty("webdriver.firefox.marionette", "D:\\selenium\\gecko\\geckodriver.exe");
+//        System.setProperty("webdriver.gecko.driver", "D:\\selenium\\gecko\\geckodriver.exe");
 
         WebDriver driver = new FirefoxDriver();
 
