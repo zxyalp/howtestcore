@@ -29,7 +29,7 @@ public class HomePage {
     @FindBy(how = How.LINK_TEXT, using = "退出")
     WebElement logoutLink;
 
-    private static  final Log logger = LogFactory.getLog(HomePage.class);
+    private static  final Log logger = LogFactory.getLog(HomePage.class.getName());
 
 
     public HomePage(WebDriver driver){
