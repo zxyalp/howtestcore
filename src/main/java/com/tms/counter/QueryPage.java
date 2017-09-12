@@ -4,11 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by yang.zhou on 2017/9/11.
  */
-public class BuyPage {
+public class QueryPage {
 
     private WebDriver driver;
 
@@ -24,7 +25,7 @@ public class BuyPage {
     @FindBy(linkText = "查询")
     private WebElement queryBtn;
 
-    public BuyPage(WebDriver driver){
+    public QueryPage(WebDriver driver){
         this.driver = driver;
     }
 
@@ -33,11 +34,5 @@ public class BuyPage {
         custNoElement.sendKeys(custNo);
         queryBtn.click();
     }
-
-    public void entryOrder(){
-        TestUtils.scrollTo(driver, 10000);
-
-    }
-
 
 }

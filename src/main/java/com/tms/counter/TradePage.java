@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
@@ -24,6 +26,12 @@ public class TradePage {
     @FindBy(xpath = "//dt[contains(text(), '交易下单')]")
     private WebElement tradeOrderMenu;
 
+    @FindBy(xpath = "//dt[contains(text(), ' 交易复核')]")
+    private WebElement tradeCheckMenu;
+
+    @FindBy(xpath = "//a[text()='柜台交易复核']")
+    private WebElement counterCheckMenu;
+
     @FindBy(how = How.LINK_TEXT, using = "认申购")
     private WebElement buyMenu;
 
@@ -32,6 +40,9 @@ public class TradePage {
 
     @FindBy(how = How.CSS, using = "iframe[src$='sell.html']")
     private WebElement sellFrame;
+
+    @FindBy(how = How.CSS, using = "iframe[src$='countercheck.html']")
+    private WebElement checkFrame;
 
     private static final Log loger = LogFactory.getLog(TradePage.class.getName());
 
@@ -45,15 +56,46 @@ public class TradePage {
         driver.manage().window().maximize();
     }
 
-    public void buyProduct(String custNo){
+
+    public void openCheckPage(String url){
+        driver.get(url);
+        driver.manage().window().maximize();
+    }
+
+    public void queryCust(String custNo){
         (wait.until(visibilityOf(tradeOrderMenu))).click();
         (wait.until(visibilityOf(buyMenu))).click();
         buyFrame = wait.until(visibilityOf(buyFrame));
         driver.switchTo().frame(buyFrame);
-        BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.queryCustNo(custNo);
+        QueryPage queryPage = PageFactory.initElements(driver, QueryPage.class);
+        queryPage.queryCustNo(custNo);
     }
 
+    public void entryOrder(String fundCode, String applyAmount, String appTm){
+        TestUtils.scrollTo(driver, 10000);
+        ApplyOrderPage applyOrderPage = PageFactory.initElements(driver, ApplyOrderPage.class);
+        applyOrderPage.orderInfo(fundCode, applyAmount, appTm);
+    }
+
+    public OrderCheckPage checkOrder(){
+        (wait.until(visibilityOf(tradeCheckMenu))).click();
+        (wait.until(visibilityOf(counterCheckMenu))).click();
+        checkFrame = wait.until(visibilityOf(checkFrame));
+        driver.switchTo().frame(checkFrame);
+        return PageFactory.initElements(driver, OrderCheckPage.class);
+    }
+
+    public WebElement getOrderDetail(){
+        return checkOrder().getOrderElement();
+    }
+
+    public WebElement getOrderDetail(int i){
+        return checkOrder().getOrderElement(i);
+    }
+
+    public List<WebElement> getOrderList(){
+        return checkOrder().getOrderList();
+    }
 
 
 }

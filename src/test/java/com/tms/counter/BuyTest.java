@@ -4,11 +4,12 @@ package com.tms.counter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
-import com.tms.counter.TradePage;
-import sun.reflect.annotation.ExceptionProxy;
+
+import java.util.List;
 
 
 /**
@@ -33,11 +34,31 @@ public class BuyTest {
 
     }
 
-    @Test
+//    @Test
     public void buyProductTest() throws Exception{
         TradePage tradePage = PageFactory.initElements(driver, TradePage.class);
         tradePage.openCounter("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
-        tradePage.buyProduct("1100876504");
+        tradePage.queryCust("1100876504");
+        tradePage.entryOrder( "246020", "1200000", "090000");
+    }
+
+    @Test
+    public void CheckOrderTest() throws Exception{
+        TradePage tradePage = PageFactory.initElements(driver, TradePage.class);
+        tradePage.openCheckPage("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
+        List<WebElement> webElements = tradePage.getOrderDetail();
+        System.out.println(webElements.size());
+
+        for (WebElement element:webElements){
+            System.out.println(element.getText());
+        }
+
+        List<WebElement> orderlist = tradePage.getOrderList();
+
+        System.out.println(orderlist.size());
+        for (WebElement element: orderlist){
+            System.out.println(element.getText());
+        }
     }
 
     @AfterClass
