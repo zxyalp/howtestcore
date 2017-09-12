@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by yang.zhou on 2017/9/11.
  */
-public class QueryPage {
+public class QueryUserPage {
 
     private WebDriver driver;
 
@@ -25,7 +25,7 @@ public class QueryPage {
     @FindBy(linkText = "查询")
     private WebElement queryBtn;
 
-    public QueryPage(WebDriver driver){
+    public QueryUserPage(WebDriver driver){
         this.driver = driver;
     }
 

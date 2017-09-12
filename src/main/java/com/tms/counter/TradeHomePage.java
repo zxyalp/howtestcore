@@ -17,7 +17,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 /**
  * Created by yang.zhou on 2017/9/11.
  */
-public class TradePage {
+public class TradeHomePage {
 
     private WebDriver driver;
 
@@ -44,9 +44,9 @@ public class TradePage {
     @FindBy(how = How.CSS, using = "iframe[src$='countercheck.html']")
     private WebElement checkFrame;
 
-    private static final Log loger = LogFactory.getLog(TradePage.class.getName());
+    private static final Log loger = LogFactory.getLog(TradeHomePage.class.getName());
 
-    public TradePage(WebDriver driver){
+    public TradeHomePage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
@@ -67,8 +67,8 @@ public class TradePage {
         (wait.until(visibilityOf(buyMenu))).click();
         buyFrame = wait.until(visibilityOf(buyFrame));
         driver.switchTo().frame(buyFrame);
-        QueryPage queryPage = PageFactory.initElements(driver, QueryPage.class);
-        queryPage.queryCustNo(custNo);
+        QueryUserPage queryUserPage = PageFactory.initElements(driver, QueryUserPage.class);
+        queryUserPage.queryCustNo(custNo);
     }
 
     public void entryOrder(String fundCode, String applyAmount, String appTm){

@@ -36,24 +36,24 @@ public class BuyTest {
 
 //    @Test
     public void buyProductTest() throws Exception{
-        TradePage tradePage = PageFactory.initElements(driver, TradePage.class);
-        tradePage.openCounter("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
-        tradePage.queryCust("1100876504");
-        tradePage.entryOrder( "246020", "1200000", "090000");
+        TradeHomePage tradeHomePage = PageFactory.initElements(driver, TradeHomePage.class);
+        tradeHomePage.openCounter("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
+        tradeHomePage.queryCust("1100876504");
+        tradeHomePage.entryOrder( "246020", "1200000", "090000");
     }
 
     @Test
     public void CheckOrderTest() throws Exception{
-        TradePage tradePage = PageFactory.initElements(driver, TradePage.class);
-        tradePage.openCheckPage("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
-        List<WebElement> webElements = tradePage.getOrderDetail();
+        TradeHomePage tradeHomePage = PageFactory.initElements(driver, TradeHomePage.class);
+        tradeHomePage.openCheckPage("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
+        List<WebElement> webElements = tradeHomePage.getOrderDetail();
         System.out.println(webElements.size());
 
         for (WebElement element:webElements){
             System.out.println(element.getText());
         }
 
-        List<WebElement> orderlist = tradePage.getOrderList();
+        List<WebElement> orderlist = tradeHomePage.getOrderList();
 
         System.out.println(orderlist.size());
         for (WebElement element: orderlist){
