@@ -55,7 +55,7 @@ public class OrderCheckPage {
 
 
     public List<WebElement> getOrderDetail(){
-        return getOrderElement().findElements(By.cssSelector(""));
+        return getOrderElement().findElements(By.cssSelector("tr"));
     }
 
 

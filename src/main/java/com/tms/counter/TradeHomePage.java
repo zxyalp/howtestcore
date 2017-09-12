@@ -85,8 +85,8 @@ public class TradeHomePage {
         return PageFactory.initElements(driver, OrderCheckPage.class);
     }
 
-    public WebElement getOrderDetail(){
-        return checkOrder().getOrderElement();
+    public List<WebElement> getOrderDetail(){
+        return checkOrder().getOrderDetail();
     }
 
     public WebElement getOrderDetail(int i){
