@@ -26,12 +26,6 @@ public class TradeHomePage {
     @FindBy(xpath = "//dt[contains(text(), '交易下单')]")
     private WebElement tradeOrderMenu;
 
-    @FindBy(xpath = "//dt[contains(text(), ' 交易复核')]")
-    private WebElement tradeCheckMenu;
-
-    @FindBy(xpath = "//a[text()='柜台交易复核']")
-    private WebElement counterCheckMenu;
-
     @FindBy(how = How.LINK_TEXT, using = "认申购")
     private WebElement buyMenu;
 
@@ -41,10 +35,7 @@ public class TradeHomePage {
     @FindBy(how = How.CSS, using = "iframe[src$='sell.html']")
     private WebElement sellFrame;
 
-    @FindBy(how = How.CSS, using = "iframe[src$='countercheck.html']")
-    private WebElement checkFrame;
-
-    private static final Log loger = LogFactory.getLog(TradeHomePage.class.getName());
+    private static final Log logger = LogFactory.getLog(TradeHomePage.class.getName());
 
     public TradeHomePage(WebDriver driver){
         this.driver = driver;
@@ -52,12 +43,6 @@ public class TradeHomePage {
     }
 
     public void openCounter(String url){
-        driver.get(url);
-        driver.manage().window().maximize();
-    }
-
-
-    public void openCheckPage(String url){
         driver.get(url);
         driver.manage().window().maximize();
     }
@@ -76,26 +61,5 @@ public class TradeHomePage {
         ApplyOrderPage applyOrderPage = PageFactory.initElements(driver, ApplyOrderPage.class);
         applyOrderPage.orderInfo(fundCode, applyAmount, appTm);
     }
-
-    public OrderCheckPage checkOrder(){
-        (wait.until(visibilityOf(tradeCheckMenu))).click();
-        (wait.until(visibilityOf(counterCheckMenu))).click();
-        checkFrame = wait.until(visibilityOf(checkFrame));
-        driver.switchTo().frame(checkFrame);
-        return PageFactory.initElements(driver, OrderCheckPage.class);
-    }
-
-    public List<WebElement> getOrderDetail(){
-        return checkOrder().getOrderDetail();
-    }
-
-    public WebElement getOrderDetail(int i){
-        return checkOrder().getOrderElement(i);
-    }
-
-    public List<WebElement> getOrderList(){
-        return checkOrder().getOrderList();
-    }
-
 
 }

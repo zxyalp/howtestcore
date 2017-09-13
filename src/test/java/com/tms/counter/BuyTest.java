@@ -44,19 +44,12 @@ public class BuyTest {
 
     @Test
     public void CheckOrderTest() throws Exception{
-        TradeHomePage tradeHomePage = PageFactory.initElements(driver, TradeHomePage.class);
-        tradeHomePage.openCheckPage("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
-        List<WebElement> webElements = tradeHomePage.getOrderDetail();
-        System.out.println(webElements.size());
+        OrderCheckPage checkPage = PageFactory.initElements(driver, OrderCheckPage.class);
+        checkPage.openCheckPage("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
+        List<WebElement> orderList = checkPage.getOrderList();
+        System.out.println(orderList.size());
 
-        for (WebElement element:webElements){
-            System.out.println(element.getText());
-        }
-
-        List<WebElement> orderlist = tradeHomePage.getOrderList();
-
-        System.out.println(orderlist.size());
-        for (WebElement element: orderlist){
+        for (WebElement element:orderList){
             System.out.println(element.getText());
         }
     }
