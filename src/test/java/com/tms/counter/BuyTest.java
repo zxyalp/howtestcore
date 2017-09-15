@@ -34,7 +34,7 @@ public class BuyTest {
 
     }
 
-//    @Test
+   // @Test
     public void buyProductTest() throws Exception{
         TradeHomePage tradeHomePage = PageFactory.initElements(driver, TradeHomePage.class);
         tradeHomePage.openCounter("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
@@ -45,13 +45,18 @@ public class BuyTest {
     @Test
     public void CheckOrderTest() throws Exception{
         OrderCheckPage checkPage = PageFactory.initElements(driver, OrderCheckPage.class);
-        checkPage.openCheckPage("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
-        List<WebElement> orderList = checkPage.getOrderList();
-        System.out.println(orderList.size());
+            checkPage.openCheckPage("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html?operatorNo=s001&operName=s001");
+            WebElement firstOrderInfo = checkPage.getFirstOrderInfo();
+            System.out.println(firstOrderInfo.getText());
 
-        for (WebElement element:orderList){
-            System.out.println(element.getText());
-        }
+            List<WebElement> orderList = checkPage.getOrderDetail();
+            System.out.println(orderList.size());
+
+            for (WebElement element : orderList) {
+                System.out.println(element.getText());
+            }
+
+            checkPage.clickFirstCheck();
     }
 
     @AfterClass
