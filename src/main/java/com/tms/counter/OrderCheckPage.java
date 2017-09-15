@@ -52,8 +52,8 @@ public class OrderCheckPage {
     private List<WebElement> checkElements;
 
     // 获取订单详情
-    @FindBy(css = ".tabPop tr")
-    private List<WebElement> CheckInfoElement;
+    @FindBy(css = ".tabPop")
+    private WebElement reviewInfoTab;
 
 
     // 基金代码
@@ -121,6 +121,10 @@ public class OrderCheckPage {
     * 获取复核信息中基金代码(fundCode)、金额/份额(appAmt)、银行卡尾号4位(bankAcct);
     * */
     public void getReviewInfo(){
+
+        String fundCode = reviewInfoTab.findElement(By.xpath("//tr[1]/td[2]")).getText();
+        String appAmt = reviewInfoTab.findElement(By.xpath("//tr[2]/td[2]")).getText();
+        String bankAcct = reviewInfoTab.findElement(By.xpath("//tr[3]/td[2]")).getText();
 
 
     }
