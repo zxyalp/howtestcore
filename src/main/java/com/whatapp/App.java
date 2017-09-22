@@ -1,6 +1,8 @@
 package com.whatapp;
 
-import java.util.regex.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
 
 /**
  * Hello world!
@@ -10,6 +12,19 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( Integer.parseInt("72878husjdh") );
+
+//        String regex = "(\\.|\\d)";
+//        Pattern p = Pattern.compile(regex);
+//        Matcher matcher = p.matcher("*****1111");
+//        StringBuffer sb;
+//        sb = new StringBuffer();
+//        while (matcher.find()){
+//            sb.append(matcher.group());
+//            System.out.println(sb.toString());}
+
+        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder.append("shello");
+        System.out.println(stringBuilder.toString());
+
     }
 }

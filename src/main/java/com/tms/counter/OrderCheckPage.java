@@ -12,7 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
@@ -31,10 +33,10 @@ public class OrderCheckPage {
     @FindBy(xpath = "//dt[contains(text(), ' 交易复核')]")
     private WebElement tradeCheckMenu;
 
-    @FindBy(xpath = "//a[text()='柜台交易复核']")
+    @FindBy(linkText = "柜台交易复核")
     private WebElement counterCheckMenu;
 
-    @FindBy(how = How.CSS, using = "iframe[src$='countercheck.html']")
+    @FindBy(how = How.CSS, using = "iframe[src*='countercheck.html']")
     private WebElement checkFrame;
 
     @FindBy(id = "rsList")
@@ -51,22 +53,35 @@ public class OrderCheckPage {
     @FindBy(className = "reCheck")
     private List<WebElement> checkElements;
 
-    // 获取订单详情
-    @FindBy(css = ".tabPop")
-    private WebElement reviewInfoTab;
+    // 获取订单中基金代码
+    @FindBy(xpath = "//*[@class='tabPop']//tr[1]/td[2]")
+    private WebElement fundCodeText;
 
+    @FindBy(xpath = "//*[@class='tabPop']//tr[2]/td[2]")
+    private WebElement appAmtText;
+
+    @FindBy(xpath = "//*[@class='tabPop']//tr[3]/td[2]")
+    private WebElement bankAcctText;
 
     // 基金代码
     @FindBy(css = "input[name=fundCode]")
-    private WebElement fundCodeText;
+    private WebElement fundCodeInput;
 
     // 申购赎回业务输入金额、份额
     @FindBy(css = "input[name=appAmt]")
-    private WebElement appAmtText;
+    private WebElement appAmtTextInput;
 
     // 输入银行卡尾号4号
     @FindBy(css = "input[name=bankAcct]")
-    private WebElement bankAcctText;
+    private WebElement bankAcctInput;
+
+    // 审核通过
+    @FindBy(className = "layui-layer-btn0")
+    private WebElement approvedBtn;
+
+    // 审核拒绝
+    @FindBy(className = "layui-layer-btn1")
+    private WebElement refuseBtn;
 
 
     private static final Log logger = LogFactory.getLog(TradeHomePage.class);
@@ -102,30 +117,69 @@ public class OrderCheckPage {
         return firstOrderInfo;
     }
 
-    // 获取订单子元素信息
+    // 获取地址链接 operatorNo=
+    public String getOperatorNo(WebElement element){
+        String href = element.getAttribute("_href").split("operatorNo=")[1];
+        return href;
+    }
+
+    // 获取所有待审核订单列表数量
+    public int size(){
+        return orderList.size();
+    }
+
+    // 获取首条订单子信息
     public List<WebElement> getOrderDetail(){
         return getFirstOrderInfo().findElements(By.cssSelector("td"));
     }
 
-    // 获取订单的操作员
+    // 获取订单操作员
     public String getOperator(){
         return getOrderDetail().get(7).getText();
     }
 
     // 点击复核按钮
     public void clickFirstCheck(){
+        logger.info("点击复核操作按钮");
         getFirstOrderInfo().findElement(By.cssSelector("a")).click();
     }
 
     /**
     * 获取复核信息中基金代码(fundCode)、金额/份额(appAmt)、银行卡尾号4位(bankAcct);
     * */
-    public void getReviewInfo(){
+    public Map<String, String> getReviewInfo(){
 
-        String fundCode = reviewInfoTab.findElement(By.xpath("//tr[1]/td[2]")).getText();
-        String appAmt = reviewInfoTab.findElement(By.xpath("//tr[2]/td[2]")).getText();
-        String bankAcct = reviewInfoTab.findElement(By.xpath("//tr[3]/td[2]")).getText();
+        String appAmt = TestUtils.matcher(appAmtText.getText(), "\\.|\\d");
+        String bankAcct = TestUtils.matcher(bankAcctText.getText(), "\\d");
 
-
+        Map<String, String> fund = new HashMap<>();
+        fund.put("fundCode", fundCodeText.getText());
+        fund.put("appAmt", appAmt);
+        fund.put("bankAcct", bankAcct);
+        logger.info("获取复核信息中基金代码、金额/份额、银行卡尾号4位：" + fund.toString());
+        return fund;
     }
+
+    public void checkOrder(){
+
+        Map<String, String> reviewMap = getReviewInfo();
+        TestUtils.sleep1s();
+        fundCodeInput.sendKeys(reviewMap.get("fundCode"));
+        TestUtils.sleep1s();
+        appAmtTextInput.sendKeys(reviewMap.get("appAmt"));
+        TestUtils.sleep1s();
+        bankAcctInput.sendKeys(reviewMap.get("bankAcct"));
+        TestUtils.sleep1s();
+    }
+
+    public void approvedByOrder(){
+        checkOrder();
+        approvedBtn.click();
+    }
+
+    public void refuseByOrder(){
+        checkOrder();
+        refuseBtn.click();
+    }
+
 }

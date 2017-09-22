@@ -56,7 +56,10 @@ public class BuyTest {
                 System.out.println(element.getText());
             }
 
-            checkPage.clickFirstCheck();
+
+        checkPage.clickFirstCheck();
+
+        checkPage.approvedByOrder();
     }
 
     @AfterClass
