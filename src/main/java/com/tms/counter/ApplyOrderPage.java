@@ -1,5 +1,7 @@
 package com.tms.counter;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,11 +10,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
-/**
+
+/**1、购买页面
  * Created by yang.zhou on 2017/9/11.
  */
 public class ApplyOrderPage {
+
+    private static final Log logger = LogFactory.getLog(ApplyOrderPage.class);
 
     private WebDriver driver;
 
@@ -36,32 +42,38 @@ public class ApplyOrderPage {
     @FindBy(id = "confimBuyBtn")
     private WebElement buyBtn;
 
-
     @FindBy(css = ".layui-layer-btn0")
     private WebElement okBtn;
-
 
     public ApplyOrderPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
     }
 
-    public void  orderInfo(String fundCode, String applyAmount, String appTm){
+    public void  buyOrderForm(String fundCode, String applyAmount, String appTm){
+        TestUtils.sleep3s();
         fundCodeElement = wait.until(visibilityOf(fundCodeElement));
+        fundCodeElement.clear();
         fundCodeElement.sendKeys(fundCode);
+        TestUtils.sleep1s();
         searchIcon.click();
-        TestUtils.sleep3s(1000);
+        TestUtils.sleep1s();
+        applyAmountElement.clear();
         applyAmountElement.sendKeys(applyAmount);
-        TestUtils.sleep3s(1000);
+        TestUtils.sleep1s();
+        appTmElement.clear();
         appTmElement.sendKeys(appTm);
-        TestUtils.sleep3s(1000);
+        TestUtils.sleep1s();
+        confimBuyBtn();
+    }
+
+    private void confimBuyBtn(){
         buyBtn.click();
-        okBtn = wait.until(visibilityOf(okBtn));
-        okBtn.click();
+        wait.until(visibilityOf(okBtn)).click();
     }
 
     public void  orderInfo(String fundCode, String applyAmount){
-        orderInfo(fundCode, applyAmount, "090000");
+        buyOrderForm(fundCode, applyAmount, "090000");
     }
 
 }

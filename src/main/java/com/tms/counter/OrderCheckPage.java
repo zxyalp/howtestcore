@@ -3,6 +3,7 @@ package com.tms.counter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +16,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
 
@@ -25,6 +28,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllE
  * Created by yang.zhou on 2017/9/12.
  */
 public class OrderCheckPage {
+
+    private static final Log logger = LogFactory.getLog(OrderCheckPage.class);
 
     private WebDriver driver;
 
@@ -42,13 +47,22 @@ public class OrderCheckPage {
     @FindBy(id = "rsList")
     private WebElement resultsList;
 
-    // 获取列表所有的订单记录
-    @FindBy(css = "#rsList tr")
-    private List<WebElement> orderList;
+    // 获取所有订单记录
+    @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]")
+    private List<WebElement> allOrderList;
 
-    // 获取列表第一条订单元素
-    @FindBy(css = "#rsList tr")
-    private WebElement firstOrderInfo;
+    // 获取一条订单
+    @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]")
+    private WebElement firstOrder;
+
+    // 获取列表所有的订单明细记录
+    @FindBy(css = "#rsList td")
+    private List<WebElement> orderDetailList;
+
+    // 暂无审核记录元素
+    @FindBy(css = "#rsList td:only-child")
+    private WebElement noCheckOrder;
+
 
     @FindBy(className = "reCheck")
     private List<WebElement> checkElements;
@@ -84,20 +98,18 @@ public class OrderCheckPage {
     private WebElement refuseBtn;
 
 
-    private static final Log logger = LogFactory.getLog(TradeHomePage.class);
-
-    public OrderCheckPage(WebDriver driver){
+    public OrderCheckPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
     }
 
-    public void openCheckPage(String url){
-        driver.get(url);
-        driver.manage().window().maximize();
+    public void openCheckPage(String url, String operatorNo) {
+        driver.get(url + "?operatorNo=" + operatorNo);
         initPage();
     }
 
-    public void initPage(){
+    public void initPage() {
+        driver.manage().window().maximize();
         (wait.until(visibilityOf(tradeCheckMenu))).click();
         (wait.until(visibilityOf(counterCheckMenu))).click();
         checkFrame = wait.until(visibilityOf(checkFrame));
@@ -105,53 +117,68 @@ public class OrderCheckPage {
     }
 
 
-    public WebElement getFirstOrderInfo(){
-        firstOrderInfo = wait.until(visibilityOf(firstOrderInfo));
-
-        if (orderList.size()==1)
+    public WebElement getFirstOrder() {
+        if (orderDetailList.size() < 2) {
             try {
                 throw new Exception();
             } catch (Exception e) {
-                logger.error("暂无待审核记录");
+                throw new RuntimeException("无待审核记录.");
             }
-        return firstOrderInfo;
+        }
+        return wait.until(visibilityOf(firstOrder));
+    }
+
+    public String getUrl(WebElement element) {
+        return element.getAttribute("_href");
+    }
+
+    public String getUrl() {
+        return getUrl(counterCheckMenu);
     }
 
     // 获取地址链接 operatorNo=
-    public String getOperatorNo(WebElement element){
-        String href = element.getAttribute("_href").split("operatorNo=")[1];
-        return href;
+    public String getOperatorNo() {
+        return getUrl().split("operatorNo=")[1];
     }
 
     // 获取所有待审核订单列表数量
-    public int size(){
-        return orderList.size();
+    public int size() {
+        TestUtils.sleep2s();
+        logger.info("待审核订单条数：" + allOrderList.size());
+        return allOrderList.size();
     }
 
     // 获取首条订单子信息
-    public List<WebElement> getOrderDetail(){
-        return getFirstOrderInfo().findElements(By.cssSelector("td"));
+    public List<WebElement> getOrderDetail() {
+        return getFirstOrder().findElements(By.cssSelector("td"));
     }
 
     // 获取订单操作员
-    public String getOperator(){
+    public String getOperator() {
         return getOrderDetail().get(7).getText();
     }
 
-    // 点击复核按钮
-    public void clickFirstCheck(){
+    // 判断订单审核的操作员是否订单创建人员是否是同一个人
+    public Boolean isSameOperator() {
+        return getOperator().equals(getOperatorNo());
+    }
+
+    // 复核第一条订单
+    public void checkFirstOrder() {
+        TestUtils.sleep3s();
+        WebElement reviewCheckBtn = getFirstOrder().findElement(By.cssSelector(".reCheck"));
         logger.info("点击复核操作按钮");
-        getFirstOrderInfo().findElement(By.cssSelector("a")).click();
+        reviewCheckBtn.click();
     }
 
     /**
-    * 获取复核信息中基金代码(fundCode)、金额/份额(appAmt)、银行卡尾号4位(bankAcct);
-    * */
-    public Map<String, String> getReviewInfo(){
-
+     * 获取复核信息中基金代码(fundCode)、金额/份额(appAmt)、银行卡尾号4位(bankAcct);
+     */
+    public Map<String, String> getReviewInfo() {
+        appAmtText = wait.until(visibilityOf(appAmtText));
         String appAmt = TestUtils.matcher(appAmtText.getText(), "\\.|\\d");
         String bankAcct = TestUtils.matcher(bankAcctText.getText(), "\\d");
-
+        logger.info("提取金额、银行卡号后4位：" + appAmt+","+bankAcct);
         Map<String, String> fund = new HashMap<>();
         fund.put("fundCode", fundCodeText.getText());
         fund.put("appAmt", appAmt);
@@ -160,24 +187,24 @@ public class OrderCheckPage {
         return fund;
     }
 
-    public void checkOrder(){
+    public void checkOrder() {
 
-        Map<String, String> reviewMap = getReviewInfo();
+        Map<String, String> checkResult = getReviewInfo();
         TestUtils.sleep1s();
-        fundCodeInput.sendKeys(reviewMap.get("fundCode"));
+        fundCodeInput.sendKeys(checkResult.get("fundCode"));
         TestUtils.sleep1s();
-        appAmtTextInput.sendKeys(reviewMap.get("appAmt"));
+        appAmtTextInput.sendKeys(checkResult.get("appAmt"));
         TestUtils.sleep1s();
-        bankAcctInput.sendKeys(reviewMap.get("bankAcct"));
+        bankAcctInput.sendKeys(checkResult.get("bankAcct"));
         TestUtils.sleep1s();
     }
 
-    public void approvedByOrder(){
+    public void approvedByOrder() {
         checkOrder();
         approvedBtn.click();
     }
 
-    public void refuseByOrder(){
+    public void refuseByOrder() {
         checkOrder();
         refuseBtn.click();
     }

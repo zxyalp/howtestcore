@@ -15,7 +15,9 @@ public class TestUtils {
     public static void sleep1s(){
         sleep3s(1000);
     }
-
+    public static void sleep2s(){
+        sleep3s(2000);
+    }
     public static void sleep3s(){
         sleep3s(3000);
     }

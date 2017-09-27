@@ -29,10 +29,10 @@ public class TradeHomePage {
     @FindBy(how = How.LINK_TEXT, using = "认申购")
     private WebElement buyMenu;
 
-    @FindBy(how = How.CSS, using = "iframe[src$='buy.html']")
+    @FindBy(how = How.CSS, using = "iframe[src*='buy.html']")
     private WebElement buyFrame;
 
-    @FindBy(how = How.CSS, using = "iframe[src$='sell.html']")
+    @FindBy(how = How.CSS, using = "iframe[src*='sell.html']")
     private WebElement sellFrame;
 
     private static final Log logger = LogFactory.getLog(TradeHomePage.class.getName());
@@ -42,12 +42,12 @@ public class TradeHomePage {
         wait = new WebDriverWait(driver, 10);
     }
 
-    public void openCounter(String url){
-        driver.get(url);
+    public void openCounter(String url, String operatorNo){
+        driver.get(url + "?operatorNo=" + operatorNo);
         driver.manage().window().maximize();
     }
 
-    public void queryCust(String custNo){
+    public void queryCustName(String custNo){
         (wait.until(visibilityOf(tradeOrderMenu))).click();
         (wait.until(visibilityOf(buyMenu))).click();
         buyFrame = wait.until(visibilityOf(buyFrame));
@@ -56,10 +56,10 @@ public class TradeHomePage {
         queryUserPage.queryCustNo(custNo);
     }
 
-    public void entryOrder(String fundCode, String applyAmount, String appTm){
+    public void buy(String fundCode, String applyAmount, String appTm){
         TestUtils.scrollTo(driver, 10000);
         ApplyOrderPage applyOrderPage = PageFactory.initElements(driver, ApplyOrderPage.class);
-        applyOrderPage.orderInfo(fundCode, applyAmount, appTm);
+        applyOrderPage.buyOrderForm(fundCode, applyAmount, appTm);
     }
 
 }
