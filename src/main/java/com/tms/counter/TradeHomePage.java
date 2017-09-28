@@ -10,8 +10,6 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
-
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
@@ -58,8 +56,8 @@ public class TradeHomePage {
 
     public void buy(String fundCode, String applyAmount, String appTm){
         TestUtils.scrollTo(driver, 10000);
-        ApplyOrderPage applyOrderPage = PageFactory.initElements(driver, ApplyOrderPage.class);
-        applyOrderPage.buyOrderForm(fundCode, applyAmount, appTm);
+        BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
+        buyPage.buyOrderForm(fundCode, applyAmount, appTm);
     }
 
 }

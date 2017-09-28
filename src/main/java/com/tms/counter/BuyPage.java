@@ -10,15 +10,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 
 /**1、购买页面
  * Created by yang.zhou on 2017/9/11.
  */
-public class ApplyOrderPage {
+public class BuyPage {
 
-    private static final Log logger = LogFactory.getLog(ApplyOrderPage.class);
+    private static final Log logger = LogFactory.getLog(BuyPage.class);
 
     private WebDriver driver;
 
@@ -45,7 +44,7 @@ public class ApplyOrderPage {
     @FindBy(css = ".layui-layer-btn0")
     private WebElement okBtn;
 
-    public ApplyOrderPage(WebDriver driver){
+    public BuyPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
     }

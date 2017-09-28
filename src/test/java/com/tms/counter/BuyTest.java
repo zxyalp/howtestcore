@@ -46,7 +46,7 @@ public class BuyTest {
 
     }
 
-    //    @Test
+    @Test
     public void CheckOrderTest() throws Exception {
         OrderCheckPage checkPage = PageFactory.initElements(driver, OrderCheckPage.class);
         checkPage.openCheckPage("http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html", "s001");
