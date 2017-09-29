@@ -1,9 +1,10 @@
-package com.tms.counter;
+package com.howbuy.tms.counter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,23 +24,32 @@ public class BuyPage {
 
     private Wait<WebDriver> wait;
 
+    // 基金代码
     @FindBy(id = "fundCode")
-    private WebElement fundCodeElement;
+    @CacheLookup
+    private WebElement fundCodeText;
 
+    // 基金名称
     @FindBy(id = "fundName")
-    private WebElement fundNameElement;
+    @CacheLookup
+    private WebElement fundNameText;
 
+    // 基金代码搜索按钮
     @FindBy(className = "searchIcon")
+    @CacheLookup
     private WebElement searchIcon;
 
     @FindBy(id = "applyAmount")
+    @CacheLookup
     private WebElement applyAmountElement;
 
     @FindBy(id = "appTm")
+    @CacheLookup
     private WebElement appTmElement;
 
     @FindBy(id = "confimBuyBtn")
-    private WebElement buyBtn;
+    @CacheLookup
+    private WebElement confimBuyBtn;
 
     @FindBy(css = ".layui-layer-btn0")
     private WebElement okBtn;
@@ -51,9 +61,9 @@ public class BuyPage {
 
     public void  buyOrderForm(String fundCode, String applyAmount, String appTm){
         TestUtils.sleep3s();
-        fundCodeElement = wait.until(visibilityOf(fundCodeElement));
-        fundCodeElement.clear();
-        fundCodeElement.sendKeys(fundCode);
+        fundCodeText = wait.until(visibilityOf(fundCodeText));
+        fundCodeText.clear();
+        fundCodeText.sendKeys(fundCode);
         TestUtils.sleep1s();
         searchIcon.click();
         TestUtils.sleep1s();
@@ -63,11 +73,11 @@ public class BuyPage {
         appTmElement.clear();
         appTmElement.sendKeys(appTm);
         TestUtils.sleep1s();
-        confimBuyBtn();
+        submit();
     }
 
-    private void confimBuyBtn(){
-        buyBtn.click();
+    private void submit(){
+        confimBuyBtn.click();
         wait.until(visibilityOf(okBtn)).click();
     }
 

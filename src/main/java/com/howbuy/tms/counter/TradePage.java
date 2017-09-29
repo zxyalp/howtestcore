@@ -1,4 +1,4 @@
-package com.tms.counter;
+package com.howbuy.tms.counter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,7 +15,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 /**
  * Created by yang.zhou on 2017/9/11.
  */
-public class TradeHomePage {
+public class TradePage {
+
+    private static final Log logger = LogFactory.getLog(TradePage.class.getName());
 
     private WebDriver driver;
 
@@ -27,37 +29,53 @@ public class TradeHomePage {
     @FindBy(how = How.LINK_TEXT, using = "认申购")
     private WebElement buyMenu;
 
+    @FindBy(how = How.LINK_TEXT, using = "赎回")
+    private WebElement sellMenu;
+
     @FindBy(how = How.CSS, using = "iframe[src*='buy.html']")
     private WebElement buyFrame;
 
     @FindBy(how = How.CSS, using = "iframe[src*='sell.html']")
     private WebElement sellFrame;
 
-    private static final Log logger = LogFactory.getLog(TradeHomePage.class.getName());
 
-    public TradeHomePage(WebDriver driver){
+    public TradePage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
 
-    public void openCounter(String url, String operatorNo){
+    public void get(String url, String operatorNo){
         driver.get(url + "?operatorNo=" + operatorNo);
         driver.manage().window().maximize();
     }
 
-    public void queryCustName(String custNo){
+    public void queryCustName(String custNo, WebElement menu, WebElement frame){
         (wait.until(visibilityOf(tradeOrderMenu))).click();
-        (wait.until(visibilityOf(buyMenu))).click();
-        buyFrame = wait.until(visibilityOf(buyFrame));
-        driver.switchTo().frame(buyFrame);
+        (wait.until(visibilityOf(menu))).click();
+        WebElement iFrame = wait.until(visibilityOf(frame));
+        driver.switchTo().frame(iFrame);
         QueryUserPage queryUserPage = PageFactory.initElements(driver, QueryUserPage.class);
         queryUserPage.queryCustNo(custNo);
+    }
+
+    public void queryCustNametoBuy(String custNo){
+        queryCustName(custNo, buyMenu,buyFrame);
+    }
+
+    public void queryCustNametoSell(String custNo){
+        queryCustName(custNo, sellMenu, sellFrame);
     }
 
     public void buy(String fundCode, String applyAmount, String appTm){
         TestUtils.scrollTo(driver, 10000);
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
         buyPage.buyOrderForm(fundCode, applyAmount, appTm);
+    }
+
+    public void sell(String fundCode, String appVol, String appTm){
+        TestUtils.scrollTo(driver, 10000);
+        SellPage sellPage = PageFactory.initElements(driver, SellPage.class);
+        sellPage.sellOrderForm(fundCode, appVol, appTm);
     }
 
 }

@@ -1,27 +1,24 @@
-package com.tms.counter;
+package com.howbuy.tms.counter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
 
 
 /**
@@ -35,13 +32,18 @@ public class OrderCheckPage {
 
     private Wait<WebDriver> wait;
 
+    private String operatorNo;
+
     @FindBy(xpath = "//dt[contains(text(), ' 交易复核')]")
+    @CacheLookup
     private WebElement tradeCheckMenu;
 
     @FindBy(linkText = "柜台交易复核")
+    @CacheLookup
     private WebElement counterCheckMenu;
 
     @FindBy(how = How.CSS, using = "iframe[src*='countercheck.html']")
+    @CacheLookup
     private WebElement checkFrame;
 
     @FindBy(id = "rsList")
@@ -55,6 +57,11 @@ public class OrderCheckPage {
     @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]")
     private WebElement firstOrder;
 
+    // 获取首条复核按钮
+    @FindBys({ @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]"),
+               @FindBy(className = "reCheck")})
+    private WebElement firstCheckBtn;
+
     // 获取列表所有的订单明细记录
     @FindBy(css = "#rsList td")
     private List<WebElement> orderDetailList;
@@ -63,9 +70,9 @@ public class OrderCheckPage {
     @FindBy(css = "#rsList td:only-child")
     private WebElement noCheckOrder;
 
-
+    // 获取复核按钮
     @FindBy(className = "reCheck")
-    private List<WebElement> checkElements;
+    private List<WebElement> checkBtnList;
 
     // 获取订单中基金代码
     @FindBy(xpath = "//*[@class='tabPop']//tr[1]/td[2]")
@@ -103,7 +110,8 @@ public class OrderCheckPage {
         this.wait = new WebDriverWait(driver, 10);
     }
 
-    public void openCheckPage(String url, String operatorNo) {
+    public void get(String url, String operatorNo) {
+        this.operatorNo = operatorNo;
         driver.get(url + "?operatorNo=" + operatorNo);
         initPage();
     }
@@ -159,8 +167,24 @@ public class OrderCheckPage {
     }
 
     // 判断订单审核的操作员是否订单创建人员是否是同一个人
-    public Boolean isSameOperator() {
-        return getOperator().equals(getOperatorNo());
+    public boolean isSameOperator() {
+        if (getOperator().equals(this.operatorNo)){
+            logger.info("订单审核操作员与创建人员是同一个人");
+            driver.switchTo().defaultContent();
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    // 如果返回另一个用户
+    public String getOtherOperator(){
+        if (this.operatorNo.equals("s001")) {
+            return "s002";
+        }else {
+            return "s001";
+        }
     }
 
     // 复核第一条订单

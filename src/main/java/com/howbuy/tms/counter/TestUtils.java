@@ -1,4 +1,4 @@
-package com.tms.counter;
+package com.howbuy.tms.counter;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
