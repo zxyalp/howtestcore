@@ -168,23 +168,20 @@ public class OrderCheckPage {
 
     // 判断订单审核的操作员是否订单创建人员是否是同一个人
     public boolean isSameOperator() {
-        if (getOperator().equals(this.operatorNo)){
+        if (getOperator().equals(this.operatorNo)) {
             logger.info("订单审核操作员与创建人员是同一个人");
             driver.switchTo().defaultContent();
             return true;
-        }else {
-            return false;
         }
-
+        return false;
     }
 
     // 如果返回另一个用户
     public String getOtherOperator(){
         if (this.operatorNo.equals("s001")) {
             return "s002";
-        }else {
-            return "s001";
         }
+        return "s001";
     }
 
     // 复核第一条订单
