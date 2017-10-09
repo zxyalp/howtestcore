@@ -34,6 +34,14 @@ public class TestUtils {
         scrollTo(driver, 0, ypos);
     }
 
+    public static void scrollEnd(WebDriver driver){
+        scrollTo(driver, 9999);
+    }
+
+    public static void scrollTop(WebDriver driver){
+        scrollTo(driver, 0);
+    }
+
     public static void scrollTo(WebDriver driver, int xpos, int ypos){
         ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(%s, %s)", xpos, ypos));
     }

@@ -1,11 +1,13 @@
 package com.howbuy.tms.simu;
 
 import com.howbuy.simu.LoginPage;
+import com.howbuy.simu.OnlineTradingPage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -38,7 +40,14 @@ public class SimuTest {
     public void loginSimuWeb() throws Exception{
         LoginPage login = PageFactory.initElements(driver, LoginPage.class);
         login.get("http://192.168.221.216:15080/trade/login/login.htm?targeturl=http://192.168.221.216:4085/newpcsm/buylist.html");
-        login.login("321183198707210772", "qq1111");
+        login.login("511126198008050333", "qq1111");
+
+        OnlineTradingPage onlinePage = PageFactory.initElements(driver, OnlineTradingPage.class);
+        onlinePage.buyHighFund("S62866", "280000", "121212");
+
+        onlinePage.buyHighFund("S22275", "210000", "121212");
+
+
     }
 
 
