@@ -1,5 +1,6 @@
 package com.howbuy.tms.simu;
 
+import com.howbuy.simu.BuyHighPage;
 import com.howbuy.simu.LoginPage;
 import com.howbuy.simu.OnlineTradingPage;
 import org.apache.commons.logging.Log;
@@ -42,10 +43,11 @@ public class SimuTest {
         login.get("http://192.168.221.216:15080/trade/login/login.htm?targeturl=http://192.168.221.216:4085/newpcsm/buylist.html");
         login.login("511126198008050333", "qq1111");
 
-        OnlineTradingPage onlinePage = PageFactory.initElements(driver, OnlineTradingPage.class);
-        onlinePage.buyHighFund("S62866", "280000", "121212");
+        BuyHighPage buyHighPage = PageFactory.initElements(driver, BuyHighPage.class);
 
-        onlinePage.buyHighFund("S22275", "210000", "121212");
+        buyHighPage.buyHighFund("S62866", "280000", "121212");
+
+        Assert.assertTrue(buyHighPage.isBuySuccess());
 
 
     }

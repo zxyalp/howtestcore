@@ -4,6 +4,7 @@ import com.howbuy.tms.counter.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -138,11 +139,16 @@ public class BuyHighPage {
         try {
             wait.until(invisibilityOf(dialog));
             wait.until(visibilityOf(buyingText));
-        }catch (NoSuchElementException n){
+        }catch (TimeoutException t){
             logger.error("购买产品成功");
             return false;
         }
         return true;
     }
 
+    public void buyHighFund(String fundCode, String buyAmount, String txPassword){
+        queryFund(fundCode);
+        fillInOrder(buyAmount);
+        confirmPurchase(txPassword);
+    }
 }
