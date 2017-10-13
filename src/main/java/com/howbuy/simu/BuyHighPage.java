@@ -90,7 +90,7 @@ public class BuyHighPage {
     private WebElement checkVerifyCodeBtn;
 
     // 购买成功
-    @FindBy(partialLinkText = "您的购买申请已经受理")
+    @FindBy(xpath = "//cantians(text(),'您的购买申请已经受理')")
     private WebElement buyingText;
 
 
@@ -140,7 +140,7 @@ public class BuyHighPage {
             wait.until(invisibilityOf(dialog));
             wait.until(visibilityOf(buyingText));
         }catch (TimeoutException t){
-            logger.error("购买产品成功");
+            logger.error("产品购买失败.");
             return false;
         }
         return true;
