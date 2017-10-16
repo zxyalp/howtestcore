@@ -24,7 +24,7 @@ public class FanLiCookie {
     private WebDriver driver;
 
     static {
-        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.29\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.31\\chromedriver.exe");
     }
 
     @BeforeClass
@@ -78,7 +78,7 @@ public class FanLiCookie {
     }
 
 
-    @Test
+    @Test(invocationCount = 1)
     public void bReadCookieTest(){
 
         driver.get("https://passport.fanli.com/login");
