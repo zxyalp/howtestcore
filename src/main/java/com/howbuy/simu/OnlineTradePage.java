@@ -8,12 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by yang.zhou on 2017/9/29.
  */
-public class OnlineTradingPage {
+public class OnlineTradePage extends BasePage{
 
-    private WebDriver driver;
-    private Wait<WebDriver> wait;
 
-    public OnlineTradingPage(WebDriver driver){
+    public OnlineTradePage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }

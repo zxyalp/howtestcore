@@ -7,14 +7,15 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.seleniumhq.jetty9.servlets.DataRateLimitedServlet;
 
-import java.util.ArrayList;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
@@ -25,12 +26,11 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
  * Created by yang.zhou on 2017/9/29.
  * @author yang.zhou
  */
-public class BuyHighPage {
+public class BuyHighPage extends BasePage {
 
     private static final Log logger = LogFactory.getLog(BuyHighPage.class);
 
-    private WebDriver driver;
-    private Wait<WebDriver> wait;
+    private TestContext testContext = TestContext.getInstance();
 
     // 基金代码查询
     @FindBy(id = "searchFund_")
@@ -40,7 +40,7 @@ public class BuyHighPage {
     @FindBy(id = "searchFundBtn_")
     private WebElement searchFundBtn;
 
-    // 数据加载框
+    // 模态框
     @FindBy(className = "dialogLoad")
     private WebElement dialog;
 
@@ -120,26 +120,11 @@ public class BuyHighPage {
     @FindBy(xpath = "//p[contains(text(),'您的购买申请已经受理')]")
     private WebElement buyingText;
 
-    private String buyListPage;
-
 
     public BuyHighPage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
-
-    public void get(){
-        driver.get(this.buyListPage);
-    }
-
-    public void setBuyListPage(String buyListPage) {
-        this.buyListPage = buyListPage;
-    }
-
-    public String getBuyListPage() {
-        return buyListPage;
-    }
-
 
     /**
      *查询产品
@@ -246,7 +231,7 @@ public class BuyHighPage {
      * */
 
     public void buyHighFund(String fundCode, String buyAmount, String txPassword){
-        get();
+        reopen();
         queryFund(fundCode);
         fillInOrder(buyAmount);
         if (isSign()){

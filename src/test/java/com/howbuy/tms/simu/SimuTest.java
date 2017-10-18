@@ -1,8 +1,9 @@
 package com.howbuy.tms.simu;
 
 import com.howbuy.simu.BuyHighPage;
-import com.howbuy.simu.LoginPage;
-import com.howbuy.simu.OnlineTradingPage;
+import com.howbuy.simu.InvestorSignPage;
+import com.howbuy.simu.LoginWebPage;
+import com.howbuy.simu.RiskeValuationPage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +19,7 @@ public class SimuTest {
 
     private WebDriver driver;
 
-    private String tmsCounterUrl = "http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html";
+    private String simuUrl = "http://192.168.221.55:15080/trade/login/login.htm";
 
     private static final Log logger = LogFactory.getLog(SimuTest.class);
 
@@ -34,38 +35,41 @@ public class SimuTest {
         driver = new ChromeDriver();
     }
 
-    @Test
+    @Test(enabled = false)
     public void loginSimuUser01() throws Exception{
-        LoginPage login = PageFactory.initElements(driver, LoginPage.class);
-        login.get("http://192.168.221.55:15080/trade/login/login.htm?targeturl=http://192.168.221.55:4085/newpcsm/buylist.html");
-        login.login("320101199101016667", "qq1111");
-
-        BuyHighPage buyHighPage = PageFactory.initElements(driver, BuyHighPage.class);
-        buyHighPage.setBuyListPage("http://192.168.221.55:4085/newpcsm/buylist.html");
-
-        buyHighPage.buyHighFund("QY0001", "1200000", "121212");
-        buyHighPage.buyHighFund("QY0002", "1300000", "121212");
-        buyHighPage.buyHighFund("QY0003", "1400000", "121212");
-        buyHighPage.buyHighFund("QY0004", "1500000", "121212");
-
-        Assert.assertTrue(buyHighPage.isBuySuccess());
-    }
-
-    @Test(enabled = true)
-    public void loginSimuUser02() throws Exception{
-        LoginPage login = PageFactory.initElements(driver, LoginPage.class);
-        login.get("http://192.168.221.55:15080/trade/login/login.htm?targeturl=http://192.168.221.55:4085/newpcsm/buylist.html");
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.get(simuUrl);
         login.login("320901198001014372", "qq1111");
 
         BuyHighPage buyHighPage = PageFactory.initElements(driver, BuyHighPage.class);
-        buyHighPage.setBuyListPage("http://192.168.221.55:4085/newpcsm/buylist.html");
+        buyHighPage.buyHighFund("QY0001", "32000000", "121212");
+        buyHighPage.buyHighFund("QY0002", "33000000", "121212");
+        buyHighPage.buyHighFund("QY0003", "34000000", "121212");
+        buyHighPage.buyHighFund("QY0004", "35000000", "121212");
+        buyHighPage.buyHighFund("QY0005", "36000000", "121212");
 
-        buyHighPage.buyHighFund("QY0001", "2200000", "121212");
-        buyHighPage.buyHighFund("QY0002", "2300000", "121212");
-        buyHighPage.buyHighFund("QY0003", "2400000", "121212");
-        buyHighPage.buyHighFund("QY0004", "3500000", "121212");
 
-        Assert.assertTrue(buyHighPage.isBuySuccess());
+//        Assert.assertTrue(buyHighPage.isBuySuccess());
+    }
+
+    @Test(enabled = true)
+    public void signInvestorTest() throws Exception{
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.get("http://192.168.221.55:15080/trade/login/login.htm?targeturl=http://192.168.221.55:4085/newpcsm/buylist.html");
+        login.login("320101199701017874", "qq1111");
+
+        InvestorSignPage signPage = PageFactory.initElements(driver, InvestorSignPage.class);
+        signPage.confirmOfInvestors();
+    }
+
+    @Test(enabled = true)
+    public void riskevaluationTest() throws Exception{
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.get("http://192.168.221.55:15080/trade/login/login.htm?targeturl=http://192.168.221.55:4085/newpcsm/buylist.html");
+        login.login("320101199701017874", "qq1111");
+
+        RiskeValuationPage signPage = PageFactory.initElements(driver, RiskeValuationPage.class);
+        signPage.getAnswerList();
     }
 
     @AfterMethod

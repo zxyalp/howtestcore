@@ -1,27 +1,29 @@
 package com.howbuy.simu;
 
-import com.howbuy.tms.counter.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.Test;
+
+import com.howbuy.tms.counter.TestUtils;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-/**
+/**交易网站登录
+ * @author yang.zhou
  * Created by yang.zhou on 2017/9/29.
  */
-public class LoginPage {
+public class LoginWebPage extends BasePage{
 
-    private static final Log logger = LogFactory.getLog(LoginPage.class);
+    private static final Log logger = LogFactory.getLog(LoginWebPage.class);
 
-    private WebDriver driver;
-    private Wait<WebDriver> wait;
+    private TestContext testContext = TestContext.getInstance();
 
     // 交易账号
     @FindBy(id = "idNo")
@@ -47,14 +49,19 @@ public class LoginPage {
     private WebElement activateacctLink;
 
 
-    public LoginPage(WebDriver driver){
+    public LoginWebPage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
 
-    public void get(String url){
+    public void get(String url) throws MalformedURLException{
+        testContext.setUrl(new URL(url));
         driver.get(url);
         driver.manage().window().maximize();
+    }
+
+    public void get(URL url) throws MalformedURLException{
+        get(url.toString());
     }
 
     public void login(String idNo, String passwd){

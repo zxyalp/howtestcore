@@ -16,9 +16,12 @@ public class App
     {
         //http://192.168.221.216:15080/trade/login/login.htm?targeturl=http://192.168.221.216:4085/newpcsm/buylist.html
         URL u = new URL("http://192.168.221.216:15080/trade/login/login.htm");
+
+        URL u1 = new URL("http", u.getHost(),4085,"/newpcsm/buylist.html");
+
         System.out.println(u.getHost());
         System.out.println(u.getPath());
-
+        System.out.println(u1.toString());
 
     }
 }
