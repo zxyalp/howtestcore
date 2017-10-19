@@ -3,20 +3,25 @@ package com.howbuy.simu;
 import com.howbuy.tms.counter.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 
 /**私募合格投资者认定页面、风险测评页面
- * Created by yang.zhou on 2017/10/17.
+ *
+ * @author yang.zhou
+ * @date 2017/10/17
  */
 public class InvestorSignPage extends BasePage {
 
@@ -46,9 +51,14 @@ public class InvestorSignPage extends BasePage {
     @FindBy(css = "input[type=checkbox]")
     private WebElement checkbox;
 
+    // 风险测评页面
+    @FindBy(xpath = "//p[text()='风险评测']")
+    private List<WebElement> riskValuationText;
+
+
     public InvestorSignPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 3);
     }
 
 
@@ -59,6 +69,10 @@ public class InvestorSignPage extends BasePage {
     public Boolean isElectronicSignature(){
         return electronicSignBook.size() > 0;
     }
+
+    public Boolean isRiskeValuation(){return riskValuationText.size() > 0; }
+
+    public Boolean isQualifiedAndRisk(){return isQualifiedInvestor() || isElectronicSignature() || isRiskeValuation();}
 
     public void checkInvestorBook(){
         logger.info("勾选合格投资者认定书.");
@@ -75,23 +89,37 @@ public class InvestorSignPage extends BasePage {
         if (!checkbox.isSelected()){
             checkbox.click();
         }
+        TestUtils.scrollTo(driver, nextSetp.getLocation().getY());
         nextSetp.click();
     }
 
+    public void riskAssess(){
+        logger.info("开始做风险测评");
+        RiskValuationPage risk = PageFactory.initElements(driver, RiskValuationPage.class);
+        risk.riskAssess();
+    }
+
     public void confirmOfInvestors(){
-        reopen();
-        wait.until(invisibilityOf(dialog));
+        diglog();
         if (isQualifiedInvestor()){
             checkInvestorBook();
         }
-        wait.until(invisibilityOf(dialog));
-        TestUtils.scrollEnd(driver);
+        diglog();
         if (isElectronicSignature()){
             checkSignatureBook();
         }
-
+        TestUtils.sleep1s();
+        if (isRiskeValuation()){
+            riskAssess();
+        }
     }
 
-
+    public void diglog(){
+        try {
+            wait.until(invisibilityOf(dialog));
+        }catch (NoSuchElementException | TimeoutException n){
+            logger.info(n);
+        }
+    }
 
 }

@@ -7,15 +7,11 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
-
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
@@ -26,11 +22,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
  * Created by yang.zhou on 2017/9/29.
  * @author yang.zhou
  */
-public class BuyHighPage extends BasePage {
+public class HighEndBuyPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(BuyHighPage.class);
-
-    private TestContext testContext = TestContext.getInstance();
+    private static final Log logger = LogFactory.getLog(HighEndBuyPage.class);
 
     // 基金代码查询
     @FindBy(id = "searchFund_")
@@ -67,6 +61,10 @@ public class BuyHighPage extends BasePage {
     // 选择线下转账
     @FindBy(xpath = "//span[text()='线下转账']")
     private WebElement offlineTransferLink;
+
+    // 选择银行卡
+    @FindBy(css = "input[name=bank2]")
+    private List<WebElement> bankCardRadioes;
 
     // 支行名称
     @FindBy(css = "input[data-bind*='bankSubName']")
@@ -117,11 +115,14 @@ public class BuyHighPage extends BasePage {
     private WebElement checkVerifyCodeBtn;
 
     // 购买成功
-    @FindBy(xpath = "//p[contains(text(),'您的购买申请已经受理')]")
+    @FindAll({
+            @FindBy( xpath = "//p[contains(text(),'您的购买申请已经受理')]"),
+            @FindBy(xpath = "//p[contains(text(),'您已提交购买申请')]")
+    })
     private WebElement buyingText;
 
 
-    public BuyHighPage(WebDriver driver){
+    public HighEndBuyPage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
@@ -158,14 +159,28 @@ public class BuyHighPage extends BasePage {
      * @param buyAmount 净购买金额
      * */
 
-    public void fillInOrder(String buyAmount){
+    public void fillInOrder(String buyAmount, int index){
         wait.until(invisibilityOf(dialog));
         TestUtils.sleep1s();
         buyAmountText.sendKeys(buyAmount);
         bankCardLink.click();
+        int size = bankCardRadioes.size();
+        if ( size > 1 && size >= index ) {
+            WebElement bankCardChecked = bankCardRadioes.get(index - 1);
+            TestUtils.scrollTo(driver, bankCardChecked.getLocation().getY());
+            if (!bankCardChecked.isSelected()) {
+                logger.info("选择第"+index+"张银行卡支付.");
+                bankCardChecked.click();
+            }
+        }
         TestUtils.scrollEnd(driver);
         bankSubNameText.sendKeys("上海南京西路支行");
         wait.until(elementToBeClickable(nextStepBtn)).click();
+    }
+
+
+    public void fillInOrder(String buyAmount){
+        fillInOrder(buyAmount,1);
     }
 
     /**
@@ -227,16 +242,26 @@ public class BuyHighPage extends BasePage {
     }
 
     /**
-     * 买基金
+     * 购买买基金
      * */
 
-    public void buyHighFund(String fundCode, String buyAmount, String txPassword){
+    public void buyHighFund(String fundCode, String buyAmount, int index, String txPassword){
         reopen();
         queryFund(fundCode);
-        fillInOrder(buyAmount);
+        fillInOrder(buyAmount, index);
         if (isSign()){
             signingElecContract();
         }
         confirmPurchase(txPassword);
     }
+
+
+    public void buyHighFund(String fundCode, String buyAmount, int index){
+        buyHighFund(fundCode, buyAmount, index, "121212");
+    }
+
+    public void buyHighFund(String fundCode, String buyAmount){
+        buyHighFund(fundCode, buyAmount, 1, "121212");
+    }
+
 }

@@ -2,7 +2,6 @@ package com.howbuy.simu;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -21,7 +20,7 @@ public class OnlineTradePage extends BasePage{
     }
 
     public void buyHighFund(String fundCode, String buyAmount, String txPassword){
-        BuyHighPage buyPage = PageFactory.initElements(driver, BuyHighPage.class);
+        HighEndBuyPage buyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
         buyPage.queryFund(fundCode);
         buyPage.fillInOrder(buyAmount);
         buyPage.confirmPurchase(txPassword);

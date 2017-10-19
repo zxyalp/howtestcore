@@ -10,7 +10,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**基础页面
- * Created by yang.zhou on 2017/9/29.
+ *
+ * @author yang.zhou
+ * @date 2017/9/29
  */
 public class BasePage {
 

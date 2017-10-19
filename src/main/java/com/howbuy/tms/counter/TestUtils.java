@@ -1,7 +1,9 @@
 package com.howbuy.tms.counter;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.seleniumhq.jetty9.servlets.DataRateLimitedServlet;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,6 +45,7 @@ public class TestUtils {
     }
 
     public static void scrollTo(WebDriver driver, int xpos, int ypos){
+        sleep1s();
         ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(%s, %s)", xpos, ypos));
     }
 
