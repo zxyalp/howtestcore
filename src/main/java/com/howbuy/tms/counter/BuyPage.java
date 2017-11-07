@@ -1,5 +1,6 @@
 package com.howbuy.tms.counter;
 
+import jdk.internal.dynalink.linker.LinkerServices;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -43,6 +46,15 @@ public class BuyPage {
     @CacheLookup
     private WebElement applyAmountElement;
 
+    // 获取银行卡
+    @FindBy(css = "#selectBank > option")
+    private List<WebElement> selectBankValues;
+
+    // 银行卡
+    @FindBy(css = "#selectBank")
+    private WebElement selectBank;
+
+
     @FindBy(id = "appTm")
     @CacheLookup
     private WebElement appTmElement;
@@ -59,7 +71,11 @@ public class BuyPage {
         this.wait = new WebDriverWait(driver, 10);
     }
 
-    public void  buyOrderForm(String fundCode, String applyAmount, String appTm){
+    public void buyOrderForm(String fundCode, String applyAmount, String appTm){
+        buyOrderForm(fundCode, applyAmount, appTm, 1);
+    }
+
+    public void  buyOrderForm(String fundCode, String applyAmount, String appTm, int index){
         TestUtils.sleep3s();
         fundCodeText = wait.until(visibilityOf(fundCodeText));
         fundCodeText.clear();
@@ -70,6 +86,8 @@ public class BuyPage {
         applyAmountElement.clear();
         applyAmountElement.sendKeys(applyAmount);
         TestUtils.sleep1s();
+        selectBank(index);
+        TestUtils.sleep1s();
         appTmElement.clear();
         appTmElement.sendKeys(appTm);
         TestUtils.sleep1s();
@@ -79,6 +97,13 @@ public class BuyPage {
     private void submit(){
         confimBuyBtn.click();
         wait.until(visibilityOf(okBtn)).click();
+    }
+
+    private void selectBank(int i){
+        if (selectBankValues.size() > 1){
+            selectBank.click();
+            selectBankValues.get(i-1).click();
+        }
     }
 
     public void  orderInfo(String fundCode, String applyAmount){

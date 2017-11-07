@@ -82,6 +82,10 @@ public class HighEndBuyPage extends BasePage {
     @FindBy(id = "all")
     private WebElement allBox;
 
+    // 检查是否存在勾选框
+    @FindBy(id = "all")
+    private List<WebElement> checkBox;
+
     // 下一步按钮
     @FindBy(linkText = "下一步")
     private WebElement nextStepBtn;
@@ -163,6 +167,11 @@ public class HighEndBuyPage extends BasePage {
         wait.until(invisibilityOf(dialog));
         TestUtils.sleep1s();
         buyAmountText.sendKeys(buyAmount);
+        if (index == 0){
+            TestUtils.scrollEnd(driver);
+            wait.until(elementToBeClickable(nextStepBtn)).click();
+            return;
+        }
         bankCardLink.click();
         int size = bankCardRadioes.size();
         if ( size > 1 && size >= index ) {
@@ -184,7 +193,7 @@ public class HighEndBuyPage extends BasePage {
     }
 
     /**
-     * 2、首次购买，需要签电子合同步骤
+     * 2、首次购买，需要签电子合同步骤,私募购买
      * */
 
     public void signingElecContract(){
@@ -194,12 +203,15 @@ public class HighEndBuyPage extends BasePage {
             hetongBox.click();
         }
         TestUtils.sleep1s();
-        nextStepBtn.click();
+        // 私募投资者声明处理，如果不存在私募声明，跳过执行
         wait.until(invisibilityOf(dialog));
-        if (!allBox.isSelected()){
-            allBox.click();
+        if (checkBox.size() > 0) {
+            nextStepBtn.click();
+            if (!allBox.isSelected()) {
+                allBox.click();
+            }
+            TestUtils.scrollEnd(driver);
         }
-        TestUtils.scrollEnd(driver);
         nextStepBtn.click();
     }
 
@@ -262,6 +274,10 @@ public class HighEndBuyPage extends BasePage {
 
     public void buyHighFund(String fundCode, String buyAmount){
         buyHighFund(fundCode, buyAmount, 1, "121212");
+    }
+
+    public void buyHighFundBySavingBox(String fundCode, String buyAmount){
+        buyHighFund(fundCode, buyAmount, 0, "121212");
     }
 
 }

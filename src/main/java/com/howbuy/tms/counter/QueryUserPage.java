@@ -49,9 +49,17 @@ public class QueryUserPage {
         wait = new WebDriverWait(driver, 3);
     }
 
-    public void queryCustNo(String custNo){
-        custNoElement.clear();
-        custNoElement.sendKeys(custNo);
+    public void queryByCustNo(String custNo){
+        query(custNoElement, custNo);
+    }
+
+    public void queryByIdNo(String idNo){
+        query(idNoElement, idNo);
+    }
+
+    private void query(WebElement element, String cust){
+        element.clear();
+        element.sendKeys(cust);
         queryBtn.click();
         isCustInfo();
     }

@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
+
 /**
  * Created by yang.zhou on 2017/9/29.
  */
@@ -24,6 +26,19 @@ public class OnlineTradePage extends BasePage{
         buyPage.queryFund(fundCode);
         buyPage.fillInOrder(buyAmount);
         buyPage.confirmPurchase(txPassword);
+    }
+
+    public void signAndRiskValuation (String url, String idNo, String passwd) throws MalformedURLException {
+        LoginWebPage loginWebPage = PageFactory.initElements(driver, LoginWebPage.class);
+        loginWebPage.get(url);
+        loginWebPage.login(idNo, passwd);
+        InvestorSignPage signPage = PageFactory.initElements(driver,InvestorSignPage.class);
+        signPage.reopen();
+        signPage.confirmOfInvestors();
+    }
+
+    public void signAndRiskValuation (String url, String idNo) throws MalformedURLException {
+        signAndRiskValuation(url, idNo, "qq1111");
     }
 
 }

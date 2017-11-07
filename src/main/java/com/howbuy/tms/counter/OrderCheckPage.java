@@ -34,7 +34,11 @@ public class OrderCheckPage {
 
     private String operatorNo;
 
-    @FindBy(xpath = "//dt[contains(text(), ' 交易复核')]")
+    @FindBy(xpath = "//dt[contains(text(), '业务审核')]")
+    @CacheLookup
+    private WebElement businessMenu;
+
+    @FindBy(xpath = "//dt[contains(text(), '交易审核(高端)')]")
     @CacheLookup
     private WebElement tradeCheckMenu;
 
@@ -113,11 +117,12 @@ public class OrderCheckPage {
     public void get(String url, String operatorNo) {
         this.operatorNo = operatorNo;
         driver.get(url + "?operatorNo=" + operatorNo);
+        driver.manage().window().maximize();
         initPage();
     }
 
     public void initPage() {
-        driver.manage().window().maximize();
+        (wait.until(visibilityOf(businessMenu))).click();
         (wait.until(visibilityOf(tradeCheckMenu))).click();
         (wait.until(visibilityOf(counterCheckMenu))).click();
         checkFrame = wait.until(visibilityOf(checkFrame));
@@ -144,29 +149,43 @@ public class OrderCheckPage {
         return getUrl(counterCheckMenu);
     }
 
-    // 获取地址链接 operatorNo=
+    /**
+     *  获取地址链接 operatorNo=
+     * */
     public String getOperatorNo() {
         return getUrl().split("operatorNo=")[1];
     }
 
-    // 获取所有待审核订单列表数量
+    /**
+     * 获取所有待审核订单列表数量
+     * */
+
     public int size() {
         TestUtils.sleep2s();
         logger.info("待审核订单条数：" + allOrderList.size());
         return allOrderList.size();
     }
 
-    // 获取首条订单子信息
+    /**
+     * 获取首条订单子信息
+     */
+
     public List<WebElement> getOrderDetail() {
         return getFirstOrder().findElements(By.cssSelector("td"));
     }
 
-    // 获取订单操作员
+    /**
+     * 获取订单操作员
+     */
+
     public String getOperator() {
         return getOrderDetail().get(7).getText();
     }
 
-    // 判断订单审核的操作员是否订单创建人员是否是同一个人
+    /**
+     * 判断订单审核的操作员是否订单创建人员是否是同一个人
+     */
+
     public boolean isSameOperator() {
         if (getOperator().equals(this.operatorNo)) {
             logger.info("订单审核操作员与创建人员是同一个人");
@@ -176,7 +195,10 @@ public class OrderCheckPage {
         return false;
     }
 
-    // 如果返回另一个用户
+    /**
+     * 如果返回另一个用户
+     */
+
     public String getOtherOperator(){
         if (this.operatorNo.equals("s001")) {
             return "s002";
@@ -184,7 +206,10 @@ public class OrderCheckPage {
         return "s001";
     }
 
-    // 复核第一条订单
+    /**
+     * 复核第一条订单
+     */
+
     public void checkFirstOrder() {
         TestUtils.sleep3s();
         WebElement reviewCheckBtn = getFirstOrder().findElement(By.cssSelector(".reCheck"));
@@ -195,6 +220,7 @@ public class OrderCheckPage {
     /**
      * 获取复核信息中基金代码(fundCode)、金额/份额(appAmt)、银行卡尾号4位(bankAcct);
      */
+
     public Map<String, String> getReviewInfo() {
         appAmtText = wait.until(visibilityOf(appAmtText));
         String appAmt = TestUtils.matcher(appAmtText.getText(), "\\.|\\d");

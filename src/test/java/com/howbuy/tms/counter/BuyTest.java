@@ -37,7 +37,7 @@ public class BuyTest {
     public void buyProductTest() throws Exception {
         TradePage trade = PageFactory.initElements(driver, TradePage.class);
         trade.get(tmsCounterUrl, "s001");
-        trade.queryCustNametoBuy("1100875618");
+        trade.queryCustNoToBuy("1100875618");
         trade.buy("246020", "1200000", "090000");
         trade.buy("246020", "1300000", "100000");
         trade.buy("371021", "1400000", "090000");
@@ -48,7 +48,7 @@ public class BuyTest {
     public void sellVolTest() throws Exception{
         TradePage trade = PageFactory.initElements(driver, TradePage.class);
         trade.get(tmsCounterUrl, "s001");
-        trade.queryCustNametoSell("1100875595");
+        trade.queryCustNoToBuy("1100875595");
         trade.sell("028050", "500", "090000");
         trade.sell("028050", "500", "090000");
     }

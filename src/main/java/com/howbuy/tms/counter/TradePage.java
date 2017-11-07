@@ -13,7 +13,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
- * Created by yang.zhou on 2017/9/11.
+ *
+ * @author yang.zhou
+ * @date 2017/9/11
  */
 public class TradePage {
 
@@ -23,8 +25,11 @@ public class TradePage {
 
     private Wait<WebDriver> wait;
 
+    @FindBy(xpath = "//dt[contains(text(), '高端业务')]")
+    private WebElement highMenu;
+
     @FindBy(xpath = "//dt[contains(text(), '交易下单')]")
-    private WebElement tradeOrderMenu;
+    private WebElement tradeMenu;
 
     @FindBy(how = How.LINK_TEXT, using = "认申购")
     private WebElement buyMenu;
@@ -49,27 +54,46 @@ public class TradePage {
         driver.manage().window().maximize();
     }
 
-    public void queryCustName(String custNo, WebElement menu, WebElement frame){
-        (wait.until(visibilityOf(tradeOrderMenu))).click();
+    public void queryCustName(String custNo, String idNo,WebElement menu, WebElement frame){
+        (wait.until(visibilityOf(highMenu))).click();
+        (wait.until(visibilityOf(tradeMenu))).click();
         (wait.until(visibilityOf(menu))).click();
         WebElement iFrame = wait.until(visibilityOf(frame));
         driver.switchTo().frame(iFrame);
         QueryUserPage queryUserPage = PageFactory.initElements(driver, QueryUserPage.class);
-        queryUserPage.queryCustNo(custNo);
+        if (custNo != null) {
+            queryUserPage.queryByCustNo(custNo);
+        }
+        if (idNo != null) {
+            queryUserPage.queryByIdNo(idNo);
+        }
     }
 
-    public void queryCustNametoBuy(String custNo){
-        queryCustName(custNo, buyMenu,buyFrame);
+    public void queryCustNoToBuy(String custNo){
+        queryCustName(custNo,null, buyMenu,buyFrame);
     }
 
-    public void queryCustNametoSell(String custNo){
-        queryCustName(custNo, sellMenu, sellFrame);
+    public void queryCustNoToSell(String custNo){
+        queryCustName(custNo, null,sellMenu, sellFrame);
+    }
+
+    public void queryIdNoToBuy(String idNo){
+        queryCustName(null, idNo, buyMenu,buyFrame);
+    }
+
+    public void queryIdNoToSell(String idNo){
+        queryCustName(null, idNo,sellMenu, sellFrame);
+    }
+
+
+    public void buy(String fundCode, String applyAmount, String appTm, int index){
+        TestUtils.scrollTo(driver, 10000);
+        BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
+        buyPage.buyOrderForm(fundCode, applyAmount, appTm, index);
     }
 
     public void buy(String fundCode, String applyAmount, String appTm){
-        TestUtils.scrollTo(driver, 10000);
-        BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyOrderForm(fundCode, applyAmount, appTm);
+        buy(fundCode, applyAmount, appTm, 1);
     }
 
     public void sell(String fundCode, String appVol, String appTm){
