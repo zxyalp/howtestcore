@@ -178,7 +178,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 多卡申购	申购246010，246020，代扣2笔，储蓄罐2笔
      * */
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void buyHighFundTest007() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -200,7 +200,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 多卡申购	申购246010，246020，自划款2笔
      * */
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void buyHighFundTest008() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -218,6 +218,39 @@ public class BuyHighFundTest extends BaseTestCase{
         highEndBuyPage.buyHighFund("246020", "3800000",2);
     }
 
+    /**
+     * 认购028050，028051，储蓄罐2笔
+     * */
 
+    @Test(enabled = false)
+    public void buyHighFundTest009() throws Exception {
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.get(simuUrl);
+        login.login("320101198901017575", "qq1111");
+        HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
+        highEndBuyPage.buyHighFundBySavingBox("028050", "1200000");
+        highEndBuyPage.buyHighFundBySavingBox("028050", "3000000");
+
+        highEndBuyPage.buyHighFundBySavingBox("028051", "1000000");
+        highEndBuyPage.buyHighFundBySavingBox("028051", "3000000");
+    }
+
+    /**
+     * 申购246010，246020，储蓄罐2笔
+     * */
+
+    @Test(enabled = true)
+    public void buyHighFundTest010() throws Exception {
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.get(simuUrl);
+        login.login("320101199301015407", "qq1111");
+        HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
+
+        highEndBuyPage.buyHighFundBySavingBox("246010", "1200000");
+        highEndBuyPage.buyHighFundBySavingBox("246010", "3000000");
+
+        highEndBuyPage.buyHighFundBySavingBox("246020", "1000000");
+        highEndBuyPage.buyHighFundBySavingBox("246020", "3000000");
+    }
 }

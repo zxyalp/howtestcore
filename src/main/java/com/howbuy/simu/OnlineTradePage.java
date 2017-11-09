@@ -33,7 +33,7 @@ public class OnlineTradePage extends BasePage{
         loginWebPage.get(url);
         loginWebPage.login(idNo, passwd);
         InvestorSignPage signPage = PageFactory.initElements(driver,InvestorSignPage.class);
-        signPage.reopen();
+        signPage.openBuyListPage();
         signPage.confirmOfInvestors();
     }
 

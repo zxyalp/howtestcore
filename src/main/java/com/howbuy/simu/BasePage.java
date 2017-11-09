@@ -21,16 +21,32 @@ public class BasePage {
 
     private TestContext testContext = TestContext.getInstance();
 
+    public URL url;
+
+    private static String buyListPath = "/newpcsm/buylist.html";
+    private static String piggyPath = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
+
     WebDriver driver;
     Wait<WebDriver> wait;
 
-    public void reopen(){
-        URL url;
+    public void openBuyListPage(){
         try {
-            url = new URL("http",testContext.getUrl().getHost(),4085, "/newpcsm/buylist.html");
+            url = new URL("http",testContext.getUrl().getHost(),4085, buyListPath);
             driver.get(url.toString());
         }catch (MalformedURLException m){
-            logger.error("打开在线购买列页面表异常："+m);
+            logger.error(m);
+            throw new RuntimeException(m);
         }
+    }
+
+    public void openPiggyPage(){
+        try {
+            url = new  URL("http",testContext.getUrl().getHost(),4085, piggyPath);
+            driver.get(url.toString());
+        }catch (MalformedURLException m){
+            logger.error(m);
+            throw new RuntimeException(m);
+        }
+
     }
 }

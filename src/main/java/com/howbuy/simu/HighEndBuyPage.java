@@ -203,16 +203,17 @@ public class HighEndBuyPage extends BasePage {
             hetongBox.click();
         }
         TestUtils.sleep1s();
+        nextStepBtn.click();
         // 私募投资者声明处理，如果不存在私募声明，跳过执行
         wait.until(invisibilityOf(dialog));
         if (checkBox.size() > 0) {
-            nextStepBtn.click();
+            logger.info("私募投资者声明-条款处理");
             if (!allBox.isSelected()) {
                 allBox.click();
             }
             TestUtils.scrollEnd(driver);
+            nextStepBtn.click();
         }
-        nextStepBtn.click();
     }
 
 
@@ -258,7 +259,7 @@ public class HighEndBuyPage extends BasePage {
      * */
 
     public void buyHighFund(String fundCode, String buyAmount, int index, String txPassword){
-        reopen();
+        openBuyListPage();
         queryFund(fundCode);
         fillInOrder(buyAmount, index);
         if (isSign()){
