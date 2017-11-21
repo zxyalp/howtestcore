@@ -8,7 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
-/**
+/**购买专户产品
  * Created by yang.zhou on 2017/11/6.
  */
 public class BuyHighFundTest extends BaseTestCase{
@@ -30,21 +30,17 @@ public class BuyHighFundTest extends BaseTestCase{
         highEndBuyPage.buyHighFund("028051", "1000000");
         highEndBuyPage.buyHighFund("028051", "5000000");
 
-
-
         highEndBuyPage.buyHighFund("060330", "1000000");
         highEndBuyPage.buyHighFund("060330", "5000000");
 
         highEndBuyPage.buyHighFund("060628", "1000000");
         highEndBuyPage.buyHighFund("060628", "5000000");
 
-
         highEndBuyPage.buyHighFund("246010", "1000000");
         highEndBuyPage.buyHighFund("246010", "5000000");
 
         highEndBuyPage.buyHighFund("246020", "1000000");
         highEndBuyPage.buyHighFund("246020", "5000000");
-
 
         highEndBuyPage.buyHighFund("275052", "1000000");
         highEndBuyPage.buyHighFund("275052", "5000000");
@@ -63,7 +59,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 单卡认购	认购028050，028051，代扣2笔、储蓄罐2笔
      * */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest001() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -81,7 +77,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 单卡认购	认购028050，028051，自划款2笔
      * */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest002() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -100,7 +96,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 单卡申购	申购246010，246020，代扣2笔，储蓄罐2笔
      * */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest003() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -116,7 +112,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 单卡申购	申购246010，246020，自划款2笔
      * */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest004() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -136,7 +132,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 多卡认购	认购028050，028051，代扣2笔、储蓄罐2笔
      * */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest005() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -157,7 +153,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 多卡认购	认购028050，028051，自划款
      * */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest006() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -178,7 +174,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 多卡申购	申购246010，246020，代扣2笔，储蓄罐2笔
      * */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest007() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -200,7 +196,7 @@ public class BuyHighFundTest extends BaseTestCase{
     /**
      * 多卡申购	申购246010，246020，自划款2笔
      * */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest008() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -222,7 +218,7 @@ public class BuyHighFundTest extends BaseTestCase{
      * 认购028050，028051，储蓄罐2笔
      * */
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest009() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);

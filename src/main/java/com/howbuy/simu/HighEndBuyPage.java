@@ -38,6 +38,20 @@ public class HighEndBuyPage extends BasePage {
     @FindBy(className = "dialogLoad")
     private WebElement dialog;
 
+    // 默认汇款方式
+    @FindBy(xpath = "//p[contains(text(),'默认回款方式')]")
+    private List<WebElement> defaultRemitText;
+
+    //选择储蓄罐
+    @FindBy(linkText = "回款至储蓄罐")
+    private WebElement remitBoxText;
+
+
+    //选择回到银行卡
+    @FindBy(linkText = "回款至银行卡")
+    private WebElement remitCardText;
+
+
     // 暂无数据元素
     @FindBy(xpath = "//p[text()='暂无数据']")
     private WebElement noFund;
@@ -119,10 +133,7 @@ public class HighEndBuyPage extends BasePage {
     private WebElement checkVerifyCodeBtn;
 
     // 购买成功
-    @FindAll({
-            @FindBy( xpath = "//p[contains(text(),'您的购买申请已经受理')]"),
-            @FindBy(xpath = "//p[contains(text(),'您已提交购买申请')]")
-    })
+    @FindBy(xpath = "//*[contains(text(),'购买申请')] | //span[text()='还需2步']")
     private WebElement buyingText;
 
 
@@ -165,6 +176,10 @@ public class HighEndBuyPage extends BasePage {
 
     public void fillInOrder(String buyAmount, int index){
         wait.until(invisibilityOf(dialog));
+        TestUtils.sleep1s();
+        if (defaultRemitText.size()>0) {
+            selectRemitText();
+        }
         TestUtils.sleep1s();
         buyAmountText.sendKeys(buyAmount);
         if (index == 0){
@@ -238,21 +253,29 @@ public class HighEndBuyPage extends BasePage {
      * 4、申请购买成功
      * */
 
-    public Boolean isBuySuccess(){
+    public void buyIsSuccess(String fundCode, String amount){
         try {
             wait.until(invisibilityOf(dialog));
             wait.until(visibilityOf(buyingText));
+            logger.info("产品:"+fundCode+".金额："+amount+". 购买成功!");
         }catch (TimeoutException t){
-            logger.error("产品购买失败.");
-            return false;
+            logger.error("产品:"+fundCode+", 金额："+amount+". 购买失败!", t);
         }
-        return true;
     }
 
 
     public Boolean isSign(){
         return signingElecText.size() > 0;
     }
+
+
+    /**
+     * 选择回款协议
+     * */
+    public void selectRemitText(){
+        remitCardText.click();
+    }
+
 
     /**
      * 购买买基金
@@ -266,6 +289,7 @@ public class HighEndBuyPage extends BasePage {
             signingElecContract();
         }
         confirmPurchase(txPassword);
+        buyIsSuccess(fundCode, buyAmount);
     }
 
 
