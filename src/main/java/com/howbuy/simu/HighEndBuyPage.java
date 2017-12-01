@@ -73,7 +73,7 @@ public class HighEndBuyPage extends BasePage {
     private WebElement bankCardLink;
 
     // 选择线下转账
-    @FindBy(xpath = "//span[text()='线下转账']")
+    @FindBy(xpath = "//span[text()='银行卡转账']")
     private WebElement offlineTransferLink;
 
     // 选择银行卡
