@@ -15,14 +15,12 @@ public class BuySimuFundTest extends BaseTestCase{
 
     private static final Log logger = LogFactory.getLog(BuySimuFundTest.class);
 
-    private String simuUrl = "http://192.168.221.216:15080/trade/login/login.htm";
-
     /**
      * 购买所有认购产品
      * @throws Exception
      */
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void loginSimuUser01() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -42,7 +40,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * @throws Exception
      */
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void loginSimuUser02() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -135,7 +133,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * 非预约认购	S21582 单卡代扣
      */
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void loginSimuUser07() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -151,7 +149,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * 非预约认购	S22275 单卡自划款
      */
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void loginSimuUser08() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -167,7 +165,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * 非预约认购	S21582 多卡代扣
      */
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void loginSimuUser09() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -185,7 +183,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * 非预约认购	S22275 多卡自划款
      */
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void loginSimuUser10() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -286,7 +284,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * 非预约申购	S33873 S62866 单卡代扣
      */
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void loginSimuUser15() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -305,7 +303,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * 非预约申购	 S37842 单卡自划款
      */
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void loginSimuUser16() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -321,7 +319,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * 非预约申购	S33873 S62866 多卡代扣
      */
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void loginSimuUser17() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -344,7 +342,7 @@ public class BuySimuFundTest extends BaseTestCase{
      * 非预约申购	 S37842 多卡自划款
      */
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void loginSimuUser18() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);

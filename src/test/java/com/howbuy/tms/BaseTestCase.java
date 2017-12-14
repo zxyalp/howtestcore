@@ -14,6 +14,9 @@ public class BaseTestCase {
 
     protected WebDriver driver;
 
+    public String simuUrl = "http://192.168.221.123:15080/trade/login/login.htm";
+
+
     @BeforeClass
     public void setDriverClass() throws Exception {
         System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.31\\chromedriver.exe");

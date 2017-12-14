@@ -15,9 +15,7 @@ public class BuyHighFundTest extends BaseTestCase{
 
     private static final Log logger = LogFactory.getLog(BuyHighFundTest.class);
 
-    private String simuUrl = "http://192.168.221.216:15080/trade/login/login.htm";
-
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void loginSimuUser01() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);

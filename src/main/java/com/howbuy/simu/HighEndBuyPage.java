@@ -40,7 +40,7 @@ public class HighEndBuyPage extends BasePage {
 
     // 默认汇款方式
     @FindBy(xpath = "//p[contains(text(),'默认回款方式')]")
-    private List<WebElement> defaultRemitText;
+    private WebElement defaultRemitText;
 
     //选择储蓄罐
     @FindBy(linkText = "回款至储蓄罐")
@@ -69,11 +69,11 @@ public class HighEndBuyPage extends BasePage {
     private WebElement savingsBankLink;
 
     // 选择银行卡
-    @FindBy(xpath = "//span[text()='银行卡']")
+    @FindBy(xpath = "//span[text()='银行卡代扣']")
     private WebElement bankCardLink;
 
     // 选择线下转账
-    @FindBy(xpath = "//span[text()='银行卡转账']")
+    @FindBy(xpath = "//span[text()='银行转账划款']")
     private WebElement offlineTransferLink;
 
     // 选择银行卡
@@ -177,9 +177,12 @@ public class HighEndBuyPage extends BasePage {
     public void fillInOrder(String buyAmount, int index){
         wait.until(invisibilityOf(dialog));
         TestUtils.sleep1s();
-        if (defaultRemitText.size()>0) {
-            selectRemitText();
-        }
+        System.out.println(invisibilityOf(defaultRemitText));
+
+//        if (false) {
+//            selectRemitText();
+//        }
+
         TestUtils.sleep1s();
         buyAmountText.sendKeys(buyAmount);
         if (index == 0){

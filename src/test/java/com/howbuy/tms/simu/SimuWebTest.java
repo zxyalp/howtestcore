@@ -18,7 +18,6 @@ public class SimuWebTest extends BaseTestCase{
 
     private static final Log logger = LogFactory.getLog(SimuWebTest.class);
 
-    private String simuUrl = "http://192.168.221.216:15080/trade/login/login.htm";
 
     @Test(enabled = true)
     public void loginSimuUser01() throws Exception{

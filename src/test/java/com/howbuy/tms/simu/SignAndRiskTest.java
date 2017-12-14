@@ -12,8 +12,6 @@ import org.testng.annotations.Test;
  */
 public class SignAndRiskTest extends BaseTestCase{
 
-    private String simuUrl = "http://192.168.221.216:15080/trade/login/login.htm";
-
 
     @Test
     public void signAndRiskTest() throws Exception{

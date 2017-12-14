@@ -15,7 +15,6 @@ public class BuySimuFund01Test extends BaseTestCase{
 
     private static final Log logger = LogFactory.getLog(BuySimuFund01Test.class);
 
-    private String simuUrl = "http://192.168.221.216:15080/trade/login/login.htm";
 
     /**
      * 开放日最后一天预约自划款 S29493 S29837
@@ -47,14 +46,16 @@ public class BuySimuFund01Test extends BaseTestCase{
         login.login("32010119980101278X", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
-        highEndBuyPage.buyHighFund("S29493", "6600000");
-        highEndBuyPage.buyHighFund("S29493", "6700000");
+        highEndBuyPage.buyHighFund("S21582", "1600000");
+        highEndBuyPage.buyHighFund("S21582", "1700000");
+        highEndBuyPage.buyHighFund("S22275", "1600000");
+        highEndBuyPage.buyHighFund("S22275", "1700000");
 
     }
 
 
     /**
-     * 开放日前一天预约自划款S29494
+     * 非预约
      */
 
     @Test(enabled = true)
@@ -71,7 +72,7 @@ public class BuySimuFund01Test extends BaseTestCase{
     }
 
     /**
-     * 开放日前一天预约自划款S29494
+     * 非预约
      */
 
     @Test(enabled = true)
