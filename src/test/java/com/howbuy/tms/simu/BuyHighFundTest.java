@@ -223,11 +223,11 @@ public class BuyHighFundTest extends BaseTestCase{
         login.login("320101198901017575", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
-        highEndBuyPage.buyHighFundBySavingBox("028050", "1200000");
-        highEndBuyPage.buyHighFundBySavingBox("028050", "3000000");
+        highEndBuyPage.buyByPiggy("028050", "1200000");
+        highEndBuyPage.buyByPiggy("028050", "3000000");
 
-        highEndBuyPage.buyHighFundBySavingBox("028051", "1000000");
-        highEndBuyPage.buyHighFundBySavingBox("028051", "3000000");
+        highEndBuyPage.buyByPiggy("028051", "1000000");
+        highEndBuyPage.buyByPiggy("028051", "3000000");
     }
 
     /**
@@ -241,10 +241,10 @@ public class BuyHighFundTest extends BaseTestCase{
         login.login("320101199301015407", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
-        highEndBuyPage.buyHighFundBySavingBox("246010", "1200000");
-        highEndBuyPage.buyHighFundBySavingBox("246010", "3000000");
+        highEndBuyPage.buyByPiggy("246010", "1200000");
+        highEndBuyPage.buyByPiggy("246010", "3000000");
 
-        highEndBuyPage.buyHighFundBySavingBox("246020", "1000000");
-        highEndBuyPage.buyHighFundBySavingBox("246020", "3000000");
+        highEndBuyPage.buyByPiggy("246020", "1000000");
+        highEndBuyPage.buyByPiggy("246020", "3000000");
     }
 }

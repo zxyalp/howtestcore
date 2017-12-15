@@ -18,8 +18,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 
-/**高端产品购买页面
+/**
+ * 高端产品购买页面
  * Created by yang.zhou on 2017/9/29.
+ *
  * @author yang.zhou
  */
 public class HighEndBuyPage extends BasePage {
@@ -56,9 +58,9 @@ public class HighEndBuyPage extends BasePage {
     @FindBy(xpath = "//p[text()='暂无数据']")
     private WebElement noFund;
 
-    // 基金购买按钮
+    // 购买按钮-可购买状态
     @FindBy(css = "a[href^='buyindex.html']")
-    private WebElement  buyIndexBtn;
+    private WebElement buyIndexBtn;
 
     // 净购买金额
     @FindBy(id = "buyAmount")
@@ -137,66 +139,101 @@ public class HighEndBuyPage extends BasePage {
     private WebElement buyingText;
 
 
-    public HighEndBuyPage(WebDriver driver){
+    public HighEndBuyPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
 
     /**
-     *查询产品
-     * */
+     * 查询产品
+     */
 
-    public void queryFund(String fundCode){
-        wait.until(invisibilityOf(dialog));
-        searchFundText.sendKeys(fundCode);
-        TestUtils.sleep1s();
-        searchFundBtn.click();
-        clickBuyButton();
+    private void queryFund(String fundCode) {
+        try {
+            wait.until(invisibilityOf(dialog));
+            searchFundText.sendKeys(fundCode);
+            TestUtils.sleep1s();
+            searchFundBtn.click();
+            clickBuyButton();
+        } catch (NoSuchElementException e) {
+            logger.error("查询产品失败", e);
+            throw new RuntimeException("查询产品失败");
+        }
+
     }
 
 
     /**
-     *点击购买按钮
-     * */
+     * 购买按钮
+     */
 
-    public void clickBuyButton(){
+    public void clickBuyButton() {
+
         try {
             wait.until(invisibilityOf(dialog));
             buyIndexBtn.click();
-        } catch (NoSuchElementException n){
-            throw  new RuntimeException("该产品无法购买.");
+        } catch (NoSuchElementException n) {
+            throw new RuntimeException("该产品无法购买.");
         }
     }
 
 
     /**
      * 1、填写订单
-     * @param buyAmount 净购买金额
-     * */
+     *
+     * @param buyAmount   净购买金额
+     * @param paymentType 0-储蓄罐，1-银行转账划款，2-银行代扣
+     * @param index       选择第几张银行卡
+     */
 
-    public void fillInOrder(String buyAmount, int index){
+    public void fillInOrder(String buyAmount, int paymentType, int index) {
         wait.until(invisibilityOf(dialog));
-        TestUtils.sleep1s();
-        System.out.println(invisibilityOf(defaultRemitText));
+        TestUtils.sleep2s();
 
-//        if (false) {
-//            selectRemitText();
-//        }
+        if (isRemitPopup()) {
+            selectRemitText();
+            TestUtils.sleep1s();
+        }
 
-        TestUtils.sleep1s();
-        buyAmountText.sendKeys(buyAmount);
-        if (index == 0){
+        int count = 0;
+
+        while (true) {
+            try {
+                buyAmountText.sendKeys(buyAmount);
+                break;
+            } catch (Exception e) {
+                logger.error("输入申请金额失败，等待2s重试.", e);
+                TestUtils.sleep2s();
+                count++;
+            }
+            if (count > 3) {
+                logger.error("输入申请金额失败,重试次数：" + count);
+                throw new TimeoutException("输入申请金额异常.");
+            }
+        }
+
+        //选择储蓄罐、银行卡代扣或是银行转账划款
+
+        if (paymentType == 0) {
             TestUtils.scrollEnd(driver);
             wait.until(elementToBeClickable(nextStepBtn)).click();
             return;
         }
-        bankCardLink.click();
+
+        if (paymentType == 1) {
+            offlineTransferLink.click();
+        }
+
+        if (paymentType == 2) {
+            bankCardLink.click();
+        }
+
         int size = bankCardRadioes.size();
-        if ( size > 1 && size >= index ) {
+        if (size > 1 && size >= index) {
             WebElement bankCardChecked = bankCardRadioes.get(index - 1);
             TestUtils.scrollTo(driver, bankCardChecked.getLocation().getY());
             if (!bankCardChecked.isSelected()) {
-                logger.info("选择第"+index+"张银行卡支付.");
+                logger.info("选择第" + index + "张银行卡支付.");
                 bankCardChecked.click();
             }
         }
@@ -206,15 +243,11 @@ public class HighEndBuyPage extends BasePage {
     }
 
 
-    public void fillInOrder(String buyAmount){
-        fillInOrder(buyAmount,1);
-    }
-
     /**
      * 2、首次购买，需要签电子合同步骤,私募购买
-     * */
+     */
 
-    public void signingElecContract(){
+    public void signingElecContract() {
         logger.info("电子合同签名");
         wait.until(invisibilityOf(dialog));
         if (!hetongBox.isSelected()) {
@@ -237,10 +270,11 @@ public class HighEndBuyPage extends BasePage {
 
     /**
      * 3、确认购买
+     *
      * @param txPassword 交易密码，短信验证码默认111111
-     * */
+     */
 
-    public void confirmPurchase(String txPassword){
+    public void confirmPurchase(String txPassword) {
         wait.until(invisibilityOf(dialog));
         txPasswordText.sendKeys(txPassword);
         wait.until(elementToBeClickable(nextStepTwoBtn)).click();
@@ -254,41 +288,56 @@ public class HighEndBuyPage extends BasePage {
 
     /**
      * 4、申请购买成功
-     * */
+     */
 
-    public void buyIsSuccess(String fundCode, String amount){
+    public void buyIsSuccess(String fundCode, String amount) {
         try {
             wait.until(invisibilityOf(dialog));
             wait.until(visibilityOf(buyingText));
-            logger.info("产品:"+fundCode+".金额："+amount+". 购买成功!");
-        }catch (TimeoutException t){
-            logger.error("产品:"+fundCode+", 金额："+amount+". 购买失败!", t);
+            logger.info("产品:" + fundCode + ".金额：" + amount + ". 购买成功!");
+        } catch (TimeoutException t) {
+            logger.error("产品:" + fundCode + ", 金额：" + amount + ". 购买失败!");
         }
     }
 
 
-    public Boolean isSign(){
+    private Boolean isSign() {
         return signingElecText.size() > 0;
     }
 
 
     /**
+     * 是否存在回款弹出框
+     */
+
+    private Boolean isRemitPopup() {
+        try {
+            new WebDriverWait(driver, 2).until(visibilityOf(defaultRemitText));
+            logger.info("需要选择回款协议");
+            return true;
+        } catch (TimeoutException t) {
+            return false;
+        }
+    }
+
+
+    /**
      * 选择回款协议
-     * */
-    public void selectRemitText(){
+     */
+    private void selectRemitText() {
         remitCardText.click();
     }
 
 
     /**
      * 购买买基金
-     * */
+     */
 
-    public void buyHighFund(String fundCode, String buyAmount, int index, String txPassword){
+    public void buyHighFund(String fundCode, String buyAmount, int paymentType, int index, String txPassword) {
         openBuyListPage();
         queryFund(fundCode);
-        fillInOrder(buyAmount, index);
-        if (isSign()){
+        fillInOrder(buyAmount, paymentType, index);
+        if (isSign()) {
             signingElecContract();
         }
         confirmPurchase(txPassword);
@@ -296,16 +345,57 @@ public class HighEndBuyPage extends BasePage {
     }
 
 
-    public void buyHighFund(String fundCode, String buyAmount, int index){
-        buyHighFund(fundCode, buyAmount, index, "121212");
+    /**
+     * 使用银行卡代扣
+     */
+
+    public void buyHighFund(String fundCode, String buyAmount, int index) {
+        buyHighFund(fundCode, buyAmount, 2, index, "121212");
     }
 
-    public void buyHighFund(String fundCode, String buyAmount){
-        buyHighFund(fundCode, buyAmount, 1, "121212");
+
+    /**
+     * 使用银行卡代扣，需要传交易密码
+     */
+
+    public void buyHighFund(String fundCode, String buyAmount, String txPassword) {
+        buyHighFund(fundCode, buyAmount, 2, 1, txPassword);
     }
 
-    public void buyHighFundBySavingBox(String fundCode, String buyAmount){
-        buyHighFund(fundCode, buyAmount, 0, "121212");
+
+    /**
+     * 使用银行卡代扣，默认选择第一张银行卡
+     */
+
+    public void buyHighFund(String fundCode, String buyAmount) {
+        buyHighFund(fundCode, buyAmount, 1);
+    }
+
+
+    /**
+     * 使用银行卡转账
+     */
+
+    public void buyByBankTransfer(String fundCode, String buyAmount, int index) {
+        buyHighFund(fundCode, buyAmount, 1, index, "121212");
+    }
+
+
+    /**
+     * 使用银行卡转账，默认选择选择第一张银行卡
+     */
+
+    public void buyByBankTransfer(String fundCode, String buyAmount) {
+        buyByBankTransfer(fundCode, buyAmount, 1);
+    }
+
+
+    /**
+     * 使用储蓄罐支付
+     */
+
+    public void buyByPiggy(String fundCode, String buyAmount) {
+        buyHighFund(fundCode, buyAmount, 0, 1, "121212");
     }
 
 }

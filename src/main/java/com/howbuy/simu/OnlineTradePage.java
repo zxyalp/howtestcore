@@ -23,9 +23,7 @@ public class OnlineTradePage extends BasePage{
 
     public void buyHighFund(String fundCode, String buyAmount, String txPassword){
         HighEndBuyPage buyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
-        buyPage.queryFund(fundCode);
-        buyPage.fillInOrder(buyAmount);
-        buyPage.confirmPurchase(txPassword);
+        buyPage.buyHighFund(fundCode, buyAmount, txPassword);
     }
 
     public void signAndRiskValuation (String url, String idNo, String passwd) throws MalformedURLException {
