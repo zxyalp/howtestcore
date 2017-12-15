@@ -24,7 +24,7 @@ public class BuySimuFundTest extends BaseTestCase{
     public void loginSimuUser01() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
-        login.login("320101199001017849", "qq1111");
+        login.login("320101199101016798", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
         highEndBuyPage.buyHighFund("P11601", "1000000");

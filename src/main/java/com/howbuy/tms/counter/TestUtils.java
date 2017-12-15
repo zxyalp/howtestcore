@@ -1,16 +1,21 @@
 package com.howbuy.tms.counter;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.seleniumhq.jetty9.servlets.DataRateLimitedServlet;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 /**
- * Created by summe on 2017/5/29.
+ *
+ * @author summe
+ * @date 2017/5/29
  */
 public class TestUtils {
 
@@ -49,6 +54,17 @@ public class TestUtils {
         ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(%s, %s)", xpos, ypos));
     }
 
+
+    public static void screenshort(WebDriver driver, String fileName){
+        File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+        try {
+            FileUtils.copyFile(srcFile, new File(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static String matcher(String input, String regex){
         Pattern pattern = Pattern.compile(regex);

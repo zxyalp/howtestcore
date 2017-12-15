@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.List;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.not;
+import static org.openqa.selenium.support.ui.ExpectedConditions.textToBePresentInElement;
 
 
 /**
@@ -278,7 +281,7 @@ public class HighEndBuyPage extends BasePage {
         wait.until(invisibilityOf(dialog));
         txPasswordText.sendKeys(txPassword);
         wait.until(elementToBeClickable(nextStepTwoBtn)).click();
-        TestUtils.sleep3s();
+        TestUtils.sleep2s();
         getVerifyCodeBtn.click();
         wait.until(visibilityOf(getVerifyCode));
         verifyCodeText.sendKeys("111111");
@@ -298,6 +301,7 @@ public class HighEndBuyPage extends BasePage {
         } catch (TimeoutException t) {
             logger.error("产品:" + fundCode + ", 金额：" + amount + ". 购买失败!");
         }
+        TestUtils.screenshort(driver, "buyHighFund.png");
     }
 
 
