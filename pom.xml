@@ -31,39 +31,26 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
-      <!--<scope>test</scope>-->
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>6.8</version>
-      <!--<scope>test</scope>-->
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>3.4.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>htmlunit-driver</artifactId>
-      <version>2.24</version>
+      <version>3.8.1</version>
     </dependency>
 
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-server</artifactId>
-      <version>3.4.0</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/com.github.detro/phantomjsdriver -->
-    <dependency>
-      <groupId>com.github.detro</groupId>
-      <artifactId>phantomjsdriver</artifactId>
-      <version>1.2.0</version>
+      <version>3.8.1</version>
     </dependency>
 
       <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
@@ -71,11 +58,6 @@
           <groupId>dom4j</groupId>
           <artifactId>dom4j</artifactId>
           <version>1.6.1</version>
-      </dependency>
-      <dependency>
-          <groupId>org.jetbrains</groupId>
-          <artifactId>annotations-java5</artifactId>
-          <version>RELEASE</version>
       </dependency>
 
   </dependencies>
