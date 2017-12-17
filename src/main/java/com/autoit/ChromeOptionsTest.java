@@ -11,16 +11,18 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * Created by summe on 2017/5/30.
+ *
+ * @author summe
+ * @date 2017/5/30
  */
 public class ChromeOptionsTest {
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.29\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.34\\chromedriver.exe");
 
 
         ChromeDriverService.Builder builder = new ChromeDriverService.Builder();
 
-        ChromeDriverService chromeDriverService = builder.usingDriverExecutable(new File("D:\\selenium\\chromedriver_2.29\\chromedriver.exe")).usingPort(12809).build();
+        ChromeDriverService chromeDriverService = builder.usingDriverExecutable(new File("D:\\selenium\\chromedriver_2.34\\chromedriver.exe")).usingPort(12809).build();
         try {
             chromeDriverService.start();
         } catch (IOException e) {

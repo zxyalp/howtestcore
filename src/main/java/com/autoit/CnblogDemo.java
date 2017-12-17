@@ -10,29 +10,31 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
-
 /**
- * Created by summe on 2017/5/29.
+ *
+ * @author summe
+ * @date 2017/5/29
  */
 public class CnblogDemo {
     WebDriver driver;
 
 
     @BeforeClass
-    public void setDriverClass() throws Exception{
-        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.29\\chromedriver.exe");
+    public void setDriverClass() throws Exception {
+        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.34\\chromedriver.exe");
         System.out.println("=========开始执行===============");
 
     }
 
     @BeforeMethod
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
@@ -40,7 +42,7 @@ public class CnblogDemo {
 
 
     @Test
-    public void loginCnblogTest(){
+    public void loginCnblogTest() {
         driver.get("https://passport.cnblogs.com/user/signin");
 
         WebElement userName = driver.findElement(By.id("input1"));
@@ -66,10 +68,10 @@ public class CnblogDemo {
 
         System.out.println(driver.switchTo().window(driver.getWindowHandle()).getTitle());
         System.out.println(driver.switchTo().window(driver.getWindowHandle()).getCurrentUrl());
-        for (String handle: driver.getWindowHandles())
+        for (String handle : driver.getWindowHandles())
             if (driver.switchTo().window(handle).getCurrentUrl().contains("inbox"))
                 break;
-        for (int i=0; i<1; i++) {
+        for (int i = 0; i < 1; i++) {
             WebElement compose = wait.until(visibilityOfElementLocated(By.linkText("撰写新短消息")));
             compose.click();
             driver.findElement(By.id("txtIncept")).sendKeys("sesa");
@@ -81,13 +83,13 @@ public class CnblogDemo {
         sleep3s();
         driver.findElement(By.linkText("退出")).click();
         sleep3s();
-        Alert alert =  wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.dismiss();
     }
 
 
     //    @Test
-    public void sendMsgTest(){
+    public void sendMsgTest() {
 
         driver.get("https://passport.cnblogs.com/user/signin");
 
@@ -111,7 +113,7 @@ public class CnblogDemo {
 //                    break;
 //                }
 
-        for (String handle: driver.getWindowHandles())
+        for (String handle : driver.getWindowHandles())
             if (driver.switchTo().window(handle).getCurrentUrl().contains("inbox"))
                 break;
 
@@ -142,15 +144,15 @@ public class CnblogDemo {
 
         wait.until(visibilityOfElementLocated(By.name("chkID"))).click();
         driver.findElement(By.id("btnBatDel")).click();
-        Alert alert =  wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.accept();
 
         WebElement tips = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("opt_tips")));
-        for (int i=1; i<5; i++) {
+        for (int i = 1; i < 5; i++) {
             System.out.println(tips.getText());
             if ("删除成功".equals(tips.getText()))
                 break;
-            sleep3s(i*1000);
+            sleep3s(i * 1000);
         }
         Assert.assertEquals(tips.getText(), "删除成功");
 
@@ -161,23 +163,23 @@ public class CnblogDemo {
 //        alert.accept();
     }
 
-    private static void sleep3s(){
+    private static void sleep3s() {
         sleep3s(3000);
     }
 
-    public static void sleep3s(long s){
+    public static void sleep3s(long s) {
         try {
             Thread.sleep(s);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public static void scrollTo(WebDriver driver, int ypos){
+    public static void scrollTo(WebDriver driver, int ypos) {
         scrollTo(driver, 0, ypos);
     }
 
-    public static void scrollTo(WebDriver driver, int xpos, int ypos){
+    public static void scrollTo(WebDriver driver, int xpos, int ypos) {
         ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(%s, %s)", xpos, ypos));
     }
 

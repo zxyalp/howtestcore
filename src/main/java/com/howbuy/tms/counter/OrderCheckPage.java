@@ -1,5 +1,6 @@
 package com.howbuy.tms.counter;
 
+import com.howbuy.common.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;

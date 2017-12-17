@@ -1,6 +1,6 @@
 package com.howbuy.simu;
 
-import com.howbuy.tms.counter.TestUtils;
+import com.howbuy.common.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.TimeoutException;

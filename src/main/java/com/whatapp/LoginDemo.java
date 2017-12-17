@@ -24,7 +24,7 @@ public class LoginDemo {
 
     @BeforeClass
     public void setDriverClass() throws Exception{
-        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.29\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.34\\chromedriver.exe");
 
     }
 

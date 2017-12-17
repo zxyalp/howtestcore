@@ -16,7 +16,7 @@ public class CnblogTest {
 
         @BeforeClass
         public void setDriverClass() throws Exception{
-            System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.31\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.34\\chromedriver.exe");
             System.out.println("=========开始执行===============");
 
         }

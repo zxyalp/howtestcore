@@ -1,6 +1,6 @@
 package com.howbuy.tms.counter;
 
-import jdk.internal.dynalink.linker.LinkerServices;
+import com.howbuy.common.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
