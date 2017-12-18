@@ -298,7 +298,7 @@ public class HighEndBuyPage extends BasePage {
         } catch (TimeoutException t) {
             logger.error("产品:" + fundCode + ", 金额：" + amount + ". 购买失败!");
         }
-        TestUtils.screenshort(driver, "buyHighFund.png");
+        TestUtils.screenshort(driver, "产品"+fundCode+"购买结果");
     }
 
 
