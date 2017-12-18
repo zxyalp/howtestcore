@@ -16,9 +16,14 @@ import java.util.Set;
  * @date 2017/12/17
  */
 public class PropertyUtils {
+
     private static final Log logger = LogFactory.getLog(PropertyUtils.class);
 
     private static Properties props;
+
+    private PropertyUtils(){
+
+    }
 
     static {
         load();

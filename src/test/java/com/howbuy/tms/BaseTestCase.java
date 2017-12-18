@@ -1,5 +1,6 @@
 package com.howbuy.tms;
 
+import com.howbuy.common.TestContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,7 @@ public class BaseTestCase {
 
     @BeforeClass
     public void setDriverClass() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.31\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", TestContext.CHROME_DRIVER_PATH);
         logger.info("========开始执行========");
 
     }

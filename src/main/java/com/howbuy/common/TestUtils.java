@@ -1,5 +1,7 @@
 package com.howbuy.common;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -18,6 +20,12 @@ import java.util.regex.Pattern;
  * @date 2017/5/29
  */
 public class TestUtils {
+
+    private static final Log logger = LogFactory.getLog(TestUtils.class);
+
+    private TestUtils(){
+
+    }
 
     public static void sleep1s(){
         sleep3s(1000);
@@ -59,9 +67,9 @@ public class TestUtils {
         File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
         try {
-            FileUtils.copyFile(srcFile, new File(fileName));
+            FileUtils.copyFile(srcFile, TestContext.getImageFile(fileName));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("保存截图失败.", e);
         }
 
     }

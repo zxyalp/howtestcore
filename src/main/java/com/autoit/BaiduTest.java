@@ -1,5 +1,7 @@
 package com.autoit;
 
+import com.howbuy.common.TestContext;
+import com.howbuy.common.TestUtils;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,7 +24,7 @@ public class BaiduTest {
 
     @BeforeClass
     public void setDriverClass() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.34\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", TestContext.CHROME_DRIVER_PATH);
         System.out.println("==============START==============");
 
     }
@@ -36,11 +38,14 @@ public class BaiduTest {
 
     @Test
     public void baiduSearchTest(){
-        driver.get("https://www.baidu.com/index.php");
-        driver.findElement(By.id("kw")).sendKeys("北京时间");
-        driver.findElement(By.id("su")).click();
-        sleep3s();
-        screenshort(driver, "result.png");
+            driver.get("https://www.baidu.com/index.php");
+            driver.findElement(By.id("kw")).sendKeys("北京时间");
+            driver.findElement(By.id("su")).click();
+        for (int i =1 ; i<10;i++) {
+            sleep3s();
+            TestUtils.screenshort(driver, "result");
+            driver.navigate().refresh();
+        }
     }
 
     @AfterMethod
@@ -62,17 +67,6 @@ public class BaiduTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void screenshort(WebDriver driver, String fileName){
-        File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-
-        try {
-            FileUtils.copyFile(srcFile, new File(fileName));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     public static void scrollTo(WebDriver driver, int ypos) {

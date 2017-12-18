@@ -4,7 +4,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,7 +18,7 @@ public class BasePage {
 
     private static final Log logger = LogFactory.getLog(BasePage.class);
 
-    private TestContext testContext = TestContext.getInstance();
+    private UrlParse urlParse = UrlParse.getInstance();
 
     public URL url;
 
@@ -31,7 +30,7 @@ public class BasePage {
 
     public void openBuyListPage(){
         try {
-            url = new URL("http",testContext.getUrl().getHost(),4085, buyListPath);
+            url = new URL("http", urlParse.getUrl().getHost(),4085, buyListPath);
             driver.get(url.toString());
         }catch (MalformedURLException m){
             logger.error(m);
@@ -41,7 +40,7 @@ public class BasePage {
 
     public void openPiggyPage(){
         try {
-            url = new  URL("http",testContext.getUrl().getHost(),4085, piggyPath);
+            url = new  URL("http", urlParse.getUrl().getHost(),4085, piggyPath);
             driver.get(url.toString());
         }catch (MalformedURLException m){
             logger.error(m);

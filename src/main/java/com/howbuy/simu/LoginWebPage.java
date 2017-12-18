@@ -23,7 +23,7 @@ public class LoginWebPage extends BasePage{
 
     private static final Log logger = LogFactory.getLog(LoginWebPage.class);
 
-    private TestContext testContext = TestContext.getInstance();
+    private UrlParse urlParse = UrlParse.getInstance();
 
     // 交易账号
     @FindBy(id = "idNo")
@@ -55,7 +55,7 @@ public class LoginWebPage extends BasePage{
     }
 
     public void get(String url) throws MalformedURLException{
-        testContext.setUrl(new URL(url));
+        urlParse.setUrl(new URL(url));
         driver.get(url);
         driver.manage().window().maximize();
     }
