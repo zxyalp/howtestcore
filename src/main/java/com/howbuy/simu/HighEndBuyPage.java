@@ -291,14 +291,17 @@ public class HighEndBuyPage extends BasePage {
      */
 
     public void buyIsSuccess(String fundCode, String amount) {
+        String result="_失败了";
         try {
             wait.until(invisibilityOf(dialog));
+            TestUtils.sleep2s();
             wait.until(visibilityOf(buyingText));
             logger.info("产品:" + fundCode + ".金额：" + amount + ". 购买成功!");
+            result="_成功";
         } catch (TimeoutException t) {
             logger.error("产品:" + fundCode + ", 金额：" + amount + ". 购买失败!");
         }
-        TestUtils.screenshort(driver, "产品"+fundCode+"购买结果");
+        TestUtils.screenshort(driver, "产品"+fundCode+"购买结果"+result);
     }
 
 
