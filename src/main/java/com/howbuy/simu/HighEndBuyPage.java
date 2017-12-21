@@ -1,5 +1,6 @@
 package com.howbuy.simu;
 
+import com.howbuy.common.PaymentType;
 import com.howbuy.common.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -28,113 +29,167 @@ public class HighEndBuyPage extends BasePage {
 
     private static final Log logger = LogFactory.getLog(HighEndBuyPage.class);
 
-    // 基金代码查询
+    /**
+     * 基金代码查询
+     */
     @FindBy(id = "searchFund_")
     private WebElement searchFundText;
 
-    // 查询确定按钮
+    /**
+     * 查询确定按钮
+     */
     @FindBy(id = "searchFundBtn_")
     private WebElement searchFundBtn;
 
-    // 模态框
+    /**
+     * 模态框
+     */
     @FindBy(className = "dialogLoad")
     private WebElement dialog;
 
-    // 默认汇款方式
+    /**
+     * 默认汇款方式
+     */
     @FindBy(xpath = "//p[contains(text(),'默认回款方式')]")
     private WebElement defaultRemitText;
 
-    //选择储蓄罐
+    /**
+     * 选择储蓄罐
+     */
     @FindBy(linkText = "回款至储蓄罐")
     private WebElement remitBoxText;
 
 
-    //选择回到银行卡
+    /**
+     * 选择回到银行卡
+     */
     @FindBy(linkText = "回款至银行卡")
     private WebElement remitCardText;
 
 
-    // 暂无数据元素
+    /**
+     * 暂无数据元素
+     */
     @FindBy(xpath = "//p[text()='暂无数据']")
     private WebElement noFund;
 
-    // 购买按钮-可购买状态
+    /**
+     * 购买按钮-可购买状态
+     */
     @FindBy(css = "a[href^='buyindex.html']")
     private WebElement buyIndexBtn;
 
-    // 净购买金额
+    /**
+     * 净购买金额
+     */
     @FindBy(id = "buyAmount")
     private WebElement buyAmountText;
 
-    // 选择储蓄罐
+    /**
+     * 选择储蓄罐
+     */
     @FindBy(xpath = "//span[text()='储蓄罐']")
     private WebElement savingsBankLink;
 
-    // 选择银行卡
+    /**
+     * 选择银行卡
+     */
     @FindBy(xpath = "//span[text()='银行卡代扣']")
     private WebElement bankCardLink;
 
-    // 选择线下转账
+    /**
+     * 选择线下转账
+     */
     @FindBy(xpath = "//span[text()='银行转账划款']")
     private WebElement offlineTransferLink;
 
-    // 选择银行卡
+    /**
+     * 选择银行卡
+     */
     @FindBy(css = "input[name=bank2]")
     private List<WebElement> bankCardRadioes;
 
-    // 支行名称
+    /**
+     * 支行名称
+     */
     @FindBy(css = "input[data-bind*='bankSubName']")
     private WebElement bankSubNameText;
 
-    // 电子合同签名
+    /**
+     * 电子合同签名
+     */
     @FindBy(xpath = "//p[text()='电子合同签订']")
     private List<WebElement> signingElecText;
 
-    // 合同复选框
+    /**
+     * 合同复选框
+     */
     @FindBy(id = "hetong")
     private WebElement hetongBox;
 
-    // 检查所有合同选项
+    /**
+     * 检查所有合同选项
+     */
     @FindBy(id = "all")
     private WebElement allBox;
 
-    // 检查是否存在勾选框
+    /**
+     * 检查是否存在勾选框
+     */
     @FindBy(id = "all")
     private List<WebElement> checkBox;
 
-    // 下一步按钮
+    /**
+     * 下一步按钮
+     */
     @FindBy(linkText = "下一步")
     private WebElement nextStepBtn;
 
-    // 交易密码
+    /**
+     * 交易密码
+     */
     @FindBy(css = "input[data-bind*='txPassword']")
     private WebElement txPasswordText;
 
-    // 购买确认信息按钮
+    /**
+     * 购买确认信息按钮
+     */
     @FindBy(linkText = "确认")
     private WebElement nextStepTwoBtn;
 
-    // 手机号码
+    /**
+     * 手机号码
+     */
     @FindBy(css = "input[data-bind*='mobile']")
     private WebElement mobileText;
 
-    // 获取短信验证码
+    /**
+     * 获取短信验证码
+     */
     @FindBy(linkText = "获取短信验证码")
     private WebElement getVerifyCodeBtn;
 
-    // 验证码倒计时
+    /**
+     * 验证码倒计时
+     */
     @FindBy(partialLinkText = "秒")
     private WebElement getVerifyCode;
 
-    // 验证码
+    /**
+     * 验证码
+     */
     @FindBy(id = "verifyCode")
     private WebElement verifyCodeText;
 
-    // 确认购买
+    /**
+     * 确认购买
+     */
     @FindBy(linkText = "确认购买")
     private WebElement checkVerifyCodeBtn;
 
-    // 购买成功
+    /**
+     * 购买成功
+     */
     @FindBy(xpath = "//*[contains(text(),'购买申请')] | //span[text()='还需2步']")
     private WebElement buyingText;
 
@@ -182,14 +237,13 @@ public class HighEndBuyPage extends BasePage {
      * 1、填写订单
      *
      * @param buyAmount   净购买金额
-     * @param paymentType 0-储蓄罐，1-银行转账划款，2-银行代扣
+     * @param paymentType 1-储蓄罐，2-银行转账划款，3-银行代扣
      * @param index       选择第几张银行卡
      */
 
-    public void fillInOrder(String buyAmount, int paymentType, int index) {
+    public void fillInOrder(String buyAmount, PaymentType paymentType, int index) {
         wait.until(invisibilityOf(dialog));
         TestUtils.sleep2s();
-
         if (isRemitPopup()) {
             selectRemitText();
             TestUtils.sleep1s();
@@ -214,17 +268,17 @@ public class HighEndBuyPage extends BasePage {
 
         //选择储蓄罐、银行卡代扣或是银行转账划款
 
-        if (paymentType == 0) {
+        if (paymentType==PaymentType.CXG_PAY) {
             TestUtils.scrollEnd(driver);
             wait.until(elementToBeClickable(nextStepBtn)).click();
             return;
         }
 
-        if (paymentType == 1) {
+        if (paymentType == PaymentType.BANK_LINE_PAY) {
             offlineTransferLink.click();
         }
 
-        if (paymentType == 2) {
+        if (paymentType == PaymentType.BANK_CARD_PAY) {
             bankCardLink.click();
         }
 
@@ -337,7 +391,7 @@ public class HighEndBuyPage extends BasePage {
      * 购买买基金
      */
 
-    public void buyHighFund(String fundCode, String buyAmount, int paymentType, int index, String txPassword) {
+    public void buyHighFund(String fundCode, String buyAmount, PaymentType paymentType, int index, String txPassword) {
         openBuyListPage();
         queryFund(fundCode);
         fillInOrder(buyAmount, paymentType, index);
@@ -354,7 +408,7 @@ public class HighEndBuyPage extends BasePage {
      */
 
     public void buyHighFund(String fundCode, String buyAmount, int index) {
-        buyHighFund(fundCode, buyAmount, 2, index, "121212");
+        buyHighFund(fundCode, buyAmount, PaymentType.BANK_CARD_PAY, index, "121212");
     }
 
 
@@ -363,7 +417,7 @@ public class HighEndBuyPage extends BasePage {
      */
 
     public void buyHighFund(String fundCode, String buyAmount, String txPassword) {
-        buyHighFund(fundCode, buyAmount, 2, 1, txPassword);
+        buyHighFund(fundCode, buyAmount, PaymentType.BANK_CARD_PAY, 1, txPassword);
     }
 
 
@@ -381,7 +435,7 @@ public class HighEndBuyPage extends BasePage {
      */
 
     public void buyByBankTransfer(String fundCode, String buyAmount, int index) {
-        buyHighFund(fundCode, buyAmount, 1, index, "121212");
+        buyHighFund(fundCode, buyAmount, PaymentType.BANK_LINE_PAY, index, "121212");
     }
 
 
@@ -399,7 +453,7 @@ public class HighEndBuyPage extends BasePage {
      */
 
     public void buyByPiggy(String fundCode, String buyAmount) {
-        buyHighFund(fundCode, buyAmount, 0, 1, "121212");
+        buyHighFund(fundCode, buyAmount, PaymentType.CXG_PAY, 1, "121212");
     }
 
 }

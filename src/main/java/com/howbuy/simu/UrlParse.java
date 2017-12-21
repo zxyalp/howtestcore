@@ -3,7 +3,9 @@ package com.howbuy.simu;
 import java.net.URL;
 
 /**
- * Created by yang.zhou on 2017/10/18.
+ * Url parse
+ * @author yang.zhou
+ * @date 2017/10/18
  */
 public class UrlParse {
 
