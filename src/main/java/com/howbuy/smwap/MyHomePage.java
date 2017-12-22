@@ -7,8 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+
 /**
- * Created by yang.zhou on 2017/12/20.
+ * 我的私募首页
+ * @author yang.zhou
+ * @date 2017/12/20
  */
 public class MyHomePage extends BasePage {
 
@@ -33,12 +38,23 @@ public class MyHomePage extends BasePage {
     private WebElement recordListLink;
 
 
-
-
     public MyHomePage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
+
+    public void clickBuylist(){
+        wait.until(visibilityOf(buyListLink)).click();
+    }
+
+    public void clickSellList(){
+        wait.until(visibilityOf(sellListLnk)).click();
+    }
+
+    public void clickRecordList(){
+        wait.until(visibilityOf(recordListLink)).click();
+    }
+
 
 
 }

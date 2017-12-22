@@ -1,7 +1,5 @@
 package com.howbuy.common;
 
-import com.howbuy.smwap.PaymentPage;
-
 /**
  * 支付方式枚举类
  * @author yang.zhou

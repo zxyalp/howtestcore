@@ -1,6 +1,5 @@
 package com.howbuy.smwap;
 
-import com.howbuy.common.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.TimeoutException;
@@ -14,11 +13,13 @@ import java.util.List;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
- * Created by yang.zhou on 2017/12/20.
+ * 搜索产品
+ * @author yang.zhou
+ * @date 2017/12/20
  */
-public class SeachFundPage extends BasePage{
+public class SearchFundPage extends BasePage{
 
-    private static final Log logger = LogFactory.getLog(SeachFundPage.class);
+    private static final Log logger = LogFactory.getLog(SearchFundPage.class);
 
     /**
      * 加载框
@@ -54,7 +55,7 @@ public class SeachFundPage extends BasePage{
     private List<WebElement> floridianBtn;
 
 
-    public SeachFundPage(WebDriver driver){
+    public SearchFundPage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 7);
     }

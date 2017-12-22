@@ -1,20 +1,20 @@
 package com.howbuy.smwap;
 
+import com.howbuy.common.PaymentType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by yang.zhou on 2017/12/20.
+ * 购买下单
+ * @author yang.zhou
+ * @date 2017/12/20
  */
 public class BuyFundPage extends BasePage{
 
     private static final Log logger = LogFactory.getLog(BuyFundPage.class);
-
-
 
 
     public BuyFundPage(WebDriver driver){
@@ -24,6 +24,16 @@ public class BuyFundPage extends BasePage{
 
 
     public void payment(){
+
+    }
+
+    public void buy(String fundCode, String amount, PaymentType paymentType, int index){
+
+        SearchFundPage searchFundPage = PageFactory.initElements(driver, SearchFundPage.class);
+        searchFundPage.seachFund(fundCode);
+
+        PayInfoPage payInfoPage = PageFactory.initElements(driver, PayInfoPage.class);
+        payInfoPage.pay(amount, paymentType, index);
 
     }
 

@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
@@ -17,10 +19,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/12/21
  */
-public class PaymentPage extends BasePage{
+public class PayInfoPage extends BasePage{
 
 
-    private static final Log logger = LogFactory.getLog(PaymentPage.class);
+    private static final Log logger = LogFactory.getLog(PayInfoPage.class);
 
 
     /**
@@ -78,10 +80,10 @@ public class PaymentPage extends BasePage{
      * 银行支行名称
      */
     @FindBy(id = "branchName")
-    private WebElement branchName;
+    private List<WebElement> branchName;
 
 
-    public PaymentPage(WebDriver driver){
+    public PayInfoPage(WebDriver driver){
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
@@ -97,17 +99,29 @@ public class PaymentPage extends BasePage{
             wait.until(visibilityOf(loading));
             wait.until(visibilityOf(buyAmount)).sendKeys(amount);
             TestUtils.sleep1s();
-            if (paymentType==PaymentType.CXG_PAY){
 
+            if (paymentType==PaymentType.DEFAULT_PAY){
+                if (!branchName.isEmpty()){
+                    branchName.get(0).sendKeys("wap测试支行");
+                }
+
+            } else {
+                payMethods.click();
+            }
+
+            if (paymentType==PaymentType.CXG_PAY){
+                payXcg.click();
             }
 
             if (paymentType==PaymentType.BANK_LINE_PAY){
-
+                payBankLine.click();
             }
 
             if (paymentType==PaymentType.BANK_CARD_PAY){
-
+                payBank.click();
             }
+
+
 
 
         }catch (TimeoutException e){
