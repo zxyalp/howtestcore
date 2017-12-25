@@ -49,16 +49,6 @@ public class LoginWapPage extends BasePage {
         wait = new WebDriverWait(driver, 10);
     }
 
-    public void get(String url) throws MalformedURLException {
-        urlParse.setUrl(new URL(url));
-        driver.get(url);
-        driver.manage().window().setSize(new Dimension(620,725));
-    }
-
-    public void get(URL url) throws MalformedURLException{
-        get(url.toString());
-    }
-
     public void loginWap(String idNo, String password){
         TestUtils.sleep1s();
         loginId = wait.until(ExpectedConditions.visibilityOf(loginId));
@@ -67,6 +57,11 @@ public class LoginWapPage extends BasePage {
         TestUtils.sleep1s();
         loginPwd.sendKeys(password);
         loginBtn.click();
+    }
+
+
+    public void loginWap(String idNo){
+        loginWap(idNo, "qq1111");
     }
 
 }

@@ -29,6 +29,7 @@ public class BuyFundPage extends BasePage{
 
     public void buy(String fundCode, String amount, PaymentType paymentType, int index){
 
+
         SearchFundPage searchFundPage = PageFactory.initElements(driver, SearchFundPage.class);
         searchFundPage.seachFund(fundCode);
 

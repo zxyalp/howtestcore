@@ -1,5 +1,6 @@
 package com.howbuy.simu;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
@@ -29,5 +30,16 @@ public class UrlParse {
 
     public URL getUrl() {
         return url;
+    }
+
+    public URL urlSpec(int port, String path){
+        try {
+            if (url == null){
+                throw new RuntimeException("未设置Host.");
+            }
+            return new URL("http", url.getHost(), port, path);
+        }catch (MalformedURLException m){
+            throw new RuntimeException(m);
+        }
     }
 }

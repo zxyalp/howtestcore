@@ -3,6 +3,7 @@ package com.howbuy.smwap;
 import com.howbuy.simu.UrlParse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,21 +29,50 @@ public class BasePage {
 
     public URL url;
 
-    private static String loginWap = "/wap/account/login/login.htm";
+    private static String LOGIN_WAP_URL = "/wap/account/login/login.htm?targeturl=";
 
-    private static String indexSm = "/smtradewap/indexsm.html";
+    private static String INDEX_SM_URL = "/smtradewap/indexsm.html";
+
+    public static String BUY_LIST_URL = "/smtradewap/buylist.html";
 
     WebDriver driver;
 
     Wait<WebDriver> wait;
 
+
+    public URL loginWapUrl(){
+        return urlParse.urlSpec(4081,LOGIN_WAP_URL);
+    }
+
+    public URL homeUrl(){
+        return urlParse.urlSpec(1508, INDEX_SM_URL);
+    }
+
+    public URL buyListUrl(){
+        return urlParse.urlSpec(1508, BUY_LIST_URL);
+    }
+
+    public void getHomePage(){
+        get(homeUrl());
+    }
+
     public void openBuyListPage(){
+        get(buyListUrl());
+
+    }
+
+    public void get(URL url) {
+        urlParse.setUrl(url);
+        driver.get(url.toString());
+        driver.manage().window().setSize(new Dimension(620,725));
+    }
+
+
+    public void get(String url){
         try {
-            url = new URL("http", urlParse.getUrl().getHost(),4081, loginWap);
-            driver.get(url.toString());
-        }catch (MalformedURLException m){
-            logger.error(m);
-            throw new RuntimeException(m);
+            get(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -53,6 +83,13 @@ public class BasePage {
         }catch (TimeoutException e){
             return false;
         }
+    }
+
+    public static void main(String[] args) throws MalformedURLException {
+        UrlParse.getInstance().setUrl(new URL("http://192.168.221.123"));
+        BasePage basePage = new BasePage();
+        String u = basePage.loginWapUrl().toString();
+        System.out.println(u);
     }
 
 }
