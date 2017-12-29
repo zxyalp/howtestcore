@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -103,17 +104,34 @@ public class HighEndBuyPage extends BasePage {
     @FindBy(xpath = "//span[text()='银行转账划款']")
     private WebElement offlineTransferLink;
 
+
+    /**
+     * 选择第几张储蓄罐绑定的卡支付
+     */
+    @FindBy(css = "input[name=bank]")
+    private List<WebElement> piggyBankCardinPut;
+
     /**
      * 选择银行卡
      */
     @FindBy(css = "input[name=bank2]")
-    private List<WebElement> bankCardRadioes;
+    private List<WebElement> bankCardinPut;
+
+    /**
+     * 查询全部储蓄罐与银行卡绑定的卡
+     */
+    @FindAll({
+            @FindBy(css = "input[name=bank2]"),
+            @FindBy(css = "input[name=bank]" )
+    })
+    private List<WebElement> bankCardList;
+
 
     /**
      * 支行名称
      */
     @FindBy(css = "input[data-bind*='bankSubName']")
-    private WebElement bankSubNameText;
+    private List<WebElement> bankSubNameText;
 
     /**
      * 电子合同签名
@@ -266,12 +284,17 @@ public class HighEndBuyPage extends BasePage {
             }
         }
 
-        //选择储蓄罐、银行卡代扣或是银行转账划款
+        logger.info("选择支付方式："+paymentType.getName());
+
+        if (paymentType==PaymentType.DEFAULT_PAY){
+            logger.info("选择默认支付方式.");
+        }else {
+            logger.info("非默认支付方式，选择其他支付方式："+paymentType.getName());
+            TestUtils.sleep1s();
+        }
 
         if (paymentType==PaymentType.CXG_PAY) {
-            TestUtils.scrollEnd(driver);
-            wait.until(elementToBeClickable(nextStepBtn)).click();
-            return;
+            savingsBankLink.click();
         }
 
         if (paymentType == PaymentType.BANK_LINE_PAY) {
@@ -282,17 +305,21 @@ public class HighEndBuyPage extends BasePage {
             bankCardLink.click();
         }
 
-        int size = bankCardRadioes.size();
+        int size = bankCardList.size();
         if (size > 1 && size >= index) {
-            WebElement bankCardChecked = bankCardRadioes.get(index - 1);
+            WebElement bankCardChecked = bankCardList.get(index - 1);
             TestUtils.scrollTo(driver, bankCardChecked.getLocation().getY());
             if (!bankCardChecked.isSelected()) {
                 logger.info("选择第" + index + "张银行卡支付.");
                 bankCardChecked.click();
             }
         }
-        TestUtils.scrollEnd(driver);
-        bankSubNameText.sendKeys("上海南京西路支行");
+
+        TestUtils.scrollTo(driver, nextStepBtn.getLocation().getY());
+
+        if (!bankSubNameText.isEmpty()) {
+            bankSubNameText.get(0).sendKeys("上海南京西路支行web测试");
+        }
         wait.until(elementToBeClickable(nextStepBtn)).click();
     }
 
@@ -302,7 +329,7 @@ public class HighEndBuyPage extends BasePage {
      */
 
     public void signingElecContract() {
-        logger.info("电子合同签名");
+        logger.info("需要电子合同签名.");
         wait.until(invisibilityOf(dialog));
         if (!hetongBox.isSelected()) {
             hetongBox.click();
@@ -358,9 +385,21 @@ public class HighEndBuyPage extends BasePage {
         TestUtils.screenshort(driver, "产品"+fundCode+"购买结果"+result);
     }
 
-
-    private Boolean isSign() {
-        return signingElecText.size() > 0;
+    /**
+     * 选择银行卡
+     * @param elements 银行卡列表
+     * @param index   选择第几张
+     */
+    private void chooseBankCard(List<WebElement> elements, int index){
+        int size = elements.size();
+        if (size > 1 && size >= index) {
+            WebElement bankCardChecked = elements.get(index - 1);
+            TestUtils.scrollTo(driver, bankCardChecked.getLocation().getY());
+            if (!bankCardChecked.isSelected()) {
+                logger.info("选择第" + index + "张银行卡支付.");
+                bankCardChecked.click();
+            }
+        }
     }
 
 
@@ -395,7 +434,7 @@ public class HighEndBuyPage extends BasePage {
         openBuyListPage();
         queryFund(fundCode);
         fillInOrder(buyAmount, paymentType, index);
-        if (isSign()) {
+        if (!signingElecText.isEmpty()) {
             signingElecContract();
         }
         confirmPurchase(txPassword);
@@ -434,7 +473,7 @@ public class HighEndBuyPage extends BasePage {
      * 使用银行卡转账
      */
 
-    public void buyByBankTransfer(String fundCode, String buyAmount, int index) {
+    public void buyBankLinePay(String fundCode, String buyAmount, int index) {
         buyHighFund(fundCode, buyAmount, PaymentType.BANK_LINE_PAY, index, "121212");
     }
 
@@ -443,8 +482,8 @@ public class HighEndBuyPage extends BasePage {
      * 使用银行卡转账，默认选择选择第一张银行卡
      */
 
-    public void buyByBankTransfer(String fundCode, String buyAmount) {
-        buyByBankTransfer(fundCode, buyAmount, 1);
+    public void buyBankLinePay(String fundCode, String buyAmount) {
+        buyBankLinePay(fundCode, buyAmount, 1);
     }
 
 
@@ -452,7 +491,7 @@ public class HighEndBuyPage extends BasePage {
      * 使用储蓄罐支付
      */
 
-    public void buyByPiggy(String fundCode, String buyAmount) {
+    public void buyPiggyPay(String fundCode, String buyAmount) {
         buyHighFund(fundCode, buyAmount, PaymentType.CXG_PAY, 1, "121212");
     }
 

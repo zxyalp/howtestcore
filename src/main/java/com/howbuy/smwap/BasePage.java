@@ -29,51 +29,59 @@ public class BasePage {
 
     public URL url;
 
-    private static String LOGIN_WAP_URL = "/wap/account/login/login.htm?targeturl=";
+    private String loginWapPath = "/wap/account/login/login.htm?targeturl=";
 
-    private static String INDEX_SM_URL = "/smtradewap/indexsm.html";
+    private String indexSmPath = "/smtradewap/indexsm.html";
 
-    public static String BUY_LIST_URL = "/smtradewap/buylist.html";
+    public  String buyListPath = "/smtradewap/buylist.html";
 
     WebDriver driver;
 
     Wait<WebDriver> wait;
 
 
-    public URL loginWapUrl(){
-        return urlParse.urlSpec(4081,LOGIN_WAP_URL);
+    public URL loginWapUrl(String path){
+        return urlParse.urlSpec(4081, path);
+    }
+
+
+    public URL loginHomeUrl(){
+        return loginWapUrl(loginWapPath+homeUrl().toString());
+    }
+
+    public URL loginBuyListUrl(){
+        return loginWapUrl(loginWapPath+buyListUrl().toString());
     }
 
     public URL homeUrl(){
-        return urlParse.urlSpec(1508, INDEX_SM_URL);
+        return urlParse.urlSpec(15080, indexSmPath);
     }
 
     public URL buyListUrl(){
-        return urlParse.urlSpec(1508, BUY_LIST_URL);
+        return urlParse.urlSpec(15080, buyListPath);
     }
 
-    public void getHomePage(){
-        get(homeUrl());
-    }
 
-    public void openBuyListPage(){
-        get(buyListUrl());
-
-    }
-
-    public void get(URL url) {
+    public void setBaseUrl(URL url){
         urlParse.setUrl(url);
-        driver.get(url.toString());
+    }
+
+    public void setBaseUrl(String url){
+        try {
+            setBaseUrl(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void get(String url) {
+        driver.get(url);
         driver.manage().window().setSize(new Dimension(620,725));
     }
 
 
-    public void get(String url){
-        try {
-            get(new URL(url));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+    public void get(URL url){
+        get(url.toString());
     }
 
     public Boolean elementIsExist(WebDriver driver, WebElement element, int time){
@@ -86,10 +94,9 @@ public class BasePage {
     }
 
     public static void main(String[] args) throws MalformedURLException {
-        UrlParse.getInstance().setUrl(new URL("http://192.168.221.123"));
+        String url = "http://192.168.221.123:4081/wap/account/login/login.htm";
         BasePage basePage = new BasePage();
-        String u = basePage.loginWapUrl().toString();
-        System.out.println(u);
+        basePage.setBaseUrl(url);
     }
 
 }

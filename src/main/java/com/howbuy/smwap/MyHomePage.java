@@ -43,7 +43,7 @@ public class MyHomePage extends BasePage {
         wait = new WebDriverWait(driver, 10);
     }
 
-    public void clickBuylist(){
+    public void clickBuyList(){
         wait.until(visibilityOf(buyListLink)).click();
     }
 

@@ -54,15 +54,6 @@ public class LoginWebPage extends BasePage{
         wait = new WebDriverWait(driver, 10);
     }
 
-    public void get(String url) throws MalformedURLException{
-        urlParse.setUrl(new URL(url));
-        driver.get(url);
-        driver.manage().window().maximize();
-    }
-
-    public void get(URL url) throws MalformedURLException{
-        get(url.toString());
-    }
 
     public void login(String idNo, String passwd){
         TestUtils.sleep1s();

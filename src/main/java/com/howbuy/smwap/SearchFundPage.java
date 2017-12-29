@@ -1,5 +1,6 @@
 package com.howbuy.smwap;
 
+import com.howbuy.common.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.TimeoutException;
@@ -26,6 +27,12 @@ public class SearchFundPage extends BasePage{
      */
     @FindBy(css = "#loading:empty")
     private WebElement loading;
+
+    /**
+     * wap主页买基金链接
+     */
+    @FindBy(linkText = "买私募")
+    private WebElement buyListLink;
 
     /**
      * 基金搜索框
@@ -60,12 +67,14 @@ public class SearchFundPage extends BasePage{
         wait = new WebDriverWait(driver, 7);
     }
 
-    public void seachFund(String fundCode){
+    public void searchFund(String fundCode){
+
+        getSearchPage();
+
         try {
-            wait.until(visibilityOf(loading));
             wait.until(visibilityOf(searchInput)).sendKeys(fundCode);
             searchBtn.click();
-            wait.until(visibilityOf(loading));
+            TestUtils.sleep2s();
             if (buyList.isEmpty()){
                 throw new RuntimeException("没有查到结果");
             }
@@ -81,6 +90,10 @@ public class SearchFundPage extends BasePage{
             throw new RuntimeException("查询产品超时》",e);
         }
 
+    }
+
+    public void getSearchPage(){
+        super.get(buyListUrl());
     }
 
 }

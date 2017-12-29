@@ -53,7 +53,7 @@ public class LoginWapPage extends BasePage {
         TestUtils.sleep1s();
         loginId = wait.until(ExpectedConditions.visibilityOf(loginId));
         loginId.clear();
-        loginId.sendKeys();
+        loginId.sendKeys(idNo);
         TestUtils.sleep1s();
         loginPwd.sendKeys(password);
         loginBtn.click();
@@ -62,6 +62,12 @@ public class LoginWapPage extends BasePage {
 
     public void loginWap(String idNo){
         loginWap(idNo, "qq1111");
+    }
+
+
+    public void getHomePage(String url){
+        super.setBaseUrl(url);
+        super.get(loginHomeUrl());
     }
 
 }

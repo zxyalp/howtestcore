@@ -2,6 +2,7 @@ package com.howbuy.simu;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 
@@ -22,25 +23,34 @@ public class BasePage {
 
     public URL url;
 
-    private static String buyListPath = "/newpcsm/buylist.html";
-    private static String piggyPath = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
+    private static String BUY_LIST_URL = "/newpcsm/buylist.html";
+    private static String PIGGGY_URL = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
 
     WebDriver driver;
     Wait<WebDriver> wait;
 
+    public void get(URL url) {
+        urlParse.setUrl(url);
+        get(url.toString());
+    }
+
+    public void get(String url){
+        driver.get(url);
+        driver.manage().window().maximize();
+    }
+
     public void openBuyListPage(){
         try {
-            url = new URL("http", urlParse.getUrl().getHost(),4085, buyListPath);
+            url = new URL("http", urlParse.getUrl().getHost(),4085, BUY_LIST_URL);
             driver.get(url.toString());
         }catch (MalformedURLException m){
-            logger.error(m);
             throw new RuntimeException(m);
         }
     }
 
     public void openPiggyPage(){
         try {
-            url = new  URL("http", urlParse.getUrl().getHost(),4085, piggyPath);
+            url = new  URL("http", urlParse.getUrl().getHost(),4085, PIGGGY_URL);
             driver.get(url.toString());
         }catch (MalformedURLException m){
             logger.error(m);

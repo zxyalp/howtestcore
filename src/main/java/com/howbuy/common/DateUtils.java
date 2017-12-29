@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by yang.zhou on 2017/12/18.
+ * 日期工具类
+ * @author yang.zhou
+ * @date 2017/12/18
  */
 public class DateUtils {
 
@@ -42,12 +44,6 @@ public class DateUtils {
         Date currentTime = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(currentTime);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(DateUtils.getNowDate());
-        System.out.println(DateUtils.getNowTime());
-
     }
 
 }

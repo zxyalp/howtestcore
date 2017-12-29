@@ -12,13 +12,13 @@ import org.testng.annotations.*;
 /**
  * Created by yang.zhou on 2017/9/11.
  */
-public class BuyTest {
+public class BuyFundTest {
 
     private WebDriver driver;
 
     private String tmsCounterUrl = "http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html";
 
-    private static final Log logger = LogFactory.getLog(BuyTest.class);
+    private static final Log logger = LogFactory.getLog(BuyFundTest.class);
 
     @BeforeClass
     public void setDriverClass() throws Exception {

@@ -366,10 +366,10 @@ public class BuySimuFundTest extends BaseTestCase{
         login.login("320101198801018159", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
-        highEndBuyPage.buyByPiggy("P12596", "2500000");
-        highEndBuyPage.buyByPiggy("P12596", "1500000");
-        highEndBuyPage.buyByPiggy("P24761", "1800000");
-        highEndBuyPage.buyByPiggy("P24761", "1800000");
+        highEndBuyPage.buyPiggyPay("P12596", "2500000");
+        highEndBuyPage.buyPiggyPay("P12596", "1500000");
+        highEndBuyPage.buyPiggyPay("P24761", "1800000");
+        highEndBuyPage.buyPiggyPay("P24761", "1800000");
     }
 
     /**
@@ -382,8 +382,8 @@ public class BuySimuFundTest extends BaseTestCase{
         login.login("320101199501012550", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
-        highEndBuyPage.buyByPiggy("S21582", "2500000");
-        highEndBuyPage.buyByPiggy("S21582", "1500000");
+        highEndBuyPage.buyPiggyPay("S21582", "2500000");
+        highEndBuyPage.buyPiggyPay("S21582", "1500000");
     }
 
 
@@ -397,10 +397,10 @@ public class BuySimuFundTest extends BaseTestCase{
         login.login("320101197901013684", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
-        highEndBuyPage.buyByPiggy("S28646", "2500000");
-        highEndBuyPage.buyByPiggy("S28646", "1500000");
-        highEndBuyPage.buyByPiggy("S29089", "1800000");
-        highEndBuyPage.buyByPiggy("S29089", "2800000");
+        highEndBuyPage.buyPiggyPay("S28646", "2500000");
+        highEndBuyPage.buyPiggyPay("S28646", "1500000");
+        highEndBuyPage.buyPiggyPay("S29089", "1800000");
+        highEndBuyPage.buyPiggyPay("S29089", "2800000");
     }
 
 
@@ -414,9 +414,9 @@ public class BuySimuFundTest extends BaseTestCase{
         login.login("320101198901018228", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
-        highEndBuyPage.buyByPiggy("S33873", "2500000");
-        highEndBuyPage.buyByPiggy("S33873", "1500000");
-        highEndBuyPage.buyByPiggy("S62866", "1800000");
-        highEndBuyPage.buyByPiggy("S62866", "2800000");
+        highEndBuyPage.buyPiggyPay("S33873", "2500000");
+        highEndBuyPage.buyPiggyPay("S33873", "1500000");
+        highEndBuyPage.buyPiggyPay("S62866", "1800000");
+        highEndBuyPage.buyPiggyPay("S62866", "2800000");
     }
 }

@@ -7,7 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
-/**TestCase
+/**
+ * TestBaseCase
  * Created by yang.zhou on 2017/11/6.
  */
 public class BaseTestCase {
@@ -17,6 +18,7 @@ public class BaseTestCase {
 
     public String simuUrl = "http://192.168.221.123:15080/trade/login/login.htm";
 
+    public String simuWapUrl = "http://192.168.221.123:4081/wap/account/login/login.htm";
 
     @BeforeClass
     public void setDriverClass() throws Exception {
