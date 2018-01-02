@@ -17,6 +17,7 @@ public class OnlineTradePage extends BasePage{
         wait = new WebDriverWait(driver, 10);
     }
 
+    @Override
     public void get(String url){
         driver.get(url);
     }

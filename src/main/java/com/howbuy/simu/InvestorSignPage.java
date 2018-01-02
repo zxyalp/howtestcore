@@ -25,31 +25,45 @@ public class InvestorSignPage extends BasePage {
 
     public static final Log logger = LogFactory.getLog(InvestorSignPage.class);
 
-    // 合格投资者认定
+    /**
+     *  合格投资者认定
+     */
     @FindBy(xpath = "//*[contains(text(),'合格投资者认定')]")
     private List<WebElement> investorBook;
 
-    // 合格投资者勾选
+    /**
+     * 合格投资者勾选
+     */
     @FindBy(css = "input[type=checkbox]")
     private List<WebElement> checkboxs;
 
-    // 点击下一步按钮
+    /**
+     * 点击下一步按钮
+     */
     @FindBy(linkText = "下一步")
     private WebElement nextSetp;
 
-    // 模态框
+    /**
+     * 模态框
+     */
     @FindBy(className = "dialogLoad")
     private WebElement dialog;
 
-    // 电子签名约定书
+    /**
+     * 电子签名约定书
+     */
     @FindBy(xpath = "//*[contains(text(),'电子签名约定书')]")
     private List<WebElement> electronicSignBook;
 
-    // 电子签名勾选框
+    /**
+     * 电子签名勾选框
+     */
     @FindBy(css = "input[type=checkbox]")
     private WebElement checkbox;
 
-    // 风险测评页面
+    /**
+     * 风险测评页面
+     */
     @FindBy(xpath = "//p[text()='风险评测']")
     private List<WebElement> riskValuationText;
 
@@ -88,6 +102,7 @@ public class InvestorSignPage extends BasePage {
             checkbox.click();
         }
         TestUtils.scrollTo(driver, nextSetp.getLocation().getY());
+        TestUtils.sleep1s();
         nextSetp.click();
     }
 
@@ -98,15 +113,19 @@ public class InvestorSignPage extends BasePage {
     }
 
     public void confirmOfInvestors(){
+        TestUtils.sleep1s();
         diglog();
+        logger.info("需要合格投资者认定书："+isQualifiedInvestor());
         if (isQualifiedInvestor()){
             checkInvestorBook();
         }
         diglog();
+        logger.info("需要电子签名约定书："+isQualifiedInvestor());
         if (isElectronicSignature()){
             checkSignatureBook();
         }
         TestUtils.sleep1s();
+        logger.info("需要风险测评："+isRiskeValuation());
         if (isRiskeValuation()){
             riskAssess();
         }

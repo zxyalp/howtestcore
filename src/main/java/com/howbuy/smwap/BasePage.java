@@ -1,6 +1,6 @@
 package com.howbuy.smwap;
 
-import com.howbuy.simu.UrlParse;
+import com.howbuy.common.UrlParse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.Dimension;
@@ -91,12 +91,6 @@ public class BasePage {
         }catch (TimeoutException e){
             return false;
         }
-    }
-
-    public static void main(String[] args) throws MalformedURLException {
-        String url = "http://192.168.221.123:4081/wap/account/login/login.htm";
-        BasePage basePage = new BasePage();
-        basePage.setBaseUrl(url);
     }
 
 }

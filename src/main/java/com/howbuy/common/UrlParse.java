@@ -1,4 +1,4 @@
-package com.howbuy.simu;
+package com.howbuy.common;
 
 import java.net.MalformedURLException;
 import java.net.URL;

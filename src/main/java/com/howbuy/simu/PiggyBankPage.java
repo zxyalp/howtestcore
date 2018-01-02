@@ -13,41 +13,59 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
- * Created by yang.zhou on 2017/11/9.
+ * 储蓄罐存入
+ * @author yang.zhou
+ * @date 2017/11/9
  */
 public class PiggyBankPage extends BasePage{
 
     private static final Log logger = LogFactory.getLog(PiggyBankPage.class);
 
-    // 模态框
+    /**
+     * 模态框
+     */
     @FindBy(className = "dialog2")
     private WebElement dialog;
 
-    // 存活期按钮
+    /**
+     * 存活期按钮
+     */
     @FindBy(linkText = "存活期")
     private WebElement depositBtn;
 
-    // 取活期
+    /**
+     * 取活期
+     */
     @FindBy(linkText = "取活期")
     private  WebElement withDrawBtn;
 
-    // 存入金额
+    /**
+     * 存入金额
+     */
     @FindBy(css = "input[data-bind*='amount']")
     private WebElement amountText;
 
-    // 下一步
+    /**
+     * 下一步
+     */
     @FindBy(linkText = "下一步")
     private WebElement nextStep;
 
-    // 交易密码
+    /**
+     * 交易密码
+     */
     @FindBy(css = "input[data-bind*='tradePassword']")
     private WebElement tradePasswordText;
 
-    // 确认存入
+    /**
+     * 确认存入
+     */
     @FindBy(linkText = "确认存入")
     private WebElement confirmBtn;
 
-    // 恭喜！您的存入已成功！
+    /**
+     * 恭喜！您的存入已成功！
+     */
     @FindBy(xpath = "//p[contains(text(),'您的存入已成功')]")
     private WebElement depositSuccess;
 

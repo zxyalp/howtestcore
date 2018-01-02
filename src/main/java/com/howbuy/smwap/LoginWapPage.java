@@ -1,18 +1,14 @@
 package com.howbuy.smwap;
 
 import com.howbuy.common.TestUtils;
-import com.howbuy.simu.UrlParse;
+import com.howbuy.common.UrlParse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  *  login smwap

@@ -1,5 +1,6 @@
 package com.howbuy.simu;
 
+import com.howbuy.common.UrlParse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.howbuy.common.TestUtils;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -23,28 +21,36 @@ public class LoginWebPage extends BasePage{
 
     private static final Log logger = LogFactory.getLog(LoginWebPage.class);
 
-    private UrlParse urlParse = UrlParse.getInstance();
-
-    // 交易账号
+    /**
+     * 交易账号
+     */
     @FindBy(id = "idNo")
     @CacheLookup
     private WebElement idNoText;
 
-    // 登录密码
+    /**
+     * 登录密码
+     */
     @FindBy(id = "password")
     @CacheLookup
     private WebElement passwordText;
 
-    // 登录按钮
+    /**
+     * 登录按钮
+     */
     @FindBy(css = "[value='登录']")
     @CacheLookup
     private WebElement loginBtn;
 
-    // 免费开户
+    /**
+     * 免费开户
+     */
     @FindBy(linkText = "免费开户")
     private WebElement registerLink;
 
-    // 用户激活
+    /**
+     * 用户激活
+     */
     @FindBy(linkText = "用户激活")
     private WebElement activateacctLink;
 
@@ -55,14 +61,14 @@ public class LoginWebPage extends BasePage{
     }
 
 
-    public void login(String idNo, String passwd){
+    public void login(String idNo, String password){
         TestUtils.sleep1s();
         idNoText = wait.until(visibilityOf(idNoText));
         idNoText.clear();
         idNoText.sendKeys(idNo);
         TestUtils.sleep1s();
         passwordText.clear();
-        passwordText.sendKeys(passwd);
+        passwordText.sendKeys(password);
         passwordText.submit();
     }
 

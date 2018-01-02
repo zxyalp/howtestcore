@@ -1,8 +1,8 @@
 package com.howbuy.simu;
 
+import com.howbuy.common.UrlParse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 
@@ -23,39 +23,45 @@ public class BasePage {
 
     public URL url;
 
-    private static String BUY_LIST_URL = "/newpcsm/buylist.html";
-    private static String PIGGGY_URL = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
+    private String buyListUrl = "/newpcsm/buylist.html";
+    private String piggyUrl = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
 
     WebDriver driver;
     Wait<WebDriver> wait;
 
-    public void get(URL url) {
+
+    public void setBaseUrl(URL url){
         urlParse.setUrl(url);
+    }
+
+    public void setBaseUrl(String url){
+        try {
+            setBaseUrl(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void get(URL url) {
         get(url.toString());
     }
 
     public void get(String url){
+
+        if (urlParse.getUrl() == null){
+            setBaseUrl(url);
+        }
+
         driver.get(url);
         driver.manage().window().maximize();
     }
 
     public void openBuyListPage(){
-        try {
-            url = new URL("http", urlParse.getUrl().getHost(),4085, BUY_LIST_URL);
-            driver.get(url.toString());
-        }catch (MalformedURLException m){
-            throw new RuntimeException(m);
-        }
+            get(urlParse.urlSpec(4085, buyListUrl));
     }
 
     public void openPiggyPage(){
-        try {
-            url = new  URL("http", urlParse.getUrl().getHost(),4085, PIGGGY_URL);
-            driver.get(url.toString());
-        }catch (MalformedURLException m){
-            logger.error(m);
-            throw new RuntimeException(m);
-        }
+            get(urlParse.urlSpec(4085, piggyUrl));
 
     }
 }

@@ -35,7 +35,7 @@ public class BaseTestCase {
     @AfterMethod
     public void tearDown() throws Exception{
         logger.info("关闭浏览器.");
-//        driver.quit();
+        driver.quit();
     }
 
     @AfterClass

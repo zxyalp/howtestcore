@@ -44,7 +44,7 @@ public class RiskValuationPage extends BasePage {
         int[] result = new int[]{4,4,1,4,4,4,3,1,3,4,5,4,1,3,4,4,4,2};
         int i=0;
         for (WebElement element: riskViews){
-            logger.info("开始做高端风险问卷："+riskViews.size());
+            logger.info("开始做高端风险问卷："+i);
             TestUtils.sleep1s();
             WebElement checkedRadio = element.findElements(By.cssSelector("input[name=q1]")).get(result[i]-1);
             checkedRadio.click();
