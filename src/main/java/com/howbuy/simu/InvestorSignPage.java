@@ -74,19 +74,19 @@ public class InvestorSignPage extends BasePage {
     }
 
 
-    public Boolean isQualifiedInvestor(){
+    private Boolean isQualifiedInvestor(){
         return investorBook.size() > 0;
     }
 
-    public Boolean isElectronicSignature(){
+    private Boolean isElectronicSignature(){
         return electronicSignBook.size() > 0;
     }
 
-    public Boolean isRiskeValuation(){return riskValuationText.size() > 0; }
+    private Boolean isRiskeValuation(){return riskValuationText.size() > 0; }
 
-    public Boolean isQualifiedAndRisk(){return isQualifiedInvestor() || isElectronicSignature() || isRiskeValuation();}
+    private Boolean isQualifiedAndRisk(){return isQualifiedInvestor() || isElectronicSignature() || isRiskeValuation();}
 
-    public void checkInvestorBook(){
+    private void checkInvestorBook(){
         logger.info("勾选合格投资者认定书.");
         for (WebElement element: checkboxs){
             if (!element.isSelected()){
@@ -96,7 +96,7 @@ public class InvestorSignPage extends BasePage {
         nextSetp.click();
     }
 
-    public void checkSignatureBook(){
+    private void checkSignatureBook(){
         logger.info("勾选电子签名约定书.");
         if (!checkbox.isSelected()){
             checkbox.click();
@@ -106,7 +106,7 @@ public class InvestorSignPage extends BasePage {
         nextSetp.click();
     }
 
-    public void riskAssess(){
+    private void riskAssess(){
         logger.info("开始做风险测评");
         RiskValuationPage risk = PageFactory.initElements(driver, RiskValuationPage.class);
         risk.riskAssess();
@@ -115,17 +115,15 @@ public class InvestorSignPage extends BasePage {
     public void confirmOfInvestors(){
         TestUtils.sleep1s();
         diglog();
-        logger.info("需要合格投资者认定书："+isQualifiedInvestor());
+        logger.info("检测用户是否需要签订合格投资者认定书或是电子签名预订书或是需要风险测评："+isQualifiedAndRisk());
         if (isQualifiedInvestor()){
             checkInvestorBook();
         }
         diglog();
-        logger.info("需要电子签名约定书："+isQualifiedInvestor());
         if (isElectronicSignature()){
             checkSignatureBook();
         }
         TestUtils.sleep1s();
-        logger.info("需要风险测评："+isRiskeValuation());
         if (isRiskeValuation()){
             riskAssess();
         }

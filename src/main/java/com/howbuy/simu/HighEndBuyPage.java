@@ -77,7 +77,7 @@ public class HighEndBuyPage extends BasePage {
     /**
      * 购买按钮-可购买状态
      */
-    @FindBy(css = "a[href^='buyindex.html']")
+    @FindBy(css = "a[href^='buyindex.html?fundCode']")
     private WebElement buyIndexBtn;
 
     /**
@@ -221,10 +221,13 @@ public class HighEndBuyPage extends BasePage {
      * 查询产品
      */
 
-    private void queryFund(String fundCode) {
+    public void queryFund(String fundCode) {
+        openBuyListPage();
         try {
             wait.until(invisibilityOf(dialog));
+            TestUtils.sleep2s();
             searchFundText.sendKeys(fundCode);
+            wait.until(invisibilityOf(dialog));
             TestUtils.sleep1s();
             searchFundBtn.click();
             clickBuyButton();
@@ -244,9 +247,10 @@ public class HighEndBuyPage extends BasePage {
 
         try {
             wait.until(invisibilityOf(dialog));
+            TestUtils.sleep1s();
             buyIndexBtn.click();
         } catch (NoSuchElementException n) {
-            throw new RuntimeException("该产品无法购买.");
+            throw new NoSuchElementException("该产品无法购买.");
         }
     }
 
@@ -431,7 +435,6 @@ public class HighEndBuyPage extends BasePage {
      */
 
     public void buyHighFund(String fundCode, String buyAmount, PaymentType paymentType, int index, String txPassword) {
-        openBuyListPage();
         queryFund(fundCode);
         fillInOrder(buyAmount, paymentType, index);
         if (!signingElecText.isEmpty()) {

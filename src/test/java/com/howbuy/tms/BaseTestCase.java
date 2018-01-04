@@ -16,9 +16,9 @@ public class BaseTestCase {
 
     protected WebDriver driver;
 
-    public String simuUrl = "http://192.168.221.123:15080/trade/login/login.htm";
+    public String simuUrl = "http://192.168.221.216:15080/trade/login/login.htm";
 
-    public String simuWapUrl = "http://192.168.221.123:4081/wap/account/login/login.htm";
+    public String simuWapUrl = "http://192.168.221.216:4081/wap/account/login/login.htm";
 
     @BeforeClass
     public void setDriverClass() throws Exception {
@@ -35,11 +35,30 @@ public class BaseTestCase {
     @AfterMethod
     public void tearDown() throws Exception{
         logger.info("关闭浏览器.");
-        driver.quit();
+//        driver.quit();
     }
 
     @AfterClass
     public void tearDownClass() throws Exception {
         logger.info("==========测试结束==========");
     }
+
+    public static int getRandom(int min, int max){
+        return (int)(min + Math.random()*(Math.abs(max - min) + 1));
+    }
+
+    /**
+     *  生成随机的百万金额
+     * @param minAmount 最小金额，单位：百万
+     * @param maxAmount 最大金额，单位：百万
+     * @return
+     */
+    public static String randomMillAmount(int minAmount, int maxAmount){
+        return String.valueOf(getRandom(minAmount*100, maxAmount*100)*10000);
+    }
+
+    public static String randomAmount(int minAmount, int maxAmount){
+        return String.valueOf(getRandom(minAmount, maxAmount)*10000);
+    }
+
 }

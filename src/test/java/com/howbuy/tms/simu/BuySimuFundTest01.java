@@ -11,9 +11,9 @@ import org.testng.annotations.Test;
 /** 购买私募产品
  * Created by yang.zhou on 2017/11/6.
  */
-public class BuySimuFund01Test extends BaseTestCase{
+public class BuySimuFundTest01 extends BaseTestCase{
 
-    private static final Log logger = LogFactory.getLog(BuySimuFund01Test.class);
+    private static final Log logger = LogFactory.getLog(BuySimuFundTest01.class);
 
 
     /**
