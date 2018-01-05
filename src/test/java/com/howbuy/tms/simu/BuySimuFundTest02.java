@@ -9,7 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
-/** 购买私募产品
+/** 预约认购产品
  * Created by yang.zhou on 2017/11/6.
  */
 public class BuySimuFundTest02 extends BaseTestCase{
@@ -21,7 +21,7 @@ public class BuySimuFundTest02 extends BaseTestCase{
      * @throws Exception
      */
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void loginSimuUser01() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -50,7 +50,7 @@ public class BuySimuFundTest02 extends BaseTestCase{
      * @throws Exception
      */
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void loginSimuUser02() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
@@ -162,7 +162,5 @@ public class BuySimuFundTest02 extends BaseTestCase{
         highEndBuyPage.buyBankLinePay("P12596", randomMillAmount(1,3),2);
         highEndBuyPage.buyBankLinePay("P24761", randomMillAmount(1,3),2);
     }
-
-
 
 }

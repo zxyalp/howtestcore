@@ -1,6 +1,7 @@
 package com.howbuy.tms;
 
 import com.howbuy.common.TestContext;
+import com.howbuy.common.TestUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +36,7 @@ public class BaseTestCase {
     @AfterMethod
     public void tearDown() throws Exception{
         logger.info("关闭浏览器.");
-//        driver.quit();
+        driver.quit();
     }
 
     @AfterClass
