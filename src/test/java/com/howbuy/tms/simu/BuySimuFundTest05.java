@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 /** 非预约申购产品
+ * S33873，S62866，S36248，S37842
+
  * Created by yang.zhou on 2017/11/6.
  */
 public class BuySimuFundTest05 extends BaseTestCase{
@@ -24,14 +26,14 @@ public class BuySimuFundTest05 extends BaseTestCase{
     public void loginSimuUser03() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
-        login.login("330100197301013387", "qq1111");
+        login.login("330100199401019590", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
         // 单卡代扣
-        highEndBuyPage.buyHighFund("P09553", randomMillAmount(1,3));
-        highEndBuyPage.buyHighFund("P11601", randomMillAmount(1,3));
-        highEndBuyPage.buyHighFund("P12596", randomMillAmount(1,3));
-        highEndBuyPage.buyHighFund("P24761", randomMillAmount(1,3));
+        highEndBuyPage.buyHighFund("S33873", randomMillAmount(1,3));
+        highEndBuyPage.buyHighFund("S62866", randomMillAmount(1,3));
+        highEndBuyPage.buyHighFund("S36248", randomMillAmount(1,3));
+        highEndBuyPage.buyHighFund("S37842", randomMillAmount(1,3));
     }
 
 
@@ -43,14 +45,14 @@ public class BuySimuFundTest05 extends BaseTestCase{
     public void loginSimuUser04() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
-        login.login("330100198701013102", "qq1111");
+        login.login("33010019810101104X", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
         // 自划款下单
-        highEndBuyPage.buyBankLinePay("P09553", randomMillAmount(1,3));
-        highEndBuyPage.buyBankLinePay("P11601", randomMillAmount(1,3));
-        highEndBuyPage.buyBankLinePay("P12596", randomMillAmount(1,3));
-        highEndBuyPage.buyBankLinePay("P24761", randomMillAmount(1,3));
+        highEndBuyPage.buyBankLinePay("S33873", randomMillAmount(1,3));
+        highEndBuyPage.buyBankLinePay("S62866", randomMillAmount(1,3));
+        highEndBuyPage.buyBankLinePay("S36248", randomMillAmount(1,3));
+        highEndBuyPage.buyBankLinePay("S37842", randomMillAmount(1,3));
     }
 
 
@@ -63,20 +65,20 @@ public class BuySimuFundTest05 extends BaseTestCase{
     public void loginSimuUser05() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
-        login.login("330100199601013265", "qq1111");
+        login.login("330100197501016160", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
         // 卡1代扣
-        highEndBuyPage.buyHighFund("P09553", randomMillAmount(1,3));
-        highEndBuyPage.buyHighFund("P11601", randomMillAmount(1,3));
-        highEndBuyPage.buyHighFund("P12596", randomMillAmount(1,3));
-        highEndBuyPage.buyHighFund("P24761", randomMillAmount(1,3));
+        highEndBuyPage.buyHighFund("S33873", randomMillAmount(1,3));
+        highEndBuyPage.buyHighFund("S62866", randomMillAmount(1,3));
+        highEndBuyPage.buyHighFund("S36248", randomMillAmount(1,3));
+        highEndBuyPage.buyHighFund("S37842", randomMillAmount(1,3));
 
         // 卡2代扣
-        highEndBuyPage.buyHighFund("P09553", randomMillAmount(1,3),2);
-        highEndBuyPage.buyHighFund("P11601", randomMillAmount(1,3),2);
-        highEndBuyPage.buyHighFund("P12596", randomMillAmount(1,3),2);
-        highEndBuyPage.buyHighFund("P24761", randomMillAmount(1,3),2);
+        highEndBuyPage.buyHighFund("S33873", randomMillAmount(1,3),2);
+        highEndBuyPage.buyHighFund("S62866", randomMillAmount(1,3),2);
+        highEndBuyPage.buyHighFund("S36248", randomMillAmount(1,3),2);
+        highEndBuyPage.buyHighFund("S37842", randomMillAmount(1,3),2);
     }
 
 
@@ -88,20 +90,20 @@ public class BuySimuFundTest05 extends BaseTestCase{
     public void loginSimuUser06() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
-        login.login("33010019770101213X", "qq1111");
+        login.login("330100198401013661", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
-        // 卡1代扣
-        highEndBuyPage.buyBankLinePay("P09553", randomMillAmount(1,3));
-        highEndBuyPage.buyBankLinePay("P11601", randomMillAmount(1,3));
-        highEndBuyPage.buyBankLinePay("P12596", randomMillAmount(1,3));
-        highEndBuyPage.buyBankLinePay("P24761", randomMillAmount(1,3));
+        // 卡1自划款
+        highEndBuyPage.buyBankLinePay("S33873", randomMillAmount(1,3));
+        highEndBuyPage.buyBankLinePay("S62866", randomMillAmount(1,3));
+        highEndBuyPage.buyBankLinePay("S36248", randomMillAmount(1,3));
+        highEndBuyPage.buyBankLinePay("S37842", randomMillAmount(1,3));
 
-        // 卡2代扣
-        highEndBuyPage.buyBankLinePay("P09553", randomMillAmount(1,3),2);
-        highEndBuyPage.buyBankLinePay("P11601", randomMillAmount(1,3),2);
-        highEndBuyPage.buyBankLinePay("P12596", randomMillAmount(1,3),2);
-        highEndBuyPage.buyBankLinePay("P24761", randomMillAmount(1,3),2);
+        // 卡2自划款
+        highEndBuyPage.buyBankLinePay("S33873", randomMillAmount(1,3),2);
+        highEndBuyPage.buyBankLinePay("S62866", randomMillAmount(1,3),2);
+        highEndBuyPage.buyBankLinePay("S36248", randomMillAmount(1,3),2);
+        highEndBuyPage.buyBankLinePay("S37842", randomMillAmount(1,3),2);
     }
 
     

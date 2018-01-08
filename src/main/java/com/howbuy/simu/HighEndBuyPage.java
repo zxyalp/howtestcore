@@ -122,7 +122,7 @@ public class HighEndBuyPage extends BasePage {
      */
     @FindAll({
             @FindBy(css = "input[name=bank2]"),
-            @FindBy(css = "input[name=bank]" )
+            @FindBy(css = "input[name=bank]")
     })
     private List<WebElement> bankCardList;
 
@@ -221,7 +221,7 @@ public class HighEndBuyPage extends BasePage {
      * 查询产品
      */
 
-    public void queryFund(String fundCode) {
+    private void queryFund(String fundCode) {
         openBuyListPage();
         try {
             wait.until(invisibilityOf(dialog));
@@ -230,10 +230,17 @@ public class HighEndBuyPage extends BasePage {
             wait.until(invisibilityOf(dialog));
             TestUtils.sleep1s();
             searchFundBtn.click();
-            clickBuyButton();
+            try {
+                wait.until(invisibilityOf(dialog));
+                TestUtils.sleep1s();
+                buyIndexBtn.click();
+            } catch (NoSuchElementException n) {
+                TestUtils.screenshort(driver, fundCode+"产品无法购买.");
+                throw new RuntimeException("产品"+fundCode+"无法购买.");
+            }
         } catch (NoSuchElementException e) {
-            logger.error("查询产品失败", e);
-            throw new RuntimeException("查询产品失败");
+            TestUtils.screenshort(driver, fundCode+"查询失败.");
+            throw new RuntimeException("查询产品失败："+fundCode);
         }
 
     }
@@ -288,16 +295,16 @@ public class HighEndBuyPage extends BasePage {
             }
         }
 
-        logger.info("选择支付方式："+paymentType.getName());
+        logger.info("选择支付方式：" + paymentType.getName());
 
-        if (paymentType==PaymentType.DEFAULT_PAY){
+        if (paymentType == PaymentType.DEFAULT_PAY) {
             logger.info("选择默认支付方式.");
-        }else {
-            logger.info("非默认支付方式，选择其他支付方式："+paymentType.getName());
+        } else {
+            logger.info("非默认支付方式，选择其他支付方式：" + paymentType.getName());
             TestUtils.sleep1s();
         }
 
-        if (paymentType==PaymentType.CXG_PAY) {
+        if (paymentType == PaymentType.CXG_PAY) {
             savingsBankLink.click();
         }
 
@@ -376,25 +383,26 @@ public class HighEndBuyPage extends BasePage {
      */
 
     public void buyIsSuccess(String fundCode, String amount) {
-        String result="_失败了";
+        String result = "_失败了";
         try {
             wait.until(invisibilityOf(dialog));
             TestUtils.sleep2s();
             wait.until(visibilityOf(buyingText));
             logger.info("产品:" + fundCode + ".金额：" + amount + ". 购买成功!");
-            result="_成功";
+            result = "_成功";
         } catch (TimeoutException t) {
             logger.error("产品:" + fundCode + ", 金额：" + amount + ". 购买失败!");
         }
-        TestUtils.screenshort(driver, "产品"+fundCode+"购买结果"+result);
+        TestUtils.screenshort(driver, "产品" + fundCode + "购买结果" + result);
     }
 
     /**
      * 选择银行卡
+     *
      * @param elements 银行卡列表
-     * @param index   选择第几张
+     * @param index    选择第几张
      */
-    private void chooseBankCard(List<WebElement> elements, int index){
+    private void chooseBankCard(List<WebElement> elements, int index) {
         int size = elements.size();
         if (size > 1 && size >= index) {
             WebElement bankCardChecked = elements.get(index - 1);

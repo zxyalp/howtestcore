@@ -37,18 +37,18 @@ public class BuyFundTest {
     public void buyProductTest() throws Exception {
         TradePage trade = PageFactory.initElements(driver, TradePage.class);
         trade.get(tmsCounterUrl, "s001");
-        trade.queryCustNoToBuy("1100875618");
-        trade.buy("246020", "1200000", "090000");
-        trade.buy("246020", "1300000", "100000");
-        trade.buy("371021", "1400000", "090000");
-        trade.buy("028050", "1500000", "090000");
+        trade.queryCustNoToBuy("1100878270");
+        trade.buy("246020", "1200000", "093000");
+        trade.buy("028051", "1300000", "100000");
+        trade.buy("371021", "1400000", "094000");
+        trade.buy("028050", "1500000", "100000");
     }
 
-    @Test
+    @Test(enabled = false)
     public void sellVolTest() throws Exception{
         TradePage trade = PageFactory.initElements(driver, TradePage.class);
         trade.get(tmsCounterUrl, "s001");
-        trade.queryCustNoToBuy("1100875595");
+        trade.queryCustNoToBuy("1100878270");
         trade.sell("028050", "500", "090000");
         trade.sell("028050", "500", "090000");
     }
