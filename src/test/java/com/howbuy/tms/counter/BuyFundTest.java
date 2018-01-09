@@ -22,7 +22,7 @@ public class BuyFundTest {
 
     @BeforeClass
     public void setDriverClass() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.31\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\selenium\\chromedriver_2.34\\chromedriver.exe");
         logger.info("========开始执行========");
 
     }

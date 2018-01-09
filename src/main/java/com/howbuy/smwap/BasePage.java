@@ -75,6 +75,11 @@ public class BasePage {
     }
 
     public void get(String url) {
+
+        if (urlParse.getUrl() == null){
+            setBaseUrl(url);
+        }
+
         driver.get(url);
         driver.manage().window().setSize(new Dimension(620,725));
     }
@@ -84,7 +89,7 @@ public class BasePage {
         get(url.toString());
     }
 
-    public Boolean elementIsExist(WebDriver driver, WebElement element, int time){
+    public Boolean isElementExist(WebDriver driver, WebElement element, int time){
         try {
             new WebDriverWait(driver, time).until(visibilityOf(element));
             return true;

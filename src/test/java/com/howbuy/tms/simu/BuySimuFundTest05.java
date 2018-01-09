@@ -90,7 +90,7 @@ public class BuySimuFundTest05 extends BaseTestCase{
     public void loginSimuUser06() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.get(simuUrl);
-        login.login("330100198401013661", "qq1111");
+        login.login("330100197201014796", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
         // 卡1自划款
@@ -106,6 +106,49 @@ public class BuySimuFundTest05 extends BaseTestCase{
         highEndBuyPage.buyBankLinePay("S37842", randomMillAmount(1,3),2);
     }
 
-    
+    /**
+     * 非预约申购+单张银行卡代扣下单，银行卡限额300万
+     * @throws Exception
+     */
+    @Test(enabled = true)
+    public void loginSimuUser07() throws Exception{
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.get(simuUrl);
+        login.login("330100197001018450", "qq1111");
+        HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
+        // 单卡代扣
+        highEndBuyPage.buyHighFund("S33873", randomMillAmount(1,3));
+    }
+
+    /**
+     * 非预约申购+单张银行卡代扣下单，银行卡限额300万
+     * @throws Exception
+     */
+    @Test(enabled = true)
+    public void loginSimuUser08() throws Exception{
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.get(simuUrl);
+        login.login("330100197301011592", "qq1111");
+        HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
+
+        // 单卡代扣
+        highEndBuyPage.buyHighFund("S33873", randomMillAmount(1,3));
+    }
+
+
+    /**
+     * 非预约申购+单张银行卡代扣下单，银行卡限额300万
+     * @throws Exception
+     */
+    @Test(enabled = true)
+    public void loginSimuUser09() throws Exception{
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.get(simuUrl);
+        login.login("330100198101013176", "qq1111");
+        HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
+
+        // 单卡代扣
+        highEndBuyPage.buyHighFund("S33873", randomMillAmount(1,3));
+    }
 }

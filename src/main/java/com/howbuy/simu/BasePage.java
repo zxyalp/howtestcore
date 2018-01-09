@@ -25,6 +25,8 @@ public class BasePage {
 
     private String buyListUrl = "/newpcsm/buylist.html";
     private String piggyUrl = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
+    private String  registerUrl = "/trade/register/register.htm";
+
 
     WebDriver driver;
     Wait<WebDriver> wait;
@@ -59,6 +61,13 @@ public class BasePage {
     public void openBuyListPage(){
             get(urlParse.urlSpec(4085, buyListUrl));
     }
+
+
+    public void openRegisterPage(String url){
+        setBaseUrl(url);
+        get(urlParse.urlSpec(15080, registerUrl));
+    }
+
 
     public void openPiggyPage(){
             get(urlParse.urlSpec(4085, piggyUrl));

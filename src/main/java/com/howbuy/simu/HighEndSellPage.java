@@ -23,15 +23,21 @@ public class HighEndSellPage extends BasePage {
 
     private static final Log logger = LogFactory.getLog(HighEndSellPage.class);
 
-    // 模态框
+    /**
+     * 模态框
+     */
     @FindBy(className = "dialogLoad")
     private WebElement dialog;
 
-    // 赎回页面菜单
+    /**
+     * 赎回页面菜单
+     */
     @FindBy(linkText = "赎回")
     private WebElement sellListLink;
 
-    // 可赎回列表
+    /**
+     * 可赎回列表
+     */
     @FindBy(css = "tbody > tr")
     private List<WebElement> sellList;
 
