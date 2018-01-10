@@ -15,6 +15,6 @@ public class RegisterUserTest extends BaseTestCase {
     public void  registerUserTest01() throws Exception{
         RegisterUserPage userPage = PageFactory.initElements(driver, RegisterUserPage.class);
         userPage.getRegister(simuUrl);
-        userPage.createUser("35010119460101007X", "安七十一", "联系地址", "18217619891", "111111");
+        userPage.createNewUser("35010119460101007X", "安七十一", "18217619891");
     }
 }
