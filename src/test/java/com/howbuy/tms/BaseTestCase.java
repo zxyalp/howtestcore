@@ -17,7 +17,7 @@ public class BaseTestCase {
 
     protected WebDriver driver;
 
-    public String simuUrl = "http://192.168.221.123:15080/trade/login/login.htm";
+    public String simuUrl = "http://192.168.221.216:15080/trade/login/login.htm";
 
     public String simuWapUrl = "http://192.168.221.216:4081/wap/account/login/login.htm";
 
