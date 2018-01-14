@@ -17,26 +17,34 @@ public class RiskValuationPage extends BasePage {
 
     private static final Log logger = LogFactory.getLog(RiskValuationPage.class);
 
-    // 查找所有单选框
+    /**
+     * 查找所有单选框
+     */
     @FindBy(css = "input[name=q1]")
     private List<WebElement> answerRadios;
 
-    // 模态框
+    /**
+     * 模态框
+     */
     @FindBy(className = "dialogLoad")
     private WebElement dialog;
 
-    // 风险测评页面选项
+    /**
+     * 风险测评页面选项
+     */
     @FindBy(xpath = "//ul/ul")
     private List<WebElement> riskViews;
 
-    // submit
+    /**
+     * 风险测评提交按钮
+     */
     @FindBy(linkText = "提交")
     private WebElement submitBtn;
 
 
     public RiskValuationPage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10);
+        this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     public void riskAssess(){

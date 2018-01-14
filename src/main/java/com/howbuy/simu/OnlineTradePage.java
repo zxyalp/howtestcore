@@ -14,30 +14,26 @@ public class OnlineTradePage extends BasePage{
 
     public OnlineTradePage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
-    @Override
-    public void get(String url){
-        driver.get(url);
-    }
 
     public void buyHighFund(String fundCode, String buyAmount, String txPassword){
         HighEndBuyPage buyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
         buyPage.buyHighFund(fundCode, buyAmount, txPassword);
     }
 
-    public void signAndRiskValuation (String url, String idNo, String passwd) throws MalformedURLException {
+    public void signAndRiskValuation (String idNo, String passwd) throws MalformedURLException {
         LoginWebPage loginWebPage = PageFactory.initElements(driver, LoginWebPage.class);
-        loginWebPage.get(url);
+        loginWebPage.open();
         loginWebPage.login(idNo, passwd);
         InvestorSignPage signPage = PageFactory.initElements(driver,InvestorSignPage.class);
-        signPage.openBuyListPage();
+        signPage.open();
         signPage.confirmOfInvestors();
     }
 
-    public void signAndRiskValuation (String url, String idNo) throws MalformedURLException {
-        signAndRiskValuation(url, idNo, "qq1111");
+    public void signAndRiskValuation (String idNo) throws MalformedURLException {
+        signAndRiskValuation(idNo, "qq1111");
     }
 
 }

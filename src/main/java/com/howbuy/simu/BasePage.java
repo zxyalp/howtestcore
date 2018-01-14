@@ -1,8 +1,11 @@
 package com.howbuy.simu;
 
+import com.howbuy.common.UrlBuilder;
 import com.howbuy.common.UrlParse;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Wait;
 
@@ -14,63 +17,35 @@ import java.net.URL;
  * @author yang.zhou
  * @date 2017/9/29
  */
-public class BasePage {
+public abstract class BasePage {
 
 
     private static final Log logger = LogFactory.getLog(BasePage.class);
 
-    private UrlParse urlParse = UrlParse.getInstance();
-
-    public URL url;
-
-    private String buyListUrl = "/newpcsm/buylist.html";
-    private String piggyUrl = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
-    private String  registerUrl = "/trade/register/register.htm";
-
+    public int timeOutInSeconds = 10;
 
     WebDriver driver;
+
     Wait<WebDriver> wait;
 
 
-    public void setBaseUrl(URL url){
-        urlParse.setUrl(url);
-    }
-
-    public void setBaseUrl(String url){
-        try {
-            setBaseUrl(new URL(url));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+    public void get(String url, Dimension dimension){
+        driver.get(url);
+        if (dimension == null) {
+            driver.manage().window().maximize();
         }
-    }
-
-    public void get(URL url) {
-        get(url.toString());
     }
 
     public void get(String url){
-
-        if (urlParse.getUrl() == null){
-            setBaseUrl(url);
-        }
-
-        driver.get(url);
-        driver.manage().window().maximize();
+        get(url,null);
     }
 
-    public void openBuyListPage(){
-            get(urlParse.urlSpec(4085, buyListUrl));
+    public  void open(int port, String path){
+        UrlBuilder builder = new UrlBuilder().create();
+        builder.setPort(port);
+        builder.setPath(path);
+        get(builder.toString());
     }
 
-
-    public void openRegisterPage(String url){
-        setBaseUrl(url);
-        get(urlParse.urlSpec(15080, registerUrl));
-    }
-
-
-    public void openPiggyPage(){
-            get(urlParse.urlSpec(4085, piggyUrl));
-
-    }
+    public void open(){}
 }

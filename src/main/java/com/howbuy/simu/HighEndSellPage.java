@@ -43,7 +43,7 @@ public class HighEndSellPage extends BasePage {
 
     public HighEndSellPage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver,5);
+        this.wait = new WebDriverWait(driver,timeOutInSeconds);
     }
 
     public Boolean isRedeemabe(WebElement fund){

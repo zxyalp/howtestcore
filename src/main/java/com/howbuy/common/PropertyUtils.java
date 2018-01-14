@@ -53,12 +53,12 @@ public class PropertyUtils {
         }
     }
 
-    public static String getProperty(String key, String dafaultValue) {
+    public static String getProperty(String key, String defaultValue) {
         if (props == null) {
             load();
         }
 
-        return props.getProperty(key, dafaultValue);
+        return props.getProperty(key, defaultValue);
     }
 
     public static String getProperty(String key) {

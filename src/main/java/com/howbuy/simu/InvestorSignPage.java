@@ -25,6 +25,8 @@ public class InvestorSignPage extends BasePage {
 
     public static final Log logger = LogFactory.getLog(InvestorSignPage.class);
 
+    private String buyListUrl = "/newpcsm/buylist.html";
+
     /**
      *  合格投资者认定
      */
@@ -70,9 +72,13 @@ public class InvestorSignPage extends BasePage {
 
     public InvestorSignPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 3);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
+    @Override
+    public void open(){
+        super.open(4085, buyListUrl);
+    }
 
     private Boolean isQualifiedInvestor(){
         return investorBook.size() > 0;

@@ -1,6 +1,7 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
+import com.howbuy.common.UrlBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.TimeoutException;
@@ -20,6 +21,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 public class PiggyBankPage extends BasePage{
 
     private static final Log logger = LogFactory.getLog(PiggyBankPage.class);
+
+    protected String piggyUrl = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
+
 
     /**
      * 模态框
@@ -72,7 +76,12 @@ public class PiggyBankPage extends BasePage{
 
     public PiggyBankPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
+    }
+
+    @Override
+    public void open(){
+        super.open(4085, piggyUrl);
     }
 
     public void depositInform(String amount){
@@ -91,7 +100,7 @@ public class PiggyBankPage extends BasePage{
     }
 
     public void savingBox(String amount){
-        openPiggyPage();
+        open();
         depositInform(amount);
         confirmDepositInfo();
         try {

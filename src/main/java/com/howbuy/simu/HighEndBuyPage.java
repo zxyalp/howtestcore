@@ -2,6 +2,7 @@ package com.howbuy.simu;
 
 import com.howbuy.common.PaymentType;
 import com.howbuy.common.TestUtils;
+import com.howbuy.common.UrlBuilder;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.NoSuchElementException;
@@ -28,6 +29,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
 public class HighEndBuyPage extends BasePage {
 
     private static final Log logger = LogFactory.getLog(HighEndBuyPage.class);
+
+    private String buyListUrl = "/newpcsm/buylist.html";
 
     /**
      * 基金代码查询
@@ -213,15 +216,20 @@ public class HighEndBuyPage extends BasePage {
 
     public HighEndBuyPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
+    }
+
+    @Override
+    public void open(){
+        super.open(4085, buyListUrl);
     }
 
     /**
      * 查询产品
      */
 
-    private void queryFund(String fundCode) {
-        openBuyListPage();
+    public void queryFund(String fundCode) {
+        open();
         try {
             wait.until(invisibilityOf(dialog));
             TestUtils.sleep2s();

@@ -1,6 +1,7 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
+import com.howbuy.common.UrlBuilder;
 import net.sourceforge.tess4j.util.Utils;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -30,6 +31,8 @@ import java.io.*;
 public class RegisterUserPage extends BasePage {
 
     private static final Log logger = LogFactory.getLog(RegisterUserPage.class);
+
+    protected String  registerUrl = "/trade/register/register.htm";
 
 
     /**
@@ -125,8 +128,9 @@ public class RegisterUserPage extends BasePage {
     }
 
 
-    public void getRegister(String url) {
-        super.openRegisterPage(url);
+    @Override
+    public void open() {
+        super.open(15080, registerUrl);
     }
 
     /**

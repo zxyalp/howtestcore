@@ -21,6 +21,8 @@ public class LoginWebPage extends BasePage{
 
     private static final Log logger = LogFactory.getLog(LoginWebPage.class);
 
+    public String loginUrl = "/trade/login/login.htm";
+
     /**
      * 交易账号
      */
@@ -57,9 +59,14 @@ public class LoginWebPage extends BasePage{
 
     public LoginWebPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
+
+    @Override
+    public void open() {
+        super.open(15080, loginUrl);
+    }
 
     public void login(String idNo, String password){
         TestUtils.sleep1s();

@@ -29,7 +29,7 @@ public class TestContext {
 
     }
 
-    public TestContext getInstance(){
+    public static TestContext getInstance(){
         if (testContext == null){
             synchronized (TestContext.class){
                 if (testContext==null){
