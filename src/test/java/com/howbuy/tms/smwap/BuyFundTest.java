@@ -19,7 +19,6 @@ public class BuyFundTest extends BaseTestCase {
     @Test(enabled = true)
     public void loginWap01() throws Exception{
         LoginWapPage wapPage = PageFactory.initElements(driver, LoginWapPage.class);
-        wapPage.getHomePage(simuWapUrl);
         wapPage.loginWap("32010119980101286X");
 
         BuyFundPage buyFundPage = PageFactory.initElements(driver, BuyFundPage.class);

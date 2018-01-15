@@ -1,8 +1,7 @@
 package com.howbuy.smwap;
 
 import com.howbuy.common.TestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +19,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class SearchFundPage extends BasePage{
 
-    private static final Log logger = LogFactory.getLog(SearchFundPage.class);
+    private static final Logger logger = Logger.getLogger(SearchFundPage.class.getName());
+
+
+    public String buyListPath = "/smtradewap/buylist.html";
 
     /**
      * 加载框
@@ -64,13 +66,11 @@ public class SearchFundPage extends BasePage{
 
     public SearchFundPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 7);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     public void searchFund(String fundCode){
-
-        getSearchPage();
-
+        open();
         try {
             wait.until(visibilityOf(searchInput)).sendKeys(fundCode);
             searchBtn.click();
@@ -92,8 +92,8 @@ public class SearchFundPage extends BasePage{
 
     }
 
-    public void getSearchPage(){
-        super.get(buyListUrl());
+    @Override
+    public void open() {
+        super.open(15080,buyListPath);
     }
-
 }

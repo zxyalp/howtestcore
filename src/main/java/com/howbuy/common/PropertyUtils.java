@@ -2,6 +2,7 @@ package com.howbuy.common;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.util.Set;
  */
 public class PropertyUtils {
 
-    private static final Log logger = LogFactory.getLog(PropertyUtils.class);
+    private static final Logger logger = Logger.getLogger(PropertyUtils.class.getName());
 
     private static Properties props;
 

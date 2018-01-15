@@ -1,16 +1,18 @@
 package com.howbuy.simu;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.net.MalformedURLException;
-
 /**
- * Created by yang.zhou on 2017/9/29.
+ *
+ * @author yang.zhou
+ * @date 2017/9/29
  */
-public class OnlineTradePage extends BasePage{
+public class OnlineTradePage extends BasePage {
 
+    private static final Logger logger = Logger.getLogger(OnlineTradePage.class.getName());
 
     public OnlineTradePage(WebDriver driver){
         this.driver = driver;
@@ -23,16 +25,14 @@ public class OnlineTradePage extends BasePage{
         buyPage.buyHighFund(fundCode, buyAmount, txPassword);
     }
 
-    public void signAndRiskValuation (String idNo, String passwd) throws MalformedURLException {
+    public void signAndRiskValuation (String idNo, String password) {
         LoginWebPage loginWebPage = PageFactory.initElements(driver, LoginWebPage.class);
-        loginWebPage.open();
-        loginWebPage.login(idNo, passwd);
+        loginWebPage.login(idNo, password);
         InvestorSignPage signPage = PageFactory.initElements(driver,InvestorSignPage.class);
-        signPage.open();
         signPage.confirmOfInvestors();
     }
 
-    public void signAndRiskValuation (String idNo) throws MalformedURLException {
+    public void signAndRiskValuation (String idNo) {
         signAndRiskValuation(idNo, "qq1111");
     }
 

@@ -24,8 +24,7 @@ public class BuySimuFundTest05 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser03() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100199401019590", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -43,8 +42,7 @@ public class BuySimuFundTest05 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser04() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("33010019810101104X", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -63,8 +61,7 @@ public class BuySimuFundTest05 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser05() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100197501016160", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -88,8 +85,7 @@ public class BuySimuFundTest05 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser06() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100197201014796", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -112,8 +108,7 @@ public class BuySimuFundTest05 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser07() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100197001018450", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -127,8 +122,7 @@ public class BuySimuFundTest05 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser08() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100197301011592", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -143,8 +137,7 @@ public class BuySimuFundTest05 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser09() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100198101013176", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 

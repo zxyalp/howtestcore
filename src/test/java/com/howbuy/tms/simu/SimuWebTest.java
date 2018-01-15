@@ -21,8 +21,7 @@ public class SimuWebTest extends BaseTestCase{
 
     @Test(enabled = true)
     public void loginSimuUser01() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("320101198801018159", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);

@@ -1,8 +1,7 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,12 +9,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 
-/**风险测评
- * Created by yang.zhou on 2017/10/18.
+/**
+ * 风险测评页面
+ * @author yang.zhou
+ * @date 2017/10/18
  */
 public class RiskValuationPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(RiskValuationPage.class);
+    private static final Logger logger = Logger.getLogger(RiskValuationPage.class);
 
     /**
      * 查找所有单选框

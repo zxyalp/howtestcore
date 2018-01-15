@@ -1,9 +1,7 @@
 package com.howbuy.smwap;
 
 import com.howbuy.common.TestUtils;
-import com.howbuy.common.UrlParse;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,9 +15,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class LoginWapPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(LoginWapPage.class);
+    private static final Logger logger = Logger.getLogger(LoginWapPage.class.getName());
 
-    private UrlParse urlParse = UrlParse.getInstance();
+    public String loginWapUrl = "/wap/account/login/login.htm";
 
     /**
      * 登录身份证号码
@@ -42,10 +40,11 @@ public class LoginWapPage extends BasePage {
 
     public LoginWapPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     public void loginWap(String idNo, String password){
+        open();
         TestUtils.sleep1s();
         loginId = wait.until(ExpectedConditions.visibilityOf(loginId));
         loginId.clear();
@@ -61,9 +60,8 @@ public class LoginWapPage extends BasePage {
     }
 
 
-    public void getHomePage(String url){
-        super.setBaseUrl(url);
-        super.get(loginHomeUrl());
+    @Override
+    public void open() {
+        super.open(4081, loginWapUrl);
     }
-
 }

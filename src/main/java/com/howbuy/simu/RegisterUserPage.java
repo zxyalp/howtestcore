@@ -1,21 +1,17 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
-import com.howbuy.common.UrlBuilder;
-import net.sourceforge.tess4j.util.Utils;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,9 +26,9 @@ import java.io.*;
  */
 public class RegisterUserPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(RegisterUserPage.class);
+    private static final Logger logger = Logger.getLogger(RegisterUserPage.class);
 
-    protected String  registerUrl = "/trade/register/register.htm";
+    private String  registerPath = "/trade/register/register.htm";
 
 
     /**
@@ -124,13 +120,13 @@ public class RegisterUserPage extends BasePage {
 
     public RegisterUserPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 5);
+        this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
 
     @Override
     public void open() {
-        super.open(15080, registerUrl);
+        super.open(15080, registerPath);
     }
 
     /**

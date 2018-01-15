@@ -1,62 +1,77 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.howbuy.tms.BasePage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-/**2、赎回页面
- * Created by yang.zhou on 2017/9/29.
+/**
+ * 赎回页面
+ * @author yang.zhou
+ * @date 2017/9/29
  */
-public class SellPage {
+public class SellPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(SellPage.class);
+    private static final Logger logger = Logger.getLogger(SellPage.class.getName());
 
-    private WebDriver driver;
-    private Wait<WebDriver> wait;
 
-    // 基金代码
+    /**
+     * 基金代码
+     */
     @FindBy(id = "fundCode")
     private WebElement fundCodeText;
 
-    // 基金代码搜索按钮
+    /**
+     * 基金代码搜索按钮
+     */
     @FindBy(className = "searchIcon")
     private WebElement searchIcon;
 
-    // 当前可用份额
+    /**
+     * 当前可用份额
+     */
     @FindBy(id = "availVol")
     private WebElement availVolteText;
 
-    // 冻结份额
+    /**
+     * 冻结份额
+     */
     @FindBy(id = "unconfirmedVol")
     private WebElement unconfirmedVolText;
 
-    // 申请份额
+    /**
+     * 申请份额
+     */
     @FindBy(id = "appVol")
     private WebElement appVolText;
 
-    // 申请时间
+    /**
+     * 申请时间
+     */
     @FindBy(id = "appTm")
     private WebElement appTmText;
 
-    // 确认提交
+    /**
+     * 确认提交
+     */
     @FindBy(id = "confimSellBtn")
     private WebElement confimSellBtn;
 
-    // 无预约确认
+    /**
+     * 无预约确认
+     */
     @FindBy(css = ".layui-layer-btn0")
     private WebElement okBtn;
 
 
     public SellPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     public void  sellOrderForm(String fundCode, String appVol, String appTm){

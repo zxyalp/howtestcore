@@ -1,7 +1,6 @@
 package com.howbuy.smwap;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +16,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class MyHomePage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(MyHomePage.class);
+    private static final Logger logger = Logger.getLogger(MyHomePage.class.getName());
+
 
     @FindBy(id = "loading")
     private WebElement loading;
@@ -40,7 +40,7 @@ public class MyHomePage extends BasePage {
 
     public MyHomePage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     public void clickBuyList(){

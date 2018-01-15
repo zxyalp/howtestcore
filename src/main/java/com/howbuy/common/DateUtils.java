@@ -2,6 +2,7 @@ package com.howbuy.common;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,9 +14,9 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    private static final Log logger = LogFactory.getLog(DateUtils.class);
+    private static final Logger logger = Logger.getLogger(DateUtils.class.getName());
 
-    private static DateUtils dateUtils;
+    private static DateUtils dateUtils = null;
 
     private DateUtils(){
 

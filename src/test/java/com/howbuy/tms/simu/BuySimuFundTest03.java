@@ -22,8 +22,7 @@ public class BuySimuFundTest03 extends BaseTestCase{
      */
     @Test(enabled = false)
     public void loginSimuUser03() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100197101019602", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -41,8 +40,7 @@ public class BuySimuFundTest03 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser04() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100197001015778", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -61,8 +59,7 @@ public class BuySimuFundTest03 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser05() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("330100198701011609", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
@@ -86,8 +83,7 @@ public class BuySimuFundTest03 extends BaseTestCase{
      */
     @Test(enabled = true)
     public void loginSimuUser06() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("33010019720101784X", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 

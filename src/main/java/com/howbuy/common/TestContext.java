@@ -3,8 +3,8 @@ package com.howbuy.common;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 
-import java.io.DataInput;
 import java.io.File;
 import java.io.IOException;
 
@@ -15,9 +15,9 @@ import java.io.IOException;
  */
 public class TestContext {
 
-    private static final Log logger = LogFactory.getLog(TestContext.class);
+    private static final Logger logger = Logger.getLogger(TestContext.class.getName());
 
-    private static TestContext testContext;
+    private static TestContext testContext = null;
 
     public static String IMAGE_DIRECTORY = PropertyUtils.getProperty("user.dir");
 
@@ -47,11 +47,11 @@ public class TestContext {
         String nowTime = DateUtils.getNowTime();
 
         File imageDailyFile = new File(IMAGE_DIRECTORY, dateFile);
-
+        System.out.println(imageDailyFile.toString());
         if (!imageDailyFile.exists()) {
             try {
                 FileUtils.forceMkdirParent(imageDailyFile);
-                logger.info("创建当前日期目录成功."+dateFile);
+                logger.info("创建当前日期目录成功:"+dateFile);
             } catch (IOException e) {
                 logger.error("在创建当前日期的目录时失败.", e);
             }

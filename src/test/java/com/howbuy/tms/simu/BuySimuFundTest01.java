@@ -24,7 +24,6 @@ public class BuySimuFundTest01 extends BaseTestCase{
     @Test(enabled = true)
     public void loginSimuUser01() throws Exception{
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
         login.login("320101197301011503", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
@@ -41,8 +40,7 @@ public class BuySimuFundTest01 extends BaseTestCase{
 
     @Test(enabled = true)
     public void loginSimuUser02() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("32010119980101278X", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
@@ -60,9 +58,7 @@ public class BuySimuFundTest01 extends BaseTestCase{
 
     @Test(enabled = true)
     public void loginSimuUser15() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
-        login.login("320101197601016066", "qq1111");
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        login.login("320101197601016066", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
         highEndBuyPage.buyHighFund("S29494", "2100000");
@@ -77,9 +73,7 @@ public class BuySimuFundTest01 extends BaseTestCase{
 
     @Test(enabled = true)
     public void loginSimuUser16() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
-        login.login("320101199101016798", "qq1111");
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        login.login("320101199101016798", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 

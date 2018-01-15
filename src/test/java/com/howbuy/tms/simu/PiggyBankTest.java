@@ -18,8 +18,7 @@ public class PiggyBankTest extends BaseTestCase {
 
     @Test
     public void piggyDepositTest() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("320101198801018159", "qq1111");
 
         PiggyBankPage bankPage = PageFactory.initElements(driver, PiggyBankPage.class);
@@ -29,8 +28,7 @@ public class PiggyBankTest extends BaseTestCase {
 
     @Test
     public void piggyDepositTest01() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("320101199501012550", "qq1111");
 
         PiggyBankPage bankPage = PageFactory.initElements(driver, PiggyBankPage.class);
@@ -43,8 +41,7 @@ public class PiggyBankTest extends BaseTestCase {
 
     @Test
     public void piggyDepositTest02() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("320101197901013684", "qq1111");
 
         PiggyBankPage bankPage = PageFactory.initElements(driver, PiggyBankPage.class);
@@ -56,8 +53,7 @@ public class PiggyBankTest extends BaseTestCase {
 
     @Test
     public void piggyDepositTest03() throws Exception{
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.get(simuUrl);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);        
         login.login("320101198901018228", "qq1111");
 
         PiggyBankPage bankPage = PageFactory.initElements(driver, PiggyBankPage.class);

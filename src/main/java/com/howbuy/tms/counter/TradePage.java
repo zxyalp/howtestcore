@@ -1,8 +1,7 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +19,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class TradePage {
 
-    private static final Log logger = LogFactory.getLog(TradePage.class.getName());
+    private static final Logger logger = Logger.getLogger(TradePage.class.getName());
 
     private WebDriver driver;
 

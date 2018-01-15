@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.log4j.Logger;
 
 /**
  * @author summe
@@ -11,7 +12,7 @@ import org.apache.http.client.utils.URIBuilder;
  */
 public class UrlBuilder extends URIBuilder {
 
-    private static final Log logger = LogFactory.getLog(UrlBuilder.class);
+    private static final Logger logger = Logger.getLogger(UrlBuilder.class.getName());
 
     private static String host = PropertyUtils.getProperty("http.host");
 

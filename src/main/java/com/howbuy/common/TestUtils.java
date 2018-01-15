@@ -84,4 +84,7 @@ public class TestUtils {
         return builder.toString();
     }
 
+    public static void main(String[] args) {
+        System.out.println(TestContext.getImageFile("test"));
+    }
 }

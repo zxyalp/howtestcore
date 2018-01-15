@@ -1,9 +1,7 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
-import com.howbuy.common.UrlBuilder;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,12 +16,11 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/11/9
  */
-public class PiggyBankPage extends BasePage{
+public class PiggyBankPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(PiggyBankPage.class);
+    private static final Logger logger = Logger.getLogger(PiggyBankPage.class.getName());
 
-    protected String piggyUrl = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
-
+    private String piggyPath = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
 
     /**
      * 模态框
@@ -81,7 +78,7 @@ public class PiggyBankPage extends BasePage{
 
     @Override
     public void open(){
-        super.open(4085, piggyUrl);
+        super.open(4085, piggyPath);
     }
 
     public void depositInform(String amount){

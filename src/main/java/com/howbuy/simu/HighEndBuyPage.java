@@ -2,9 +2,7 @@ package com.howbuy.simu;
 
 import com.howbuy.common.PaymentType;
 import com.howbuy.common.TestUtils;
-import com.howbuy.common.UrlBuilder;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -28,9 +26,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
  */
 public class HighEndBuyPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(HighEndBuyPage.class);
+    private static final Logger logger = Logger.getLogger(HighEndBuyPage.class.getName());
 
-    private String buyListUrl = "/newpcsm/buylist.html";
+    private String buyListPath = "/newpcsm/buylist.html";
 
     /**
      * 基金代码查询
@@ -221,7 +219,7 @@ public class HighEndBuyPage extends BasePage {
 
     @Override
     public void open(){
-        super.open(4085, buyListUrl);
+        super.open(4085, buyListPath);
     }
 
     /**

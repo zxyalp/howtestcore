@@ -1,19 +1,8 @@
 package com.howbuy.smwap;
 
-import com.howbuy.common.UrlParse;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.howbuy.base.AbstractBasePage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 
 /**
@@ -21,81 +10,17 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/12/20
  */
-public class BasePage {
-
-    private static final Log logger = LogFactory.getLog(com.howbuy.simu.BasePage.class);
-
-    private UrlParse urlParse = UrlParse.getInstance();
-
-    public URL url;
-
-    private String loginWapPath = "/wap/account/login/login.htm?targeturl=";
-
-    private String indexSmPath = "/smtradewap/indexsm.html";
-
-    public  String buyListPath = "/smtradewap/buylist.html";
-
-    WebDriver driver;
-
-    Wait<WebDriver> wait;
+public abstract class BasePage extends AbstractBasePage{
 
 
-    public URL loginWapUrl(String path){
-        return urlParse.urlSpec(4081, path);
-    }
+    private static final Logger logger = Logger.getLogger(BasePage.class);
+
+    public int timeOutInSeconds = 10;
 
 
-    public URL loginHomeUrl(){
-        return loginWapUrl(loginWapPath+homeUrl().toString());
-    }
-
-    public URL loginBuyListUrl(){
-        return loginWapUrl(loginWapPath+buyListUrl().toString());
-    }
-
-    public URL homeUrl(){
-        return urlParse.urlSpec(15080, indexSmPath);
-    }
-
-    public URL buyListUrl(){
-        return urlParse.urlSpec(15080, buyListPath);
-    }
-
-
-    public void setBaseUrl(URL url){
-        urlParse.setUrl(url);
-    }
-
-    public void setBaseUrl(String url){
-        try {
-            setBaseUrl(new URL(url));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void get(String url) {
-
-        if (urlParse.getUrl() == null){
-            setBaseUrl(url);
-        }
-
-        driver.get(url);
-        driver.manage().window().setSize(new Dimension(620,725));
-    }
-
-
-    public void get(URL url){
-        get(url.toString());
-    }
-
-    public Boolean isElementExist(WebDriver driver, WebElement element, int time){
-        try {
-            new WebDriverWait(driver, time).until(visibilityOf(element));
-            return true;
-        }catch (TimeoutException e){
-            return false;
-        }
+    @Override
+    public void get(String url){
+        get(url,new Dimension(620,725));
     }
 
 }

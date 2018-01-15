@@ -1,8 +1,8 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.howbuy.tms.BasePage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,15 +23,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 
 /**
- * Created by yang.zhou on 2017/9/12.
+ * 订单审核页面
+ * @author yang.zhou
+ * @date 2017/9/12
  */
-public class OrderCheckPage {
+public class OrderCheckPage extends BasePage{
 
-    private static final Log logger = LogFactory.getLog(OrderCheckPage.class);
-
-    private WebDriver driver;
-
-    private Wait<WebDriver> wait;
+    private static final Logger logger = Logger.getLogger(OrderCheckPage.class.getName());
 
     private String operatorNo;
 
@@ -54,32 +52,46 @@ public class OrderCheckPage {
     @FindBy(id = "rsList")
     private WebElement resultsList;
 
-    // 获取所有订单记录
+    /**
+     * 获取所有订单记录
+     */
     @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]")
     private List<WebElement> allOrderList;
 
-    // 获取一条订单
+    /**
+     * 获取一条订单
+     */
     @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]")
     private WebElement firstOrder;
 
-    // 获取首条复核按钮
+    /**
+     * 获取首条复核按钮
+     */
     @FindBys({ @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]"),
                @FindBy(className = "reCheck")})
     private WebElement firstCheckBtn;
 
-    // 获取列表所有的订单明细记录
+    /**
+     * 获取列表所有的订单明细记录
+     */
     @FindBy(css = "#rsList td")
     private List<WebElement> orderDetailList;
 
-    // 暂无审核记录元素
+    /**
+     * 暂无审核记录元素
+     */
     @FindBy(css = "#rsList td:only-child")
     private WebElement noCheckOrder;
 
-    // 获取复核按钮
+    /**
+     * 获取复核按钮
+     */
     @FindBy(className = "reCheck")
     private List<WebElement> checkBtnList;
 
-    // 获取订单中基金代码
+    /**
+     * 获取订单中基金代码
+     */
     @FindBy(xpath = "//*[@class='tabPop']//tr[1]/td[2]")
     private WebElement fundCodeText;
 
@@ -89,23 +101,33 @@ public class OrderCheckPage {
     @FindBy(xpath = "//*[@class='tabPop']//tr[3]/td[2]")
     private WebElement bankAcctText;
 
-    // 基金代码
+    /**
+     * 基金代码
+     */
     @FindBy(css = "input[name=fundCode]")
     private WebElement fundCodeInput;
 
-    // 申购赎回业务输入金额、份额
+    /**
+     * 申购赎回业务输入金额、份额
+     */
     @FindBy(css = "input[name=appAmt]")
     private WebElement appAmtTextInput;
 
-    // 输入银行卡尾号4号
+    /**
+     * 输入银行卡尾号4号
+     */
     @FindBy(css = "input[name=bankAcct]")
     private WebElement bankAcctInput;
 
-    // 审核通过
+    /**
+     *  审核通过
+     */
     @FindBy(className = "layui-layer-btn0")
     private WebElement approvedBtn;
 
-    // 审核拒绝
+    /**
+     * 审核拒绝
+     */
     @FindBy(className = "layui-layer-btn1")
     private WebElement refuseBtn;
 

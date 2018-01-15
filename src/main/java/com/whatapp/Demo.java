@@ -18,8 +18,6 @@ import java.util.List;
 public class Demo {
 
     public static void main(String[] args) {
-//        HttpHost host = new HttpHost("192.168.221.216");
-//        System.out.println(host.toURI());
 
         URIBuilder builder = new URIBuilder();
         builder.setScheme("http");

@@ -12,20 +12,20 @@ public class SignAndRiskTest03 extends BaseTestCase{
     @Test(enabled = true)
     public void signAndRiskTest1() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl, "330100197201014796");
+        tradePage.signAndRiskValuation( "330100197201014796");
     }
 
     @Test(enabled = true)
     public void signAndRiskTest2() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl, "330100198901018370");
+        tradePage.signAndRiskValuation( "330100198901018370");
     }
 
 
     @Test(enabled = true)
     public void signAndRiskTest3() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl, "330100198001017858");
+        tradePage.signAndRiskValuation( "330100198001017858");
     }
 
 }

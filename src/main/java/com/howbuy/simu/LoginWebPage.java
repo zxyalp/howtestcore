@@ -1,8 +1,7 @@
 package com.howbuy.simu;
 
-import com.howbuy.common.UrlParse;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -17,11 +16,11 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * Created by yang.zhou on 2017/9/29.
  */
-public class LoginWebPage extends BasePage{
+public class LoginWebPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(LoginWebPage.class);
+    private static final Logger logger = Logger.getLogger(LoginWebPage.class.getName());
 
-    public String loginUrl = "/trade/login/login.htm";
+    public String loginPath = "/trade/login/login.htm";
 
     /**
      * 交易账号
@@ -65,10 +64,11 @@ public class LoginWebPage extends BasePage{
 
     @Override
     public void open() {
-        super.open(15080, loginUrl);
+        super.open(15080, loginPath);
     }
 
     public void login(String idNo, String password){
+        open();
         TestUtils.sleep1s();
         idNoText = wait.until(visibilityOf(idNoText));
         idNoText.clear();

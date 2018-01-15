@@ -14,62 +14,62 @@ public class SignAndRiskTest01 extends BaseTestCase{
     @Test(enabled = false)
     public void signAndRiskTest() throws Exception{
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101198901012459");
+        tradePage.signAndRiskValuation("320101198901012459");
 
     }
 
     @Test
     public void signAndRiskTest01() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101198901017399");
+        tradePage.signAndRiskValuation("320101198901017399");
     }
 
     @Test
     public void signAndRiskTest02() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101199301018931");
+        tradePage.signAndRiskValuation("320101199301018931");
     }
 
     @Test
     public void signAndRiskTest03() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101197601016314");
+        tradePage.signAndRiskValuation("320101197601016314");
     }
 
     @Test
     public void signAndRiskTest04() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101198401016971");
+        tradePage.signAndRiskValuation("320101198401016971");
     }
 
     @Test
     public void signAndRiskTest05() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101199701016775");
+        tradePage.signAndRiskValuation("320101199701016775");
     }
 
     @Test
     public void signAndRiskTest06() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101198801013446");
+        tradePage.signAndRiskValuation("320101198801013446");
     }
 
     @Test
     public void signAndRiskTest07() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101198501013233");
+        tradePage.signAndRiskValuation("320101198501013233");
     }
 
     @Test
     public void signAndRiskTest08() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101199201019603");
+        tradePage.signAndRiskValuation("320101199201019603");
     }
 
     @Test
     public void signAndRiskTest09() throws Exception {
         OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
-        tradePage.signAndRiskValuation(simuUrl,"320101197301014966");
+        tradePage.signAndRiskValuation("320101197301014966");
     }
 
 }

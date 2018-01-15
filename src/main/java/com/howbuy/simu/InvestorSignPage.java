@@ -1,8 +1,7 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,9 +22,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
  */
 public class InvestorSignPage extends BasePage {
 
-    public static final Log logger = LogFactory.getLog(InvestorSignPage.class);
+    public static final Logger logger = Logger.getLogger(InvestorSignPage.class.getName());
 
-    private String buyListUrl = "/newpcsm/buylist.html";
+    private String buyListPath = "/newpcsm/buylist.html";
 
     /**
      *  合格投资者认定
@@ -77,7 +76,7 @@ public class InvestorSignPage extends BasePage {
 
     @Override
     public void open(){
-        super.open(4085, buyListUrl);
+        super.open(4085, buyListPath);
     }
 
     private Boolean isQualifiedInvestor(){
@@ -119,6 +118,7 @@ public class InvestorSignPage extends BasePage {
     }
 
     public void confirmOfInvestors(){
+        open();
         TestUtils.sleep1s();
         diglog();
         logger.info("判断用户是否需要签订合格投资者认定书、电子签名约定书，以及风险测评："+isQualifiedAndRisk());

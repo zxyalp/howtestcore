@@ -2,8 +2,7 @@ package com.howbuy.smwap;
 
 import com.howbuy.common.PaymentType;
 import com.howbuy.common.TestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,7 +22,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 public class PayInfoPage extends BasePage{
 
 
-    private static final Log logger = LogFactory.getLog(PayInfoPage.class);
+    private static final Logger logger = Logger.getLogger(PayInfoPage.class.getName());
 
 
     /**
@@ -118,7 +117,7 @@ public class PayInfoPage extends BasePage{
 
     public PayInfoPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     /**

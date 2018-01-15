@@ -1,7 +1,7 @@
 package com.howbuy.tms.counter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.howbuy.tms.BasePage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,11 +12,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
- * Created by yang.zhou on 2017/9/11.
+ *
+ * @author yang.zhou
+ * @date 2017/9/11
  */
-public class QueryUserPage {
+public class QueryUserPage extends BasePage {
 
-    private static final Log logger = LogFactory.getLog(QueryUserPage.class);
+    private static final Logger logger = Logger.getLogger(QueryUserPage.class.getName());
 
     private WebDriver driver;
 
@@ -34,11 +36,15 @@ public class QueryUserPage {
     @FindBy(linkText = "查询")
     private WebElement queryBtn;
 
-    // 客户基本信息查询
+    /**
+     * 客户基本信息查询
+     */
     @FindBy(xpath = "//*[@id='custInfoId']/tr")
     private WebElement custInfo;
 
-    // 客户预约信息
+    /**
+     * 客户预约信息
+     */
     @FindBy(xpath = "//*[@id='rsList']/tr[count(td)>2]")
     private WebElement appointmentInfo;
 
@@ -46,7 +52,7 @@ public class QueryUserPage {
 
     public QueryUserPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, 3);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     public void queryByCustNo(String custNo){
