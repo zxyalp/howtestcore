@@ -1,7 +1,8 @@
 package com.howbuy.smwap;
 
 import com.howbuy.common.PaymentType;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class BuyFundPage extends BasePage{
 
-    private static final Logger logger = Logger.getLogger(BuyFundPage.class);
+    private final Logger logger = LoggerFactory.getLogger(BuyFundPage.class);
 
 
     public BuyFundPage(WebDriver driver){

@@ -1,8 +1,7 @@
 package com.howbuy.common;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +13,7 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    private static final Logger logger = Logger.getLogger(DateUtils.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(DateUtils.class.getName());
 
     private static DateUtils dateUtils = null;
 

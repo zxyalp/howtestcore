@@ -1,7 +1,8 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.tms.BasePage;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +19,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class QueryUserPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(QueryUserPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(QueryUserPage.class.getName());
 
     private WebDriver driver;
 

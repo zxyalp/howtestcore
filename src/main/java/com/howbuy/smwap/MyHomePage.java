@@ -1,6 +1,7 @@
 package com.howbuy.smwap;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class MyHomePage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(MyHomePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(MyHomePage.class.getName());
 
 
     @FindBy(id = "loading")

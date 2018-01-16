@@ -2,7 +2,8 @@ package com.howbuy.simu;
 
 import com.howbuy.common.PaymentType;
 import com.howbuy.common.TestUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +27,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
  */
 public class HighEndBuyPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(HighEndBuyPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(HighEndBuyPage.class.getName());
 
     private String buyListPath = "/newpcsm/buylist.html";
 

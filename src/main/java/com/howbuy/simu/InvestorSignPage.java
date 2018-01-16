@@ -1,7 +1,8 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +23,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
  */
 public class InvestorSignPage extends BasePage {
 
-    public static final Logger logger = Logger.getLogger(InvestorSignPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(InvestorSignPage.class.getName());
 
     private String buyListPath = "/newpcsm/buylist.html";
 
@@ -139,7 +140,7 @@ public class InvestorSignPage extends BasePage {
         try {
             wait.until(invisibilityOf(dialog));
         }catch (NoSuchElementException | TimeoutException n){
-            logger.info(n);
+            logger.info("{}", n);
         }
     }
 

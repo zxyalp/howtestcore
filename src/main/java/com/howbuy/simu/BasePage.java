@@ -1,7 +1,9 @@
 package com.howbuy.simu;
 
 import com.howbuy.base.AbstractBasePage;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**基础页面
  *
@@ -10,7 +12,7 @@ import org.apache.log4j.Logger;
  */
 public class BasePage extends AbstractBasePage {
 
-    private static final Logger logger = Logger.getLogger(BasePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(BasePage.class.getName());
 
     public int timeOutInSeconds = 10;
 

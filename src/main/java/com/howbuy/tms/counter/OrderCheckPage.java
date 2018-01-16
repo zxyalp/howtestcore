@@ -2,7 +2,8 @@ package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
 import com.howbuy.tms.BasePage;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,15 +11,12 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 
@@ -29,7 +27,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class OrderCheckPage extends BasePage{
 
-    private static final Logger logger = Logger.getLogger(OrderCheckPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(OrderCheckPage.class.getName());
 
     private String operatorNo;
 

@@ -1,9 +1,8 @@
 package com.howbuy.tms;
 
 import com.howbuy.common.TestContext;
-import com.howbuy.common.TestUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
@@ -13,7 +12,7 @@ import org.testng.annotations.*;
  * Created by yang.zhou on 2017/11/6.
  */
 public class BaseTestCase {
-    private static final Log logger = LogFactory.getLog(BaseTestCase.class);
+    private final Logger logger = LoggerFactory.getLogger(BaseTestCase.class);
 
     protected WebDriver driver;
 

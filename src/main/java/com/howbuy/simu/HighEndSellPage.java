@@ -1,6 +1,7 @@
 package com.howbuy.simu;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
  */
 public class HighEndSellPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(HighEndSellPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(HighEndSellPage.class);
 
     /**
      * 模态框
@@ -63,13 +64,9 @@ public class HighEndSellPage extends BasePage {
     public void diglog(){
         try {
             wait.until(invisibilityOf(dialog));
-        }catch (NoSuchElementException | TimeoutException n){
-            logger.info(n);
+        }catch (TimeoutException t){
+            logger.info("元素加载超时.",t);
         }
     }
-
-
-
-
 
 }

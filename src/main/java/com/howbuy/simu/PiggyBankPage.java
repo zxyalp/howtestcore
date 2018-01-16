@@ -1,7 +1,8 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +19,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class PiggyBankPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(PiggyBankPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(PiggyBankPage.class.getName());
 
     private String piggyPath = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
 

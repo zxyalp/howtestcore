@@ -2,7 +2,8 @@ package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
 import com.howbuy.tms.BasePage;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +18,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class SellPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(SellPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(SellPage.class.getName());
 
 
     /**

@@ -1,7 +1,8 @@
 package com.howbuy.smwap;
 
 import com.howbuy.common.TestUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class LoginWapPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(LoginWapPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(LoginWapPage.class.getName());
 
     public String loginWapUrl = "/wap/account/login/login.htm";
 

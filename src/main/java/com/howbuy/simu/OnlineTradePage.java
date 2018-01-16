@@ -1,6 +1,7 @@
 package com.howbuy.simu;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class OnlineTradePage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(OnlineTradePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(OnlineTradePage.class.getName());
 
     public OnlineTradePage(WebDriver driver){
         this.driver = driver;

@@ -11,7 +11,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,7 +27,7 @@ import java.io.*;
  */
 public class RegisterUserPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(RegisterUserPage.class);
+    private final Logger logger = LoggerFactory.getLogger(RegisterUserPage.class);
 
     private String  registerPath = "/trade/register/register.htm";
 

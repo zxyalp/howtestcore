@@ -1,9 +1,9 @@
 package com.howbuy.common;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class TestContext {
 
-    private static final Logger logger = Logger.getLogger(TestContext.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(TestContext.class.getName());
 
     private static TestContext testContext = null;
 

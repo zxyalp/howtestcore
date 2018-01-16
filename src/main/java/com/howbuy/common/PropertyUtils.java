@@ -1,10 +1,7 @@
 package com.howbuy.common;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.Logger;
-
-import java.io.FileNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
@@ -18,7 +15,7 @@ import java.util.Set;
  */
 public class PropertyUtils {
 
-    private static final Logger logger = Logger.getLogger(PropertyUtils.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(PropertyUtils.class.getName());
 
     private static Properties props;
 
@@ -37,20 +34,22 @@ public class PropertyUtils {
         try {
             in = PropertyUtils.class.getClassLoader().getResourceAsStream("config.properties");
             props.load(in);
-        } catch (FileNotFoundException e) {
-            logger.error("文件未找到.", e);
+            logger.info("加载properties文件完成");
+            logger.info("文件内容：{}", props);
         } catch (IOException i) {
-            logger.error(i);
-        } finally {
+            logger.error("{}",i);
+        } catch (Exception e){
+            logger.error("加载配置文件异常",e);
+            throw new RuntimeException("加载config.properties配置文件异常.");
+        }
+        finally {
             if (null != in) {
                 try {
                     in.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    logger.error("IO错误.", e);
                 }
             }
-            logger.info("加载properties文件完成");
-            logger.info("文件内容：" + props);
         }
     }
 

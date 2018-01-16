@@ -1,10 +1,10 @@
 package com.howbuy.common;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.http.client.utils.URIBuilder;
-import org.apache.log4j.Logger;
+
 
 /**
  * @author summe
@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
  */
 public class UrlBuilder extends URIBuilder {
 
-    private static final Logger logger = Logger.getLogger(UrlBuilder.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(UrlBuilder.class.getName());
 
     private static String host = PropertyUtils.getProperty("http.host");
 
@@ -33,13 +33,6 @@ public class UrlBuilder extends URIBuilder {
         super.setPort(port);
         super.setPath(path);
         return this;
-    }
-
-    public static void main(String[] args) {
-        UrlBuilder builder = new UrlBuilder().create();
-        builder.setPath("/trade/login/login.htm");
-
-        System.out.println(builder.toString());
     }
 
 }

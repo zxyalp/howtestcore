@@ -1,7 +1,8 @@
 package com.howbuy.smwap;
 
 import com.howbuy.common.TestUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class SearchFundPage extends BasePage{
 
-    private static final Logger logger = Logger.getLogger(SearchFundPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(SearchFundPage.class.getName());
 
 
     public String buyListPath = "/smtradewap/buylist.html";

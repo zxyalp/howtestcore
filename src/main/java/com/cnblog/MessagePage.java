@@ -1,7 +1,7 @@
 package com.cnblog;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,7 +34,7 @@ public class MessagePage {
     @FindBy(how = How.PARTIAL_LINK_TEXT, using = "收件箱")
     WebElement inboxLink;
 
-    private static  final Log logger = LogFactory.getLog(MessagePage.class);
+    private  final Logger logger = LoggerFactory.getLogger(MessagePage.class);
 
     public MessagePage(WebDriver driver){
         this.driver = driver;

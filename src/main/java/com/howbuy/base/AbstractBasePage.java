@@ -1,8 +1,8 @@
 package com.howbuy.base;
 
 import com.howbuy.common.UrlBuilder;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +20,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 public abstract class AbstractBasePage {
 
 
-    private static final Log logger = LogFactory.getLog(AbstractBasePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(AbstractBasePage.class.getName());
 
     public int timeOutInSeconds = 12;
 
@@ -30,6 +30,7 @@ public abstract class AbstractBasePage {
 
 
     public void get(String url, Dimension dimension){
+        logger.info("访问URL地址：{}", url);
         driver.get(url);
         if (dimension != null) {
             driver.manage().window().setSize(dimension);

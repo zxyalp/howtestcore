@@ -1,8 +1,8 @@
 package com.howbuy.tms.counter;
 
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -18,7 +18,7 @@ public class BuyFundTest {
 
     private String tmsCounterUrl = "http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html";
 
-    private static final Log logger = LogFactory.getLog(BuyFundTest.class);
+    private final Logger logger = LoggerFactory.getLogger(BuyFundTest.class);
 
     @BeforeClass
     public void setDriverClass() throws Exception {

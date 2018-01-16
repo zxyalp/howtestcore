@@ -1,8 +1,8 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.tms.BaseTestCase;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
  */
 public class buyProductByCounterTest extends BaseTestCase{
 
-    private static final Log logger = LogFactory.getLog(buyProductByCounterTest.class);
+    private final Logger logger = LoggerFactory.getLogger(buyProductByCounterTest.class);
 
     private String tmsCounterUrl = "http://192.168.221.216:20380/tms-counter-console/tmscounter/html/index.html";
 

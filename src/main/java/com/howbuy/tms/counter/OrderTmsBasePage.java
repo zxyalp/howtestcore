@@ -1,7 +1,8 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.tms.BasePage;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class OrderTmsBasePage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(OrderTmsBasePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(OrderTmsBasePage.class.getName());
 
     /**
      * 基金代码

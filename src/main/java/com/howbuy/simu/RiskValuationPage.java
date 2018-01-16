@@ -1,7 +1,8 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class RiskValuationPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(RiskValuationPage.class);
+    private final Logger logger = LoggerFactory.getLogger(RiskValuationPage.class);
 
     /**
      * 查找所有单选框

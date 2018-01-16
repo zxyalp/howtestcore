@@ -1,7 +1,8 @@
 package com.howbuy.simu;
 
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -18,7 +19,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  */
 public class LoginWebPage extends BasePage {
 
-    private static final Logger logger = Logger.getLogger(LoginWebPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(LoginWebPage.class.getName());
 
     public String loginPath = "/trade/login/login.htm";
 

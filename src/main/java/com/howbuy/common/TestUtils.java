@@ -1,7 +1,7 @@
 package com.howbuy.common;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  */
 public class TestUtils {
 
-    private static final Log logger = LogFactory.getLog(TestUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestUtils.class);
 
     private TestUtils(){
 

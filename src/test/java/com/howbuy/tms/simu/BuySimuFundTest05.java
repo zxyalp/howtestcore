@@ -3,8 +3,8 @@ package com.howbuy.tms.simu;
 import com.howbuy.simu.HighEndBuyPage;
 import com.howbuy.simu.LoginWebPage;
 import com.howbuy.tms.BaseTestCase;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
  */
 public class BuySimuFundTest05 extends BaseTestCase{
 
-    private static final Log logger = LogFactory.getLog(BuySimuFundTest05.class);
+    private final Logger logger = LoggerFactory.getLogger(BuySimuFundTest05.class);
     
 
     /**
