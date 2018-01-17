@@ -118,6 +118,12 @@ public class RegisterUserPage extends BasePage {
     @FindBy(id = "submitBn")
     private WebElement submitBn;
 
+    /**
+     * 开户成功提示
+     */
+    @FindBy(xpath = "//p[contains(text(), '恭喜！您已经开户成功！')]")
+    private WebElement successMsg;
+
 
     public RegisterUserPage(WebDriver driver) {
         this.driver = driver;
@@ -141,7 +147,7 @@ public class RegisterUserPage extends BasePage {
      * @param txPwd     交易密码
      */
     public void createNewUser(String certNo, String custName, String address, String mobile, String identify, String loginPwd, String txPwd) {
-
+        open();
         try {
             certNoInput.sendKeys(certNo);
             custNameInput.sendKeys(custName);
@@ -165,8 +171,10 @@ public class RegisterUserPage extends BasePage {
             reTxPwdInput.sendKeys(txPwd);
             TestUtils.sleep1s();
             submitBn.click();
-        }catch (NoSuchElementException n){
-            throw new RuntimeException("PC网站免费开户失败.",n);
+            isElementExist(driver, successMsg, 5);
+            logger.info("{}+{},开户成功.",certNo, custName);
+        }catch (Exception e){
+            throw new RuntimeException("注册新用户失败.",e);
         }
 
     }
