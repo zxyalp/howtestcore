@@ -1,14 +1,11 @@
-package com.autoit;
+package com.demo;
 
 import com.howbuy.common.TestContext;
 import com.howbuy.common.TestUtils;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 

@@ -1,4 +1,4 @@
-package com.autoit;
+package com.demo;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;

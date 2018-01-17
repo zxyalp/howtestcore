@@ -1,4 +1,4 @@
-package com.autoit;
+package com.demo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
