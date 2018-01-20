@@ -72,9 +72,11 @@ public class LoginWebPage extends BasePage {
         open();
         TestUtils.sleep1s();
         idNoText = wait.until(visibilityOf(idNoText));
+        addStyle(idNoText);
         idNoText.clear();
         idNoText.sendKeys(idNo);
         TestUtils.sleep1s();
+        addStyle(passwordText);
         passwordText.clear();
         passwordText.sendKeys(password);
         passwordText.submit();

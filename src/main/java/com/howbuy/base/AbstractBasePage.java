@@ -1,12 +1,10 @@
 package com.howbuy.base;
 
+import com.howbuy.common.TestUtils;
 import com.howbuy.common.UrlBuilder;
+import org.openqa.selenium.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -60,5 +58,15 @@ public abstract class AbstractBasePage {
         }catch (TimeoutException e){
             return false;
         }
+    }
+
+    public void addStyle(WebElement element){
+        String originalStyle = element.getAttribute("style");
+        String redStyle = "border: 2px solid red; border-style: dashed;";
+        String setAttr = "arguments[0].setAttribute(arguments[1], arguments[2])";
+        ((JavascriptExecutor)driver).executeScript(setAttr,element, "style",redStyle);
+        TestUtils.sleep1s();
+        ((JavascriptExecutor)driver).executeScript(setAttr,element, "style",originalStyle);
+
     }
 }
