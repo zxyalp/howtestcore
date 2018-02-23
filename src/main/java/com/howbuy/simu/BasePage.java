@@ -1,6 +1,7 @@
 package com.howbuy.simu;
 
 import com.howbuy.base.AbstractBasePage;
+import com.howbuy.common.TestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,4 +17,7 @@ public class BasePage extends AbstractBasePage {
 
     public int timeOutInSeconds = 10;
 
+    public void open(String path) {
+        super.open(TestContext.WEB_SIMU_PORT, path);
+    }
 }

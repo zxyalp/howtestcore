@@ -68,7 +68,10 @@ public class PropertyUtils {
         return props.getProperty(key);
     }
 
-
+    public static int getIntProperty(String key){
+        return Integer.parseInt(getProperty(key));
+    }
+    
     public static void getAllProperty(){
         if (props == null){
             load();
