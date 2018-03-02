@@ -77,7 +77,7 @@ public class InvestorSignPage extends BasePage {
 
     @Override
     public void open(){
-        super.open(4085, buyListPath);
+        super.open(buyListPath);
     }
 
     private Boolean isQualifiedInvestor(){

@@ -59,7 +59,7 @@ public class CancelOrderListPage extends BasePage {
 
     @Override
     public void open(){
-        super.open(4085, cancelListPath);
+        super.open(cancelListPath);
     }
 
 

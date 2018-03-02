@@ -1,5 +1,6 @@
 package com.howbuy.simu;
 
+import com.howbuy.common.TestContext;
 import com.howbuy.common.TestUtils;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -133,7 +134,7 @@ public class RegisterUserPage extends BasePage {
 
     @Override
     public void open() {
-        super.open(15080, registerPath);
+        super.open(TestContext.WEB_TRADE_PORT, registerPath);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.howbuy.simu;
 
 
+import com.howbuy.common.TestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
@@ -65,7 +66,7 @@ public class LoginWebPage extends BasePage {
 
     @Override
     public void open() {
-        super.open(15080, loginPath);
+        super.open(TestContext.WEB_TRADE_PORT, loginPath);
     }
 
     public void login(String idNo, String password){

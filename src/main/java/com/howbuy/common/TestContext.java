@@ -29,6 +29,7 @@ public class TestContext {
      * 获取应用的端口
      */
     public static final int WEB_SIMU_PORT = PropertyUtils.getIntProperty("web.simu.port");
+    public static final int WEB_TRADE_PORT = PropertyUtils.getIntProperty("web.trade.port");
     public static final int TMS_COUNTER_PORT = PropertyUtils.getIntProperty("tms.counter.port");
     public static final int TMS_CONSOLE_PORT = PropertyUtils.getIntProperty("tms.console.port");
     public static final int WAP_SIMU_PORT = PropertyUtils.getIntProperty("wap.simu.port");

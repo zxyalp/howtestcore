@@ -220,7 +220,7 @@ public class HighEndBuyPage extends BasePage {
 
     @Override
     public void open(){
-        super.open(4085, buyListPath);
+        super.open(buyListPath);
     }
 
     /**

@@ -79,7 +79,7 @@ public class PiggyBankPage extends BasePage {
 
     @Override
     public void open(){
-        super.open(4085, piggyPath);
+        super.open(piggyPath);
     }
 
     public void depositInform(String amount){

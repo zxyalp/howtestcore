@@ -120,8 +120,9 @@ public class FanLiCookie {
         File cookieFile = new File(filename);
         BufferedWriter bufferedWriter=null;
         try {
-            if (cookieFile.exists())
+            if (cookieFile.exists()) {
                 cookieFile.delete();
+            }
             cookieFile.createNewFile();
             bufferedWriter = new BufferedWriter(new FileWriter(cookieFile));
 
@@ -145,8 +146,9 @@ public class FanLiCookie {
             e.printStackTrace();
         } finally {
             try {
-                if (bufferedWriter!=null)
+                if (bufferedWriter!=null) {
                     bufferedWriter.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -186,8 +188,9 @@ public class FanLiCookie {
             e.printStackTrace();
         } finally {
             try {
-                if (bufReader!=null)
+                if (bufReader!=null) {
                     bufReader.close();
+                }
             }catch (IOException e){
                 e.printStackTrace();
             }
