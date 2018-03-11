@@ -29,7 +29,7 @@ public class RegisterUserPage extends BasePage {
 
     private final Logger logger = LoggerFactory.getLogger(RegisterUserPage.class);
 
-    private String  registerPath = "/trade/register/register.htm";
+    private String registerPath = "/trade/register/register.htm";
 
 
     /**
@@ -138,13 +138,14 @@ public class RegisterUserPage extends BasePage {
 
     /**
      * 免费开户
-     * @param certNo    身份证号码
-     * @param custName  姓名
-     * @param address   联系地址
-     * @param mobile    手机号码
-     * @param identify  短信验证码
-     * @param loginPwd  登录密码
-     * @param txPwd     交易密码
+     *
+     * @param certNo   身份证号码
+     * @param custName 姓名
+     * @param address  联系地址
+     * @param mobile   手机号码
+     * @param identify 短信验证码
+     * @param loginPwd 登录密码
+     * @param txPwd    交易密码
      */
     public void createNewUser(String certNo, String custName, String address, String mobile, String identify, String loginPwd, String txPwd) {
         open();
@@ -166,15 +167,15 @@ public class RegisterUserPage extends BasePage {
             loginPwdInput.sendKeys(loginPwd);
             reLoginPwdInput.sendKeys(loginPwd);
 
-             // 交易密码
+            // 交易密码
             txPwdInput.sendKeys(txPwd);
             reTxPwdInput.sendKeys(txPwd);
             TestUtils.sleep1s();
             submitBn.click();
             isElementExist(driver, successMsg, 5);
-            logger.info("{}+{},开户成功.",certNo, custName);
-        }catch (Exception e){
-            throw new RuntimeException("注册新用户失败.",e);
+            logger.info("{}+{},开户成功.", certNo, custName);
+        } catch (Exception e) {
+            throw new RuntimeException("注册新用户失败.", e);
         }
 
     }
@@ -183,8 +184,8 @@ public class RegisterUserPage extends BasePage {
     /**
      * 默认设置验证码、登录密码、交易密码
      */
-    public void createNewUser(String certNo, String custName, String mobile){
-        createNewUser(certNo, custName,"该用户为自动化开户", mobile, "111111",
+    public void createNewUser(String certNo, String custName, String mobile) {
+        createNewUser(certNo, custName, "该用户为自动化开户", mobile, "111111",
                 "qq1111", "121212");
     }
 
@@ -255,7 +256,7 @@ public class RegisterUserPage extends BasePage {
 
         Tesseract tess = new Tesseract();
         tess.setDatapath("D:\\data");
-        String result=null;
+        String result = null;
         try {
             result = tess.doOCR(file);
             System.out.println(result);
@@ -270,7 +271,7 @@ public class RegisterUserPage extends BasePage {
         HttpHost httpHost = new HttpHost("192.168.221.121");
         HttpHost httpHost1 = HttpHost.create("192.168.221.123");
 
-        HttpHost httpHost2=null;
+        HttpHost httpHost2 = null;
         try {
             httpHost2 = (HttpHost) httpHost.clone();
         } catch (CloneNotSupportedException e) {
