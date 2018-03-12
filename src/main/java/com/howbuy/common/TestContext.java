@@ -26,6 +26,13 @@ public class TestContext {
     public static String CHROME_DRIVER_PATH = PropertyUtils.getProperty("chrome.driver.path");
 
     /**
+     * 获取服务器IP
+     */
+    public static String TMS_HOST = PropertyUtils.getProperty("tms.host");
+
+    public static String TP_HOST = PropertyUtils.getProperty("tp.host");
+
+    /**
      * 获取应用的端口
      */
     public static final int WEB_SIMU_PORT = PropertyUtils.getIntProperty("web.simu.port");
@@ -33,6 +40,7 @@ public class TestContext {
     public static final int TMS_COUNTER_PORT = PropertyUtils.getIntProperty("tms.counter.port");
     public static final int TMS_CONSOLE_PORT = PropertyUtils.getIntProperty("tms.console.port");
     public static final int WAP_SIMU_PORT = PropertyUtils.getIntProperty("wap.simu.port");
+    public static final int FDS_CONSOLE_PORT = PropertyUtils.getIntProperty("fds.console.port");
 
 
 
