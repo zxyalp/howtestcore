@@ -1,6 +1,6 @@
 package com.howbuy.tms.counter;
 
-import com.howbuy.tms.BasePage;
+import com.howbuy.tms.TmsBasePage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
@@ -11,9 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by yang.zhou on 2017/9/29.
  */
-public class OrderTmsBasePage extends BasePage {
+public class OrderPage extends TmsBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(OrderTmsBasePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(OrderPage.class.getName());
 
     /**
      * 基金代码
@@ -45,7 +45,7 @@ public class OrderTmsBasePage extends BasePage {
     @FindBy(css = ".layui-layer-btn0")
     protected WebElement okBtn;
 
-    public OrderTmsBasePage(WebDriver driver) {
+    public OrderPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

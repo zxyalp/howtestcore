@@ -1,6 +1,6 @@
 package com.howbuy.smwap;
 
-import com.howbuy.base.AbstractBasePage;
+import com.howbuy.base.AbsBasePage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.openqa.selenium.Dimension;
@@ -12,10 +12,10 @@ import org.openqa.selenium.Dimension;
  * @author yang.zhou
  * @date 2017/12/20
  */
-public abstract class BasePage extends AbstractBasePage {
+public abstract class WapBasePage extends AbsBasePage {
 
 
-    private final Logger logger = LoggerFactory.getLogger(BasePage.class);
+    private final Logger logger = LoggerFactory.getLogger(WapBasePage.class);
 
     public int timeOutInSeconds = 10;
 

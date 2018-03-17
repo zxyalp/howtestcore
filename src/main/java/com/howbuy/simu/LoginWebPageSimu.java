@@ -20,9 +20,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * Created by yang.zhou on 2017/9/29.
  */
-public class LoginWebPage extends BasePage {
+public class LoginWebPageSimu extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(LoginWebPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(LoginWebPageSimu.class.getName());
 
     public String loginPath = "/trade/login/login.htm";
 
@@ -60,7 +60,7 @@ public class LoginWebPage extends BasePage {
     private WebElement activateacctLink;
 
 
-    public LoginWebPage(WebDriver driver) {
+    public LoginWebPageSimu(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

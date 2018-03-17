@@ -16,10 +16,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/1/15
  */
-public abstract class AbstractBasePage {
+public abstract class AbsBasePage {
 
 
-    private final Logger logger = LoggerFactory.getLogger(AbstractBasePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(AbsBasePage.class.getName());
 
     public int timeOutInSeconds = 12;
 

@@ -14,7 +14,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,9 +25,9 @@ import java.io.*;
  * @author yang.zhou
  * @date 2018/1/9
  */
-public class RegisterUserPage extends BasePage {
+public class RegisterUserPageSimu extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(RegisterUserPage.class);
+    private final Logger logger = LoggerFactory.getLogger(RegisterUserPageSimu.class);
 
     private String registerPath = "/trade/register/register.htm";
 
@@ -126,7 +125,7 @@ public class RegisterUserPage extends BasePage {
     private WebElement successMsg;
 
 
-    public RegisterUserPage(WebDriver driver) {
+    public RegisterUserPageSimu(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }

@@ -25,9 +25,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClick
  *
  * @author yang.zhou
  */
-public class HighEndBuyPage extends BasePage {
+public class HighEndBuyPageSimu extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(HighEndBuyPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(HighEndBuyPageSimu.class.getName());
 
     private String buyListPath = "/newpcsm/buylist.html";
 
@@ -213,7 +213,11 @@ public class HighEndBuyPage extends BasePage {
     private WebElement buyingText;
 
 
-    public HighEndBuyPage(WebDriver driver) {
+    @FindBy(linkText = "继续购买")
+    private WebElement riskTipText;
+
+
+    public HighEndBuyPageSimu(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
@@ -338,6 +342,11 @@ public class HighEndBuyPage extends BasePage {
             bankSubNameText.get(0).sendKeys("上海南京西路支行web测试");
         }
         wait.until(elementToBeClickable(nextStepBtn)).click();
+
+        if (isRiskTip()) {
+            riskTipText.click();
+            TestUtils.sleep1s();
+        }
     }
 
 
@@ -443,6 +452,16 @@ public class HighEndBuyPage extends BasePage {
         remitCardText.click();
     }
 
+
+    private Boolean isRiskTip(){
+        try {
+            new WebDriverWait(driver, 2).until(visibilityOf(riskTipText));
+            logger.info("风险承受能力提示.");
+            return true;
+        } catch (TimeoutException t) {
+            return false;
+        }
+    }
 
     /**
      * 购买买基金

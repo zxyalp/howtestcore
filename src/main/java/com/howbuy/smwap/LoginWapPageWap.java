@@ -15,9 +15,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author yang.zhou
  * @date 2017/12/20
  */
-public class LoginWapPage extends BasePage {
+public class LoginWapPageWap extends WapBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(LoginWapPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(LoginWapPageWap.class.getName());
 
     public String loginWapUrl = "/wap/account/login/login.htm";
 
@@ -40,7 +40,7 @@ public class LoginWapPage extends BasePage {
     private WebElement freeOpening;
 
 
-    public LoginWapPage(WebDriver driver) {
+    public LoginWapPageWap(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

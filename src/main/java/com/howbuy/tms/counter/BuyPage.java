@@ -1,7 +1,6 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
-import com.howbuy.tms.BasePage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,17 +55,14 @@ public class BuyPage extends BasePage {
     @CacheLookup
     private WebElement applyAmountElement;
 
+    @FindBy(id = "selectBank")
+    private WebElement selectBank;
+
     /**
      * 获取银行卡
      */
     @FindBy(css = "#selectBank > option")
     private List<WebElement> selectBankValues;
-
-    /**
-     * 银行卡
-     */
-    @FindBy(css = "#selectBank")
-    private WebElement selectBank;
 
     /**
      * 申请时间

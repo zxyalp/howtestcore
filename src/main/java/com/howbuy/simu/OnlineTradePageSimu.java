@@ -10,25 +10,25 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author yang.zhou
  * @date 2017/9/29
  */
-public class OnlineTradePage extends BasePage {
+public class OnlineTradePageSimu extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(OnlineTradePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(OnlineTradePageSimu.class.getName());
 
-    public OnlineTradePage(WebDriver driver) {
+    public OnlineTradePageSimu(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
 
     public void buyHighFund(String fundCode, String buyAmount, String txPassword) {
-        HighEndBuyPage buyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
+        HighEndBuyPageSimu buyPage = PageFactory.initElements(driver, HighEndBuyPageSimu.class);
         buyPage.buyHighFund(fundCode, buyAmount, txPassword);
     }
 
     public void signAndRiskValuation(String idNo, String password) {
-        LoginWebPage loginWebPage = PageFactory.initElements(driver, LoginWebPage.class);
+        LoginWebPageSimu loginWebPage = PageFactory.initElements(driver, LoginWebPageSimu.class);
         loginWebPage.login(idNo, password);
-        InvestorSignPage signPage = PageFactory.initElements(driver, InvestorSignPage.class);
+        InvestorSignPageSimu signPage = PageFactory.initElements(driver, InvestorSignPageSimu.class);
         signPage.confirmOfInvestors();
     }
 

@@ -1,8 +1,8 @@
 package com.howbuy.tms.smwap;
 
 import com.howbuy.common.PaymentType;
-import com.howbuy.smwap.BuyFundPage;
-import com.howbuy.smwap.LoginWapPage;
+import com.howbuy.smwap.BuyFundPageWap;
+import com.howbuy.smwap.LoginWapPageWap;
 import com.howbuy.tms.BaseTestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +18,10 @@ public class BuyFundTest extends BaseTestCase {
 
     @Test(enabled = true)
     public void loginWap01() throws Exception {
-        LoginWapPage wapPage = PageFactory.initElements(driver, LoginWapPage.class);
+        LoginWapPageWap wapPage = PageFactory.initElements(driver, LoginWapPageWap.class);
         wapPage.loginWap("32010119980101286X");
 
-        BuyFundPage buyFundPage = PageFactory.initElements(driver, BuyFundPage.class);
+        BuyFundPageWap buyFundPage = PageFactory.initElements(driver, BuyFundPageWap.class);
         buyFundPage.buy("S33873", "1200000", 2, PaymentType.DEFAULT_PAY);
         buyFundPage.buy("S33873", "1200000", 2, PaymentType.CXG_PAY);
         buyFundPage.buy("S33873", "1200000", 2, PaymentType.BANK_LINE_PAY);

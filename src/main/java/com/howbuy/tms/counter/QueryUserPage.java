@@ -1,6 +1,6 @@
 package com.howbuy.tms.counter;
 
-import com.howbuy.tms.BasePage;
+import com.howbuy.tms.TmsBasePage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.openqa.selenium.TimeoutException;
@@ -17,7 +17,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/9/11
  */
-public class QueryUserPage extends BasePage {
+public class QueryUserPage extends TmsBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(QueryUserPage.class.getName());
 
@@ -25,23 +25,41 @@ public class QueryUserPage extends BasePage {
 
     private Wait<WebDriver> wait;
 
-    @FindBy(how = How.ID, using = "custNo")
-    private WebElement custNoElement;
+    /**
+     * 客户号
+     */
+    @FindBy(id = "custNo")
+    private WebElement custNoInput;
 
-    @FindBy(id = "custName")
-    private WebElement custNameElement;
-
+    /**
+     * 身份证号码
+     */
     @FindBy(id = "idNo")
-    private WebElement idNoElement;
+    private WebElement idNoInput;
 
-    @FindBy(linkText = "查询")
-    private WebElement queryBtn;
+    /**
+     * 查询按钮
+     */
+    @FindBy(id = "queryCustInfoBtn")
+    private WebElement queryCustInfoBtn;
+
+    /**
+     * 客户信息列表
+     */
+    @FindBy(id = "custInfoId")
+    private WebElement custInfo;
+
+    /**
+     *  客户列表单选按钮
+     */
+    @FindBy(css = "[name='checkCust']")
+    private WebElement checkCustRdio;
 
     /**
      * 客户基本信息查询
      */
     @FindBy(xpath = "//*[@id='custInfoId']/tr")
-    private WebElement custInfo;
+    private WebElement custInfoId;
 
     /**
      * 客户预约信息
@@ -56,17 +74,17 @@ public class QueryUserPage extends BasePage {
     }
 
     public void queryByCustNo(String custNo) {
-        query(custNoElement, custNo);
+        query(custNoInput, custNo);
     }
 
     public void queryByIdNo(String idNo) {
-        query(idNoElement, idNo);
+        query(idNoInput, idNo);
     }
 
     private void query(WebElement element, String cust) {
         element.clear();
         element.sendKeys(cust);
-        queryBtn.click();
+        queryCustInfoBtn.click();
         isCustInfo();
     }
 

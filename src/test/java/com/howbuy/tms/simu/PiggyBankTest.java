@@ -1,7 +1,7 @@
 package com.howbuy.tms.simu;
 
-import com.howbuy.simu.LoginWebPage;
-import com.howbuy.simu.PiggyBankPage;
+import com.howbuy.simu.LoginWebPageSimu;
+import com.howbuy.simu.PiggyBankPageSimu;
 import com.howbuy.tms.BaseTestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,20 +19,20 @@ public class PiggyBankTest extends BaseTestCase {
 
     @Test
     public void piggyDepositTest() throws Exception {
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
         login.login("320101198801018159", "qq1111");
 
-        PiggyBankPage bankPage = PageFactory.initElements(driver, PiggyBankPage.class);
+        PiggyBankPageSimu bankPage = PageFactory.initElements(driver, PiggyBankPageSimu.class);
         bankPage.savingBox("3000000");
         bankPage.savingBox("3000000");
     }
 
     @Test
     public void piggyDepositTest01() throws Exception {
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
         login.login("320101199501012550", "qq1111");
 
-        PiggyBankPage bankPage = PageFactory.initElements(driver, PiggyBankPage.class);
+        PiggyBankPageSimu bankPage = PageFactory.initElements(driver, PiggyBankPageSimu.class);
         bankPage.savingBox("3000000");
         bankPage.savingBox("3000000");
         bankPage.savingBox("3000000");
@@ -42,10 +42,10 @@ public class PiggyBankTest extends BaseTestCase {
 
     @Test
     public void piggyDepositTest02() throws Exception {
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
         login.login("320101197901013684", "qq1111");
 
-        PiggyBankPage bankPage = PageFactory.initElements(driver, PiggyBankPage.class);
+        PiggyBankPageSimu bankPage = PageFactory.initElements(driver, PiggyBankPageSimu.class);
         bankPage.savingBox("3000000");
         bankPage.savingBox("3000000");
         bankPage.savingBox("3000000");
@@ -54,10 +54,10 @@ public class PiggyBankTest extends BaseTestCase {
 
     @Test
     public void piggyDepositTest03() throws Exception {
-        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
         login.login("320101198901018228", "qq1111");
 
-        PiggyBankPage bankPage = PageFactory.initElements(driver, PiggyBankPage.class);
+        PiggyBankPageSimu bankPage = PageFactory.initElements(driver, PiggyBankPageSimu.class);
         bankPage.savingBox("3000000");
         bankPage.savingBox("3000000");
         bankPage.savingBox("3000000");

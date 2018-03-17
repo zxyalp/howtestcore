@@ -16,9 +16,9 @@ import java.util.List;
  * @author yang.zhou
  * @date 2017/10/18
  */
-public class RiskValuationPage extends BasePage {
+public class RiskValuationPageSimu extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(RiskValuationPage.class);
+    private final Logger logger = LoggerFactory.getLogger(RiskValuationPageSimu.class);
 
     /**
      * 查找所有单选框
@@ -45,7 +45,7 @@ public class RiskValuationPage extends BasePage {
     private WebElement submitBtn;
 
 
-    public RiskValuationPage(WebDriver driver) {
+    public RiskValuationPageSimu(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }

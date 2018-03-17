@@ -19,9 +19,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/12/20
  */
-public class SearchFundPage extends BasePage {
+public class SearchFundPageWap extends WapBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(SearchFundPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(SearchFundPageWap.class.getName());
 
 
     public String buyListPath = "/smtradewap/buylist.html";
@@ -66,7 +66,7 @@ public class SearchFundPage extends BasePage {
     private List<WebElement> floridianBtn;
 
 
-    public SearchFundPage(WebDriver driver) {
+    public SearchFundPageWap(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

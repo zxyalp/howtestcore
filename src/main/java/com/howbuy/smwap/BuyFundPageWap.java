@@ -14,12 +14,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @author yang.zhou
  * @date 2017/12/20
  */
-public class BuyFundPage extends BasePage {
+public class BuyFundPageWap extends WapBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(BuyFundPage.class);
+    private final Logger logger = LoggerFactory.getLogger(BuyFundPageWap.class);
 
 
-    public BuyFundPage(WebDriver driver) {
+    public BuyFundPageWap(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
@@ -27,10 +27,10 @@ public class BuyFundPage extends BasePage {
 
     public void buy(String fundCode, String amount, int index, PaymentType paymentType) {
 
-        SearchFundPage searchFundPage = PageFactory.initElements(driver, SearchFundPage.class);
+        SearchFundPageWap searchFundPage = PageFactory.initElements(driver, SearchFundPageWap.class);
         searchFundPage.searchFund(fundCode);
 
-        PayInfoPage payInfoPage = PageFactory.initElements(driver, PayInfoPage.class);
+        PayInfoPageWap payInfoPage = PageFactory.initElements(driver, PayInfoPageWap.class);
         payInfoPage.pay(amount, index, paymentType);
 
     }

@@ -10,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 
@@ -20,9 +19,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
  * @author yang.zhou
  * @date 2017/10/19
  */
-public class HighEndSellPage extends BasePage {
+public class HighEndSellPageSimu extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(HighEndSellPage.class);
+    private final Logger logger = LoggerFactory.getLogger(HighEndSellPageSimu.class);
 
     /**
      * 模态框
@@ -42,7 +41,7 @@ public class HighEndSellPage extends BasePage {
     @FindBy(css = "tbody > tr")
     private List<WebElement> sellList;
 
-    public HighEndSellPage(WebDriver driver) {
+    public HighEndSellPageSimu(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }
