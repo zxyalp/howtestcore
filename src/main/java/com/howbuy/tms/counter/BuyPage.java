@@ -1,6 +1,7 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
+import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,11 +29,16 @@ public class BuyPage extends BasePage {
 
 
     /**
+     * 购买订单FORM
+     */
+    @FindBy(css = "#buyConfirmForm")
+    private WebElement buyConfirmForm;
+
+    /**
      * 基金代码
      */
     @FindBy(id = "fundCode")
-    @CacheLookup
-    private WebElement fundCodeText;
+    private WebElement fundCodeInput;
 
     /**
      * 基金名称
@@ -45,37 +51,38 @@ public class BuyPage extends BasePage {
      * 基金代码搜索放大镜
      */
     @FindBy(className = "searchIcon")
-    @CacheLookup
     private WebElement searchIcon;
 
     /**
      * 申请金额
      */
     @FindBy(id = "applyAmount")
-    @CacheLookup
-    private WebElement applyAmountElement;
+    private WebElement applyAmountInput;
 
-    @FindBy(id = "selectBank")
-    private WebElement selectBank;
 
     /**
-     * 获取银行卡
+     * 用户银行卡列表
      */
-    @FindBy(css = "#selectBank > option")
-    private List<WebElement> selectBankValues;
+    @FindBy(id = "selectBank")
+    private WebElement selectBankId;
+
+
+    /**
+     * 申请折扣率
+     */
+    @FindBy(css = "#discountRate")
+    private WebElement discountRate;
 
     /**
      * 申请时间
      */
     @FindBy(id = "appTm")
-    @CacheLookup
-    private WebElement appTmElement;
+    private WebElement appTmInput;
 
     /**
      * 提交按钮
      */
     @FindBy(id = "confimBuyBtn")
-    @CacheLookup
     private WebElement confimBuyBtn;
 
 
@@ -94,20 +101,31 @@ public class BuyPage extends BasePage {
 
     public void buyOrderForm(String fundCode, String applyAmount, String appTm, int index) {
         TestUtils.sleep3s();
-        fundCodeText = wait.until(visibilityOf(fundCodeText));
-        fundCodeText.clear();
-        fundCodeText.sendKeys(fundCode);
+        fundCodeInput = wait.until(visibilityOf(fundCodeInput));
+        TestUtils.scrollTo(driver,fundCodeInput.getLocation().getY());
+        fundCodeInput.clear();
+        fundCodeInput.sendKeys(fundCode);
         TestUtils.sleep1s();
         searchIcon.click();
         TestUtils.sleep1s();
-        applyAmountElement.clear();
-        applyAmountElement.sendKeys(applyAmount);
+
+        Select selectBanks = new Select(selectBankId);
+
+        List<WebElement> bankList = selectBanks.getOptions();
+
+        int size = bankList.size();
+
+        if (size > 1 && index < size){
+            selectBanks.selectByIndex(index);
+        }
+
+        applyAmountInput.clear();
+        applyAmountInput.sendKeys(applyAmount);
         TestUtils.sleep1s();
-        selectBank(index);
+        appTmInput.clear();
+        appTmInput.sendKeys(appTm);
         TestUtils.sleep1s();
-        appTmElement.clear();
-        appTmElement.sendKeys(appTm);
-        TestUtils.sleep1s();
+
         submit();
     }
 
@@ -116,12 +134,12 @@ public class BuyPage extends BasePage {
         wait.until(visibilityOf(okBtn)).click();
     }
 
-    private void selectBank(int i) {
-        if (selectBankValues.size() > 1) {
-            selectBank.click();
-            selectBankValues.get(i - 1).click();
-        }
-    }
+//    private void selectBank(int i) {
+//        if (selectBankId.size() > 1) {
+//            selectBank.click();
+//            selectBankValues.get(i - 1).click();
+//        }
+//    }
 
     public void orderInfo(String fundCode, String applyAmount) {
         buyOrderForm(fundCode, applyAmount, "090000");

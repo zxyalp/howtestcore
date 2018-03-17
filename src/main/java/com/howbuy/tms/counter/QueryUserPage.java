@@ -1,8 +1,12 @@
 package com.howbuy.tms.counter;
 
+import com.howbuy.common.TestUtils;
 import com.howbuy.tms.TmsBasePage;
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.NoSuchElementException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.List;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,13 +21,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/9/11
  */
-public class QueryUserPage extends TmsBasePage {
+public class QueryUserPage extends BasePage {
 
     private final Logger logger = LoggerFactory.getLogger(QueryUserPage.class.getName());
-
-    private WebDriver driver;
-
-    private Wait<WebDriver> wait;
 
     /**
      * 客户号
@@ -46,26 +46,21 @@ public class QueryUserPage extends TmsBasePage {
     /**
      * 客户信息列表
      */
-    @FindBy(id = "custInfoId")
-    private WebElement custInfo;
+    @FindBy(css = "#custInfoId > tr")
+    private WebElement custInfoList;
 
     /**
      *  客户列表单选按钮
      */
     @FindBy(css = "[name='checkCust']")
-    private WebElement checkCustRdio;
+    private List<WebElement> checkCustList;
+
 
     /**
-     * 客户基本信息查询
+     * 客户预约信息选择列表
      */
-    @FindBy(xpath = "//*[@id='custInfoId']/tr")
-    private WebElement custInfoId;
-
-    /**
-     * 客户预约信息
-     */
-    @FindBy(xpath = "//*[@id='rsList']/tr[count(td)>2]")
-    private WebElement appointmentInfo;
+    @FindBy(css = "[name='appointmentInfoIndex']")
+    private List<WebElement> appointmentInfoIndexList;
 
 
     public QueryUserPage(WebDriver driver) {
@@ -73,35 +68,73 @@ public class QueryUserPage extends TmsBasePage {
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
+
     public void queryByCustNo(String custNo) {
-        query(custNoInput, custNo);
+        query(custNoInput, custNo, 1);
     }
+
+    public void queryByCustNo(String custNo, int index) {
+        query(custNoInput, custNo, index);
+    }
+
 
     public void queryByIdNo(String idNo) {
-        query(idNoInput, idNo);
+        query(idNoInput, idNo, 1);
     }
 
-    private void query(WebElement element, String cust) {
-        element.clear();
-        element.sendKeys(cust);
-        queryCustInfoBtn.click();
-        isCustInfo();
+    public void queryByIdNo(String idNo, int index) {
+        query(idNoInput, idNo, index);
     }
 
-    private void isCustInfo() {
+
+    private void query(WebElement element, String cust, int index) {
         try {
-            wait.until(visibilityOf(custInfo));
-        } catch (TimeoutException e) {
-            throw new RuntimeException("未查询到客户信息.");
+            element.clear();
+            element.sendKeys(cust);
+            queryCustInfoBtn.click();
+            wait.until(visibilityOf(custInfoList));
+            if (checkCustList.isEmpty()){
+                throw new NoSuchElementException("客户信息为空.");
+            }
+            WebElement checkCust = checkCustList.get(0);
+            checkCust.click();
+            TestUtils.sleep2s();
+            TestUtils.scrollTo(driver, checkCust.getLocation().getY());
+
+            int size = appointmentInfoIndexList.size();
+
+            if ( size > 0 && index < size){
+                useAppointmentInfo(index);
+            }
+
+            TestUtils.sleep2s();
+
+        }catch (NoSuchElementException n){
+            logger.error("未找到元素.",n);
+
+        }catch (TimeoutException t){
+            logger.error("查询超时.",t);
         }
     }
 
-    private void isAppointmentInfo() {
-        try {
-            wait.until(visibilityOf(custInfo));
-        } catch (TimeoutException e) {
-            throw new RuntimeException("未查询到客户预约信息.");
-        }
+    private void isCustInfo(int index) {
+
+
     }
+
+    private void useAppointmentInfo(int index){
+        WebElement appointmentInfoIndex = appointmentInfoIndexList.get(index-1);
+        TestUtils.scrollTo(driver, appointmentInfoIndex.getLocation().getY());
+        appointmentInfoIndex.click();
+        logger.info("使用第"+index+"预约.");
+    }
+
+//    private void isAppointmentInfo() {
+//        try {
+//            wait.until(visibilityOf(custInfo));
+//        } catch (TimeoutException e) {
+//            throw new RuntimeException("未查询到客户预约信息.");
+//        }
+//    }
 
 }
