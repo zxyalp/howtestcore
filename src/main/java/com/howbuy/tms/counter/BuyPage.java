@@ -111,16 +111,19 @@ public class BuyPage extends BasePage {
 
         Select selectBanks = new Select(selectBankId);
 
-        List<WebElement> bankList = selectBanks.getOptions();
+        List<WebElement> bankOptions = selectBanks.getOptions();
 
-        int size = bankList.size();
+        int size = bankOptions.size();
 
         if (size > 1 && index < size){
-            selectBanks.selectByIndex(index);
+            bankOptions.get(index-1).click();
         }
+
+        TestUtils.sleep1s();
 
         applyAmountInput.clear();
         applyAmountInput.sendKeys(applyAmount);
+
         TestUtils.sleep1s();
         appTmInput.clear();
         appTmInput.sendKeys(appTm);
@@ -133,13 +136,6 @@ public class BuyPage extends BasePage {
         confimBuyBtn.click();
         wait.until(visibilityOf(okBtn)).click();
     }
-
-//    private void selectBank(int i) {
-//        if (selectBankId.size() > 1) {
-//            selectBank.click();
-//            selectBankValues.get(i - 1).click();
-//        }
-//    }
 
     public void orderInfo(String fundCode, String applyAmount) {
         buyOrderForm(fundCode, applyAmount, "090000");

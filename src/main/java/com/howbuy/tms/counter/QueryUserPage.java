@@ -52,7 +52,7 @@ public class QueryUserPage extends BasePage {
     /**
      *  客户列表单选按钮
      */
-    @FindBy(css = "[name='checkCust']")
+    @FindBy(css = "#custInfoId [name='checkCust']")
     private List<WebElement> checkCustList;
 
 
@@ -60,7 +60,7 @@ public class QueryUserPage extends BasePage {
      * 客户预约信息选择列表
      */
     @FindBy(css = "[name='appointmentInfoIndex']")
-    private List<WebElement> appointmentInfoIndexList;
+    private List<WebElement> appointmentInfoIndexs;
 
 
     public QueryUserPage(WebDriver driver) {
@@ -69,17 +69,8 @@ public class QueryUserPage extends BasePage {
     }
 
 
-    public void queryByCustNo(String custNo) {
-        query(custNoInput, custNo, 1);
-    }
-
     public void queryByCustNo(String custNo, int index) {
         query(custNoInput, custNo, index);
-    }
-
-
-    public void queryByIdNo(String idNo) {
-        query(idNoInput, idNo, 1);
     }
 
     public void queryByIdNo(String idNo, int index) {
@@ -91,20 +82,30 @@ public class QueryUserPage extends BasePage {
         try {
             element.clear();
             element.sendKeys(cust);
+            TestUtils.sleep1s();
             queryCustInfoBtn.click();
-            wait.until(visibilityOf(custInfoList));
-            if (checkCustList.isEmpty()){
-                throw new NoSuchElementException("客户信息为空.");
+            try {
+                new WebDriverWait(driver,5).until(visibilityOf(custInfoList));
+            }catch(NoSuchElementException n){
+                throw new NoSuchElementException("未查询到客户："+cust);
             }
+
             WebElement checkCust = checkCustList.get(0);
-            checkCust.click();
-            TestUtils.sleep2s();
             TestUtils.scrollTo(driver, checkCust.getLocation().getY());
 
-            int size = appointmentInfoIndexList.size();
+            do {
+                checkCust.click();
+                TestUtils.sleep2s();
+            }while (checkCust.isSelected());
 
-            if ( size > 0 && index < size){
-                useAppointmentInfo(index);
+            int size = appointmentInfoIndexs.size();
+
+            if ( size > 0 && index <= size){
+                WebElement appointmentInfoIndex = appointmentInfoIndexs.get(index-1);
+                TestUtils.scrollTo(driver, appointmentInfoIndex.getLocation().getY());
+                TestUtils.sleep1s();
+                appointmentInfoIndex.click();
+                logger.info("使用第"+index+"条预约.");
             }
 
             TestUtils.sleep2s();
@@ -117,24 +118,16 @@ public class QueryUserPage extends BasePage {
         }
     }
 
-    private void isCustInfo(int index) {
+
+    private void getAppointmentInfo(int index){
+        if (index < 2){
+            return;
+        }
 
 
     }
 
-    private void useAppointmentInfo(int index){
-        WebElement appointmentInfoIndex = appointmentInfoIndexList.get(index-1);
-        TestUtils.scrollTo(driver, appointmentInfoIndex.getLocation().getY());
-        appointmentInfoIndex.click();
-        logger.info("使用第"+index+"预约.");
+    private Boolean isUseAppointmentInfo(){
+        return true;
     }
-
-//    private void isAppointmentInfo() {
-//        try {
-//            wait.until(visibilityOf(custInfo));
-//        } catch (TimeoutException e) {
-//            throw new RuntimeException("未查询到客户预约信息.");
-//        }
-//    }
-
 }
