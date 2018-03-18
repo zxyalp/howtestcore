@@ -70,64 +70,57 @@ public class QueryUserPage extends BasePage {
 
 
     public void queryByCustNo(String custNo, int index) {
-        query(custNoInput, custNo, index);
+        query(custNoInput, custNo);
     }
 
     public void queryByIdNo(String idNo, int index) {
-        query(idNoInput, idNo, index);
+        query(idNoInput, idNo);
     }
 
 
-    private void query(WebElement element, String cust, int index) {
+    private void query(WebElement element, String cust) throws NoSuchElementException,TimeoutException{
+        element.clear();
+        element.sendKeys(cust);
+        TestUtils.sleep1s();
+        queryCustInfoBtn.click();
         try {
-            element.clear();
-            element.sendKeys(cust);
-            TestUtils.sleep1s();
-            queryCustInfoBtn.click();
-            try {
-                new WebDriverWait(driver,5).until(visibilityOf(custInfoList));
-            }catch(NoSuchElementException n){
-                throw new NoSuchElementException("未查询到客户："+cust);
-            }
-
-            WebElement checkCust = checkCustList.get(0);
-            TestUtils.scrollTo(driver, checkCust.getLocation().getY());
-
-            do {
-                checkCust.click();
-                TestUtils.sleep2s();
-            }while (checkCust.isSelected());
-
-            int size = appointmentInfoIndexs.size();
-
-            if ( size > 0 && index <= size){
-                WebElement appointmentInfoIndex = appointmentInfoIndexs.get(index-1);
-                TestUtils.scrollTo(driver, appointmentInfoIndex.getLocation().getY());
-                TestUtils.sleep1s();
-                appointmentInfoIndex.click();
-                logger.info("使用第"+index+"条预约.");
-            }
-
-            TestUtils.sleep2s();
-
-        }catch (NoSuchElementException n){
-            logger.error("未找到元素.",n);
-
-        }catch (TimeoutException t){
-            logger.error("查询超时.",t);
+            new WebDriverWait(driver,5).until(visibilityOf(custInfoList));
+        }catch(NoSuchElementException n){
+            throw new NoSuchElementException("未查询到客户："+cust);
         }
+
+        WebElement checkCust = checkCustList.get(0);
+        TestUtils.scrollTo(driver, checkCust.getLocation().getY());
+
+        do {
+            checkCust.click();
+            TestUtils.sleep2s();
+        }while (checkCust.isSelected());
+
+        TestUtils.sleep2s();
     }
 
 
     private void getAppointmentInfo(int index){
-        if (index < 2){
+
+        int size = appointmentInfoIndexs.size();
+
+        if ( size > 0 && index <= size){
+            WebElement appointmentInfoIndex = appointmentInfoIndexs.get(index-1);
+            TestUtils.scrollTo(driver, appointmentInfoIndex.getLocation().getY());
+            TestUtils.sleep1s();
+            appointmentInfoIndex.click();
+            logger.info("客户总预约条数，使用第%s条预约.",index);
             return;
         }
-
-
+        logger.error("未使用预约单，客户总预约条数：%s,待使用第%s的预约.",size,index);
     }
 
-    private Boolean isUseAppointmentInfo(){
-        return true;
+    private Boolean isUseAppointmentInfo(int index){
+
+        if ( index >= 2){
+             return true;
+        }
+        return false;
     }
 }

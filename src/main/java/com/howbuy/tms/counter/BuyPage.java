@@ -1,6 +1,8 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,7 +89,7 @@ public class BuyPage extends BasePage {
 
 
     @FindBy(css = ".layui-layer-btn0")
-    private WebElement okBtn;
+    private List<WebElement> okBtnList;
 
 
     public BuyPage(WebDriver driver) {
@@ -99,15 +101,18 @@ public class BuyPage extends BasePage {
         buyOrderForm(fundCode, applyAmount, appTm, 1);
     }
 
-    public void buyOrderForm(String fundCode, String applyAmount, String appTm, int index) {
-        TestUtils.sleep3s();
-        fundCodeInput = wait.until(visibilityOf(fundCodeInput));
+    public void buyOrderForm(String fundCode, String applyAmount, String appTm, int bankIndex){
+
+        logger.info("开始填写购买订单信息，产品：%s,申请金额：%s,申请时间：%s,使用第%s张银行卡.",fundCode,applyAmount,appTm,bankIndex);
+        TestUtils.sleep2s();
         TestUtils.scrollTo(driver,fundCodeInput.getLocation().getY());
-        fundCodeInput.clear();
-        fundCodeInput.sendKeys(fundCode);
-        TestUtils.sleep1s();
-        searchIcon.click();
-        TestUtils.sleep1s();
+        if (StringUtils.isEmpty(fundCode)) {
+            fundCodeInput.clear();
+            fundCodeInput.sendKeys(fundCode);
+            TestUtils.sleep1s();
+            searchIcon.click();
+            TestUtils.sleep1s();
+        }
 
         Select selectBanks = new Select(selectBankId);
 
@@ -115,26 +120,47 @@ public class BuyPage extends BasePage {
 
         int size = bankOptions.size();
 
-        if (size > 1 && index < size){
-            bankOptions.get(index-1).click();
+        if (size==0){
+            throw new NoSuchElementException("未找到客户银行卡信息, 客户持有银行卡:"+size+"张");
+        }
+
+        if (size > 1 && bankIndex < size) {
+            WebElement bankOption = bankOptions.get(bankIndex - 1);
+            bankOption.click();
+            logger.info("选择%s张银行卡.银行卡号：%s.",bankIndex,bankOption.getText());
         }
 
         TestUtils.sleep1s();
 
         applyAmountInput.clear();
         applyAmountInput.sendKeys(applyAmount);
+        logger.info("购买净购买金额：%s",applyAmount);
 
         TestUtils.sleep1s();
         appTmInput.clear();
         appTmInput.sendKeys(appTm);
+
+        logger.info("下单时间：%s",appTm);
+
         TestUtils.sleep1s();
 
         submit();
     }
 
     private void submit() {
+
         confimBuyBtn.click();
-        wait.until(visibilityOf(okBtn)).click();
+        TestUtils.sleep2s();
+
+        for (WebElement okBtn: okBtnList){
+            okBtn.click();
+            logger.info(okBtn.getText());
+        }
+    }
+
+
+    private  void buy(){
+
     }
 
     public void orderInfo(String fundCode, String applyAmount) {
