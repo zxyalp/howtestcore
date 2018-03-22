@@ -45,6 +45,7 @@ public abstract class AbsBasePage {
         UrlBuilder builder = new UrlBuilder().create(host);
         builder.setPort(port);
         builder.setPath(path);
+        logger.info("打开URL地址：{0}",builder.toString());
         get(builder.toString());
     }
 

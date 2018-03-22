@@ -69,11 +69,22 @@ public class QueryUserPage extends BasePage {
     }
 
 
-    public void queryByCustNo(String custNo, int index) {
+    public void queryCustInfo(String custNo, String idNo){
+
+        if (StringUtils.isNotEmpty(custNo)){
+            queryByCustNo(custNo);
+        }
+        if (StringUtils.isNotEmpty(idNo)){
+            queryByIdNo(idNo);
+        }
+        throw new RuntimeException("queryCustInfo缺少参数.");
+    }
+
+    public void queryByCustNo(String custNo) {
         query(custNoInput, custNo);
     }
 
-    public void queryByIdNo(String idNo, int index) {
+    public void queryByIdNo(String idNo) {
         query(idNoInput, idNo);
     }
 

@@ -3,6 +3,7 @@ package com.howbuy.tms.counter;
 import com.howbuy.common.TestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -160,6 +161,10 @@ public class BuyPage extends BasePage {
 
 
     private  void buy(){
+        CounterHomePage homePage = PageFactory.initElements(driver,CounterHomePage.class);
+        homePage.openBuyPage();
+
+
 
     }
 
