@@ -31,49 +31,30 @@ public class OrderCheckPage extends BasePage {
 
     private String operatorNo;
 
-    @FindBy(xpath = "//dt[contains(text(), '业务审核')]")
-    @CacheLookup
-    private WebElement businessMenu;
 
-    @FindBy(xpath = "//dt[contains(text(), '交易审核(高端)')]")
-    @CacheLookup
-    private WebElement tradeCheckMenu;
+    /**
+     * 查询按钮
+     */
+    @FindBy(id = "queryBtn")
+    private WebElement queryBtn;
 
-    @FindBy(linkText = "柜台交易复核")
-    @CacheLookup
-    private WebElement counterCheckMenu;
-
-    @FindBy(how = How.CSS, using = "iframe[src*='countercheck.html']")
-    @CacheLookup
-    private WebElement checkFrame;
-
-    @FindBy(id = "rsList")
+    /**
+     * 查询结果列表
+     */
+    @FindBy(css = "#rsList > tr")
     private WebElement resultsList;
 
     /**
-     * 获取所有订单记录
+     * 获取待审核订单的操作员
      */
-    @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]")
-    private List<WebElement> allOrderList;
+    @FindBy(xpath = "#rsList > tr > td:nth-last-child(2)")
+    private List<WebElement> operatorList;
 
     /**
-     * 获取一条订单
+     * 复核按钮
      */
-    @FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]")
-    private WebElement firstOrder;
-
-    /**
-     * 获取首条复核按钮
-     */
-    @FindBys({@FindBy(xpath = "//tbody[@id='rsList']/tr[count(td)>8]"),
-            @FindBy(className = "reCheck")})
-    private WebElement firstCheckBtn;
-
-    /**
-     * 获取列表所有的订单明细记录
-     */
-    @FindBy(css = "#rsList td")
-    private List<WebElement> orderDetailList;
+    @FindBy(linkText = "复核")
+    private List<WebElement> reCheckBtnList;
 
     /**
      * 暂无审核记录元素
@@ -81,74 +62,63 @@ public class OrderCheckPage extends BasePage {
     @FindBy(css = "#rsList td:only-child")
     private WebElement noCheckOrder;
 
+
     /**
-     * 获取复核按钮
+     * 复核信息详情页面iframe
      */
-    @FindBy(className = "reCheck")
-    private List<WebElement> checkBtnList;
+    @FindBy(id = "layui-layer-iframe6")
+    private WebElement reCheckIframe;
+
 
     /**
      * 获取订单中基金代码
      */
-    @FindBy(xpath = "//*[@class='tabPop']//tr[1]/td[2]")
+    @FindBy(id = "fundCode")
     private WebElement fundCodeText;
 
-    @FindBy(xpath = "//*[@class='tabPop']//tr[2]/td[2]")
-    private WebElement appAmtText;
-
-    @FindBy(xpath = "//*[@class='tabPop']//tr[3]/td[2]")
-    private WebElement bankAcctText;
+    /**
+     * 获取申请净购买金额
+     */
+    @FindBy(id = "applyAmount")
+    private WebElement applyAmountText;
 
     /**
-     * 基金代码
+     * 获取银行卡信息
      */
-    @FindBy(css = "input[name=fundCode]")
-    private WebElement fundCodeInput;
+    @FindBy(id = "selectCustBank")
+    private WebElement selectCustBanks;
+
 
     /**
-     * 申购赎回业务输入金额、份额
+     * 复核信息表单
      */
-    @FindBy(css = "input[name=appAmt]")
-    private WebElement appAmtTextInput;
+    @FindBy(id = "checkResult")
+    private WebElement checkResult;
 
-    /**
-     * 输入银行卡尾号4号
-     */
-    @FindBy(css = "input[name=bankAcct]")
-    private WebElement bankAcctInput;
+    @FindBy(css = "#checkResult #searchFundId")
+    private WebElement searchFundId;
+
+    @FindBy(css = "#checkResult [name=appAmt]")
+    private WebElement appAmt;
 
     /**
      * 审核通过
      */
-    @FindBy(className = "layui-layer-btn0")
-    private WebElement approvedBtn;
+    @FindBy(id = "checkConfirmBtn")
+    private WebElement checkConfirmBtn;
 
     /**
      * 审核拒绝
      */
-    @FindBy(className = "layui-layer-btn1")
-    private WebElement refuseBtn;
+    @FindBy(className = "checkBackBtn")
+    private WebElement checkBackBtn;
 
 
     public OrderCheckPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10);
+        this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
-    public void get(String url, String operatorNo) {
-        this.operatorNo = operatorNo;
-        driver.get(url + "?operatorNo=" + operatorNo);
-        driver.manage().window().maximize();
-        initPage();
-    }
-
-    public void initPage() {
-        (wait.until(visibilityOf(businessMenu))).click();
-        (wait.until(visibilityOf(tradeCheckMenu))).click();
-        (wait.until(visibilityOf(counterCheckMenu))).click();
-        checkFrame = wait.until(visibilityOf(checkFrame));
-        driver.switchTo().frame(checkFrame);
-    }
 
 
     public WebElement getFirstOrder() {
@@ -162,45 +132,23 @@ public class OrderCheckPage extends BasePage {
         return wait.until(visibilityOf(firstOrder));
     }
 
-    public String getUrl(WebElement element) {
-        return element.getAttribute("_href");
-    }
-
-    public String getUrl() {
-        return getUrl(counterCheckMenu);
-    }
-
     /**
-     * 获取地址链接 operatorNo=
+     * 获取地址链接的操作员
      */
     public String getOperatorNo() {
-        return getUrl().split("operatorNo=")[1];
+        return driver.getCurrentUrl().split("operatorNo=")[1];
     }
 
     /**
-     * 获取所有待审核订单列表数量
-     */
-
-    public int size() {
-        TestUtils.sleep2s();
-        logger.info("待审核订单条数：" + allOrderList.size());
-        return allOrderList.size();
-    }
-
-    /**
-     * 获取首条订单子信息
-     */
-
-    public List<WebElement> getOrderDetail() {
-        return getFirstOrder().findElements(By.cssSelector("td"));
-    }
-
-    /**
-     * 获取订单操作员
+     * 获取待审核订单操作员
      */
 
     public String getOperator() {
-        return getOrderDetail().get(7).getText();
+
+        if (operatorList.size()==0){
+            return null;
+        }
+        return operatorList.get(0).getText();
     }
 
     /**

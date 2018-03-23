@@ -100,7 +100,6 @@ public class QueryUserPage extends BasePage {
         TestUtils.sleep1s();
         queryCustInfoBtn.click();
         try {
-            TestUtils.sleep2s();
             new WebDriverWait(driver,10).until(visibilityOf(custInfoList));
         }catch(TimeoutException n){
             throw new TimeoutException("未查询到客户："+cust,n);
@@ -114,9 +113,10 @@ public class QueryUserPage extends BasePage {
             count++;
             checkCust.click();
             if (count>3){
-                logger.info("循环点击次数："+count);
+                logger.info("超过点击次数，跳出循环."+count);
                 break;
             }
+            logger.info("循环点击次数："+count);
             TestUtils.sleep1s();
         }
     }
