@@ -73,11 +73,13 @@ public class QueryUserPage extends BasePage {
 
         if (StringUtils.isNotEmpty(custNo)){
             queryByCustNo(custNo);
+            return;
         }
         if (StringUtils.isNotEmpty(idNo)){
             queryByIdNo(idNo);
+            return;
         }
-        throw new RuntimeException("queryCustInfo缺少参数.");
+        throw new IllegalArgumentException("queryCustInfo参数为空.");
     }
 
     public void queryByCustNo(String custNo) {
@@ -90,25 +92,33 @@ public class QueryUserPage extends BasePage {
 
 
     private void query(WebElement element, String cust) throws NoSuchElementException,TimeoutException{
+        logger.info("客户信息查询:"+cust);
+        TestUtils.sleep1s();
+        wait.until(visibilityOf(element));
         element.clear();
         element.sendKeys(cust);
         TestUtils.sleep1s();
         queryCustInfoBtn.click();
         try {
-            new WebDriverWait(driver,5).until(visibilityOf(custInfoList));
-        }catch(NoSuchElementException n){
-            throw new NoSuchElementException("未查询到客户："+cust);
+            TestUtils.sleep2s();
+            new WebDriverWait(driver,10).until(visibilityOf(custInfoList));
+        }catch(TimeoutException n){
+            throw new TimeoutException("未查询到客户："+cust,n);
         }
 
         WebElement checkCust = checkCustList.get(0);
-        TestUtils.scrollTo(driver, checkCust.getLocation().getY());
-
-        do {
+        TestUtils.scrollTo(driver, checkCust.getLocation().getY()-50);
+        int count=0;
+        while (!checkCust.isSelected())
+        {
+            count++;
             checkCust.click();
-            TestUtils.sleep2s();
-        }while (checkCust.isSelected());
-
-        TestUtils.sleep2s();
+            if (count>3){
+                logger.info("循环点击次数："+count);
+                break;
+            }
+            TestUtils.sleep1s();
+        }
     }
 
 

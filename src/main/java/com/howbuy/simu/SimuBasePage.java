@@ -1,6 +1,6 @@
 package com.howbuy.simu;
 
-import com.howbuy.base.AbsBasePage;
+import com.howbuy.base.AbstractBasePage;
 import com.howbuy.common.TestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * @author yang.zhou
  * @date 2017/9/29
  */
-public class SimuBasePage extends AbsBasePage {
+public class SimuBasePage extends AbstractBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(SimuBasePage.class.getName());
 

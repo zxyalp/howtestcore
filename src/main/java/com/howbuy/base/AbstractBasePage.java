@@ -16,10 +16,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/1/15
  */
-public abstract class AbsBasePage {
+public abstract class AbstractBasePage {
 
 
-    private final Logger logger = LoggerFactory.getLogger(AbsBasePage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(AbstractBasePage.class.getName());
 
     public int timeOutInSeconds = 12;
 
@@ -41,17 +41,28 @@ public abstract class AbsBasePage {
         get(url,null);
     }
 
-    public  void open(String host, int port, String path){
+    public  void open(String host, int port, String path, String query){
         UrlBuilder builder = new UrlBuilder().create(host);
         builder.setPort(port);
         builder.setPath(path);
-        logger.info("打开URL地址：{0}",builder.toString());
+        if (query != null){
+            builder.setCustomQuery(query);
+        }
         get(builder.toString());
     }
 
-    public void open(int port, String path){
-        open(TestContext.TMS_HOST, port, path);
+    public void open(String host, int port, String path){
+        open(host, port, path, null);
     }
+
+    public void open(int port, String path){
+        open(TestContext.TMS_HOST, port, path, null);
+    }
+
+    public void open(int port, String path, String query){
+        open(TestContext.TMS_HOST, port, path, query);
+    }
+
 
     public void open(){
 

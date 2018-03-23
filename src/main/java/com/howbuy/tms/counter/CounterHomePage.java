@@ -46,34 +46,15 @@ public class CounterHomePage extends BasePage{
         wait = new WebDriverWait(driver, 10);
     }
 
-    public void openPage(String operatorNo) {
-        String path = counterPath+"?operatorNo="+operatorNo;
-        super.open(path);
-    }
 
-    public void openBuyPage(){
-        openPage("s001");
+    public void openBuyPage(String operatorNo){
+        openPage(counterPath, operatorNo);
         (wait.until(visibilityOf(highMenu))).click();
         (wait.until(visibilityOf(tradeMenu))).click();
         (wait.until(visibilityOf(buyMenu))).click();
         driver.switchTo().frame(buyFrame);
-        logger.info("进入柜台认申购买界面.");
+        logger.info("进入中台柜台认申购买界面.");
     }
-//    public void queryCustName(String custNo, String idNo, WebElement menu, WebElement frame) {
-//        (wait.until(visibilityOf(highMenu))).click();
-//        (wait.until(visibilityOf(tradeMenu))).click();
-//        (wait.until(visibilityOf(menu))).click();
-//        WebElement iFrame = wait.until(visibilityOf(frame));
-//        driver.switchTo().frame(iFrame);
-//        QueryUserPage queryUserPage = PageFactory.initElements(driver, QueryUserPage.class);
-//        if (custNo != null) {
-//            queryUserPage.queryByCustNo(custNo);
-//        }
-//        if (idNo != null) {
-//            queryUserPage.queryByIdNo(idNo);
-//        }
-//    }
-//
 
 
 }

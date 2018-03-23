@@ -1,6 +1,6 @@
 package com.howbuy.fds;
 
-import com.howbuy.base.AbsBasePage;
+import com.howbuy.base.AbstractBasePage;
 import com.howbuy.common.TestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  * @author yang.zhou
  * @date 2018/3/9
  */
-public class FdsBasePage extends AbsBasePage {
+public class FdsBasePage extends AbstractBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(FdsBasePage.class);
 
