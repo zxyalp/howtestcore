@@ -1,20 +1,17 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -29,8 +26,9 @@ public class OrderCheckPage extends BasePage {
 
     private final Logger logger = LoggerFactory.getLogger(OrderCheckPage.class.getName());
 
-    private String operatorNo;
+    private final String operator01 = "s001";
 
+    private final String operator02 = "s002";
 
     /**
      * 查询按钮
@@ -51,10 +49,16 @@ public class OrderCheckPage extends BasePage {
     private List<WebElement> operatorList;
 
     /**
-     * 复核按钮
+     * 复核按钮列表
      */
     @FindBy(linkText = "复核")
     private List<WebElement> reCheckBtnList;
+
+    /**
+     * 复核按钮
+     */
+    @FindBy(linkText = "复核")
+    private WebElement reCheckBtn;
 
     /**
      * 暂无审核记录元素
@@ -120,33 +124,44 @@ public class OrderCheckPage extends BasePage {
     }
 
 
-
-    public WebElement getFirstOrder() {
-        if (orderDetailList.size() < 2) {
-            try {
-                throw new Exception();
-            } catch (Exception e) {
-                throw new RuntimeException("无待审核记录.");
+    /**
+     * 订单复核
+     */
+    public void check() {
+        CounterHomePage homePage = PageFactory.initElements(driver, CounterHomePage.class);
+        homePage.openCheckPage(operator01);
+        try {
+            new WebDriverWait(driver, 5).until(visibilityOf(reCheckBtn));
+            while (reCheckBtnList.size() > 0) {
+                if (isSameOperator()) {
+                    homePage.openCheckPage(getOtherOperator());
+                }
+                logger.info("点击审核列表第一条订单复核按钮.");
+                reCheckBtnList.get(0).click();
+                checkOrderInfo();
+                TestUtils.sleep1s();
             }
+
+        } catch (TimeoutException t) {
+            throw new TimeoutException("没有待复核的订单.");
         }
-        return wait.until(visibilityOf(firstOrder));
     }
+
 
     /**
      * 获取地址链接的操作员
      */
-    public String getOperatorNo() {
+    private String getUrlOperatorNo() {
         return driver.getCurrentUrl().split("operatorNo=")[1];
     }
 
     /**
      * 获取待审核订单操作员
      */
+    private String getOperatorNo() {
 
-    public String getOperator() {
-
-        if (operatorList.size()==0){
-            return null;
+        if (operatorList.size() == 0) {
+            throw new NoSuchElementException("查询不到订单操作员");
         }
         return operatorList.get(0).getText();
     }
@@ -154,9 +169,8 @@ public class OrderCheckPage extends BasePage {
     /**
      * 判断订单审核的操作员是否订单创建人员是否是同一个人
      */
-
     public boolean isSameOperator() {
-        if (getOperator().equals(this.operatorNo)) {
+        if (getUrlOperatorNo().equals(getOperatorNo())) {
             logger.info("订单审核操作员与创建人员是同一个人");
             driver.switchTo().defaultContent();
             return true;
@@ -164,65 +178,32 @@ public class OrderCheckPage extends BasePage {
         return false;
     }
 
-    /**
-     * 如果返回另一个用户
-     */
 
+    /**
+     * 如果审核员与录入员相同，则返回另一个用户
+     */
     public String getOtherOperator() {
-        if (this.operatorNo.equals("s001")) {
-            return "s002";
+        if (operator01.equals(getOperatorNo())) {
+            return operator02;
         }
-        return "s001";
+        return operator01;
     }
+
 
     /**
-     * 复核第一条订单
+     * 订单审核详情页面.
      */
-
-    public void checkFirstOrder() {
-        TestUtils.sleep3s();
-        WebElement reviewCheckBtn = getFirstOrder().findElement(By.cssSelector(".reCheck"));
-        logger.info("点击复核操作按钮");
-        reviewCheckBtn.click();
-    }
-
-    /**
-     * 获取复核信息中基金代码(fundCode)、金额/份额(appAmt)、银行卡尾号4位(bankAcct);
-     */
-
-    public Map<String, String> getReviewInfo() {
-        appAmtText = wait.until(visibilityOf(appAmtText));
-        String appAmt = TestUtils.matcher(appAmtText.getText(), "\\.|\\d");
-        String bankAcct = TestUtils.matcher(bankAcctText.getText(), "\\d");
-        logger.info("提取金额、银行卡号后4位：" + appAmt + "," + bankAcct);
-        Map<String, String> fund = new HashMap<>();
-        fund.put("fundCode", fundCodeText.getText());
-        fund.put("appAmt", appAmt);
-        fund.put("bankAcct", bankAcct);
-        logger.info("获取复核信息中基金代码、金额/份额、银行卡尾号4位：" + fund.toString());
-        return fund;
-    }
-
-    public void checkOrder() {
-
-        Map<String, String> checkResult = getReviewInfo();
-        TestUtils.sleep1s();
-        fundCodeInput.sendKeys(checkResult.get("fundCode"));
-        TestUtils.sleep1s();
-        appAmtTextInput.sendKeys(checkResult.get("appAmt"));
-        TestUtils.sleep1s();
-        bankAcctInput.sendKeys(checkResult.get("bankAcct"));
-        TestUtils.sleep1s();
-    }
-
-    public void approvedByOrder() {
-        checkOrder();
-        approvedBtn.click();
-    }
-
-    public void refuseByOrder() {
-        checkOrder();
-        refuseBtn.click();
+    private void checkOrderInfo() {
+        wait.until(visibilityOf(reCheckIframe));
+        logger.info("进入复核订单详情页面.");
+        driver.switchTo().frame(reCheckIframe);
+        TestUtils.sleep2s();
+        logger.info("下拉滚动条到复核详情页面底部.");
+        TestUtils.scrollTo(driver, checkResult.getLocation().getY());
+        logger.info("点击审核通过按钮.");
+        checkConfirmBtn.click();
+        TestUtils.sleep2s();
+        driver.switchTo().defaultContent();
     }
 
 }

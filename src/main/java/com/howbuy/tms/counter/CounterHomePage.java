@@ -74,11 +74,11 @@ public class CounterHomePage extends BasePage{
         logger.info("进入柜台交易复核界面.");
     }
 
-    public void openUp(String operatorNo, WebElement iframe, WebElement... menus){
+    public void openUp(String operatorNo, WebElement frame, WebElement... menus){
         openPage(counterPath, operatorNo);
         for (WebElement menu:menus){
             (wait.until(visibilityOf(menu))).click();
         }
-        driver.switchTo().frame(iframe);
+        driver.switchTo().frame(frame);
     }
 }
