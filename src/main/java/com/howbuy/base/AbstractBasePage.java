@@ -21,7 +21,7 @@ public abstract class AbstractBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(AbstractBasePage.class.getName());
 
-    public int timeOutInSeconds = 12;
+    public int timeOutInSeconds = 8;
 
     public WebDriver driver;
 

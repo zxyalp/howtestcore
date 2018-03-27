@@ -65,7 +65,7 @@ public class CounterHomePage extends BasePage{
 
     public void openBuyPage(String operatorNo){
         openPage(counterPath, operatorNo);
-        openUp(operatorNo, buyFrame, businessMenu, tradeMenu, buyMenu);
+        openUp(operatorNo, buyFrame, highMenu, tradeMenu, buyMenu);
         logger.info("进入中台柜台认申购买界面.");
     }
 
@@ -80,5 +80,6 @@ public class CounterHomePage extends BasePage{
             (wait.until(visibilityOf(menu))).click();
         }
         driver.switchTo().frame(frame);
+        TestUtils.sleep2s();
     }
 }

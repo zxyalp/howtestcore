@@ -10,10 +10,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
 
 
 /**
@@ -30,6 +32,7 @@ public class OrderCheckPage extends BasePage {
 
     private final String operator02 = "s002";
 
+
     /**
      * 查询按钮
      */
@@ -40,12 +43,12 @@ public class OrderCheckPage extends BasePage {
      * 查询结果列表
      */
     @FindBy(css = "#rsList > tr")
-    private WebElement resultsList;
+    private WebElement resultsCust;
 
     /**
      * 获取待审核订单的操作员
      */
-    @FindBy(xpath = "#rsList > tr > td:nth-last-child(2)")
+    @FindBy(css = "#rsList > tr > td:nth-last-child(2)")
     private List<WebElement> operatorList;
 
     /**
@@ -70,7 +73,7 @@ public class OrderCheckPage extends BasePage {
     /**
      * 复核信息详情页面iframe
      */
-    @FindBy(id = "layui-layer-iframe6")
+    @FindBy(css = "iframe[src*='viewType']")
     private WebElement reCheckIframe;
 
 
@@ -128,15 +131,13 @@ public class OrderCheckPage extends BasePage {
      * 订单复核
      */
     public void check() {
-        CounterHomePage homePage = PageFactory.initElements(driver, CounterHomePage.class);
-        homePage.openCheckPage(operator01);
         try {
-            new WebDriverWait(driver, 5).until(visibilityOf(reCheckBtn));
+            queryApprovedOrdersList(operator01);
             while (reCheckBtnList.size() > 0) {
                 if (isSameOperator()) {
-                    homePage.openCheckPage(getOtherOperator());
+                    queryApprovedOrdersList(getOtherOperator());
                 }
-                logger.info("点击审核列表第一条订单复核按钮.");
+                logger.info(">>>审核列表的第一条订单复核按钮.");
                 reCheckBtnList.get(0).click();
                 checkOrderInfo();
                 TestUtils.sleep1s();
@@ -145,6 +146,20 @@ public class OrderCheckPage extends BasePage {
         } catch (TimeoutException t) {
             throw new TimeoutException("没有待复核的订单.");
         }
+    }
+
+
+    /**
+     * 查询待审核列表
+     */
+    public void queryApprovedOrdersList(String operatorNo){
+        CounterHomePage homePage = PageFactory.initElements(driver, CounterHomePage.class);
+        homePage.openCheckPage(operatorNo);
+        wait.until(visibilityOf(queryBtn)).click();
+        TestUtils.scrollTo(driver, queryBtn.getLocation().getY());
+        TestUtils.sleep1s();
+        wait.until(visibilityOf(reCheckBtn));
+        logger.info("####待审核列表中订单条数：{}",reCheckBtnList.size());
     }
 
 
@@ -172,7 +187,6 @@ public class OrderCheckPage extends BasePage {
     public boolean isSameOperator() {
         if (getUrlOperatorNo().equals(getOperatorNo())) {
             logger.info("订单审核操作员与创建人员是同一个人");
-            driver.switchTo().defaultContent();
             return true;
         }
         return false;
@@ -195,15 +209,15 @@ public class OrderCheckPage extends BasePage {
      */
     private void checkOrderInfo() {
         wait.until(visibilityOf(reCheckIframe));
-        logger.info("进入复核订单详情页面.");
+        logger.info(">>>进入复核订单详情页面.");
         driver.switchTo().frame(reCheckIframe);
         TestUtils.sleep2s();
-        logger.info("下拉滚动条到复核详情页面底部.");
+        logger.info(">>>下拉滚动条到复核详情页面底部.");
         TestUtils.scrollTo(driver, checkResult.getLocation().getY());
-        logger.info("点击审核通过按钮.");
+        logger.info(">>>点击审核通过按钮.");
         checkConfirmBtn.click();
         TestUtils.sleep2s();
-        driver.switchTo().defaultContent();
+        driver.switchTo().parentFrame();
     }
 
 }

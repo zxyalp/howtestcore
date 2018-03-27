@@ -13,6 +13,8 @@ public class BasePage extends AbstractBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(BasePage.class);
 
+    public int timeOutInSeconds = 5;
+
     public void open(String path, String query){
         super.open(TestContext.TMS_HOST, TestContext.TMS_COUNTER_PORT, path, query);
     }

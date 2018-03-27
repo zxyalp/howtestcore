@@ -83,6 +83,24 @@ public class BuyPage extends BasePage {
     private WebElement appTmInput;
 
     /**
+     * 经办人姓名
+     */
+    @FindBy(css = "[name=transactorName]")
+    private WebElement transactorNameInput;
+
+    /**
+     * 经办人证件类型
+     */
+    @FindBy(css = "[name=transactorIdType]")
+    private WebElement transactorIdTypeSelect;
+
+    /**
+     * 经办人证件号
+     */
+    @FindBy(css = "[name=transactorIdNo]")
+    private WebElement transactorIdNoInput;
+
+    /**
      * 提交按钮
      */
     @FindBy(id = "confimBuyBtn")
@@ -146,11 +164,23 @@ public class BuyPage extends BasePage {
         TestUtils.scrollTo(driver, appTmInput.getLocation().getY()-30);
 
         TestUtils.sleep1s();
+        }
 
-        submit();
+    /**
+     * 经办人信息填写，机构客户必填
+     */
+    private void transactorInfoForm(){
+        TestUtils.sleep1s();
+        logger.info("开始填写经办人信息.");
+        transactorNameInput.sendKeys("张三");
+        Select selectIdType = new Select(transactorIdTypeSelect);
+        selectIdType.selectByVisibleText("护照");
+        transactorIdNoInput.sendKeys("888888888882");
+        logger.info("经办人信息填写完成.");
+        TestUtils.sleep1s();
     }
 
-    private void submit() {
+    private void submitOrder() {
 
         confimBuyBtn.click();
         TestUtils.sleep2s();
@@ -162,30 +192,43 @@ public class BuyPage extends BasePage {
             }
             TestUtils.sleep1s();
         }
+        TestUtils.sleep3s();
+        logger.info("中台柜台购买提交成功.");
     }
 
-    public void buy(String custNo, String idNo, String fundCode, String applyAmount, String appTm, int bankIndex) {
+    public void buy(String custNo, String idNo, String disCodeText, String fundCode, String applyAmount, String appTm, int bankIndex) {
         CounterHomePage homePage = PageFactory.initElements(driver, CounterHomePage.class);
         homePage.openBuyPage("s001");
         QueryUserPage queryUserPage = PageFactory.initElements(driver, QueryUserPage.class);
-        queryUserPage.queryCustInfo(custNo, idNo);
+        queryUserPage.queryCustInfo(custNo, idNo, disCodeText);
         buyOrderForm(fundCode, applyAmount, appTm, bankIndex);
-
+        if (StringUtils.isNotEmpty(disCodeText)){
+            transactorInfoForm();
+        }
+        submitOrder();
     }
 
     public void buyByCustNo(String custNo, String fundCode, String applyAmount) {
-        buy(custNo, null, fundCode, applyAmount, "100000", 1);
+        buy(custNo, null, null,fundCode, applyAmount, "100000", 1);
     }
 
     public void buyByCustNo(String custNo, String fundCode, String applyAmount, int bankIndex) {
-        buy(custNo, null, fundCode, applyAmount, "100000", bankIndex);
+        buy(custNo, null, null, fundCode, applyAmount, "100000", bankIndex);
+    }
+
+    public void buyByCustNo(String custNo, String disCodeText, String fundCode, String applyAmount) {
+        buy(custNo, null, disCodeText, fundCode, applyAmount, "100000", 1);
     }
 
     public void buyByIdNo(String idNo, String fundCode, String applyAmount) {
-        buy(null, idNo, fundCode, applyAmount, "100000", 1);
+        buy(null, idNo, null,fundCode, applyAmount, "100000", 1);
     }
 
     public void buyByIdNo(String idNo, String fundCode, String applyAmount, int bankIndex) {
-        buy(null, idNo, fundCode, applyAmount, "100000", bankIndex);
+        buy(null, idNo, null,fundCode, applyAmount, "100000", bankIndex);
+    }
+
+    public void buyByIdNo(String idNo, String disCodeText, String fundCode, String applyAmount) {
+        buy(null, idNo, disCodeText, fundCode, applyAmount, "100000", 1);
     }
 }
