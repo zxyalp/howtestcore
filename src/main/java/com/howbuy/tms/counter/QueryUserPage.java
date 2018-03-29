@@ -72,6 +72,13 @@ public class QueryUserPage extends BasePage {
     private List<WebElement> appointmentInfoIndexs;
 
 
+    /**
+     * 客户未签署回款协议，请联系客户签署
+     */
+    @FindBy(xpath = "//div[contains(text(),'客户未签署回款协议')]/following-sibling::div/a")
+    private List<WebElement> tipBtnList;
+
+
     public QueryUserPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
@@ -128,6 +135,12 @@ public class QueryUserPage extends BasePage {
         while (!checkCust.isSelected()) {
             count++;
             checkCust.click();
+            TestUtils.sleep1s();
+            if (tipBtnList.size()>0){
+                logger.info("客户未签署回款协议弹框");
+                tipBtnList.get(0).click();
+            }
+
             if (count > 3) {
                 logger.info("超过点击次数，跳出循环." + count);
                 break;

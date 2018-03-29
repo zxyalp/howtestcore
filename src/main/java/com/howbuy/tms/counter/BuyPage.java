@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 
@@ -185,14 +186,17 @@ public class BuyPage extends BasePage {
         confimBuyBtn.click();
         TestUtils.sleep2s();
 
+        int count=0;
         while (okBtnList.size()>0){
             for (WebElement okBtn : okBtnList) {
                 logger.info("弹出框内容："+tips.getText());
                 okBtn.click();
             }
             TestUtils.sleep1s();
+            logger.info("count:"+(count++));
         }
-        TestUtils.sleep3s();
+        logger.info("time");
+        TestUtils.sleep2s();
         logger.info("中台柜台购买提交成功.");
     }
 

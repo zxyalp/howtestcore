@@ -1,11 +1,14 @@
 package com.howbuy.tms;
 
 import com.howbuy.common.TestContext;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * TestBaseCase
@@ -20,24 +23,31 @@ public class BaseTestCase {
     @BeforeClass
     public void setDriverClass() throws Exception {
         System.setProperty("webdriver.chrome.driver", TestContext.CHROME_DRIVER_PATH);
-        logger.info("========开始执行========");
-
+        logger.info(">>>Begin testing...");
     }
 
     @BeforeMethod
     public void setUp() throws Exception {
+        logger.info(">>>init chromedriver");
+        /**
+         ChromeOptions options = new ChromeOptions();
+         options.addArguments("headless");
+         driver = new ChromeDriver(options);
+         */
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        logger.info(">>>init complete.");
     }
 
     @AfterMethod
     public void tearDown() throws Exception {
-        logger.info("关闭浏览器.");
-//        driver.quit();
+        logger.info(">>>Quit Browser.");
+        driver.quit();
     }
 
     @AfterClass
     public void tearDownClass() throws Exception {
-        logger.info("==========测试结束==========");
+        logger.info(">>>Test End.");
     }
 
     public static int getRandom(int min, int max) {

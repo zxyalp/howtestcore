@@ -121,12 +121,12 @@ public class InvestorSignPageSimu extends SimuBasePage {
     public void confirmOfInvestors(){
         open();
         TestUtils.sleep1s();
-        diglog();
+        wait.until(invisibilityOf(dialog));
         logger.info("判断用户是否需要签订合格投资者认定书、电子签名约定书，以及风险测评："+isQualifiedAndRisk());
         if (isQualifiedInvestor()){
             checkInvestorBook();
         }
-        diglog();
+        wait.until(invisibilityOf(dialog));
         if (isElectronicSignature()){
             checkSignatureBook();
         }

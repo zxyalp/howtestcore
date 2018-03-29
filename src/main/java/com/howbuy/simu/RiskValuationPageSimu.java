@@ -63,6 +63,7 @@ public class RiskValuationPageSimu extends SimuBasePage {
             i++;
         }
         submitBtn.click();
+        TestUtils.sleep2s();
     }
 
 }

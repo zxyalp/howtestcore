@@ -20,14 +20,14 @@ public class BuyHighFund01Test extends BaseTestCase {
     /**
      * 单卡认购	认购028050，028051，代扣2笔、储蓄罐2笔
      */
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void buyHighFundTest001() throws Exception {
         LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
         login.login("320101199301018931", "qq1111");
         HighEndBuyPageSimu highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPageSimu.class);
 
-        highEndBuyPage.buyHighFund("028050", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("028051", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("371021", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("371021", randomMillAmount(1, 3));
         highEndBuyPage.buyHighFund("060330", randomMillAmount(1, 3));
         highEndBuyPage.buyHighFund("060628", randomMillAmount(1, 3));
 
@@ -38,7 +38,7 @@ public class BuyHighFund01Test extends BaseTestCase {
      * 单卡申购	申购246010，246020，代扣2笔，储蓄罐2笔
      */
     @Test(enabled = true)
-    public void buyHighFundTest003() throws Exception {
+    public void buyHighFundTest002() throws Exception {
         LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
         login.login("320101198401016971", "qq1111");
         HighEndBuyPageSimu highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPageSimu.class);
@@ -50,23 +50,42 @@ public class BuyHighFund01Test extends BaseTestCase {
     }
 
 
-
     /**
-     * 多卡认购	认购028050，028051，代扣2笔、储蓄罐2笔
+     * 储蓄罐支付
      */
     @Test(enabled = false)
-    public void buyHighFundTest005() throws Exception {
+    public void buyHighFundTest003() throws Exception {
         LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
         login.login("320101198501013276", "qq1111");
         HighEndBuyPageSimu highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPageSimu.class);
 
-        highEndBuyPage.buyHighFund("246010", "800000");
-        highEndBuyPage.buyHighFund("246010", "2200000", 2);
+        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
 
-        highEndBuyPage.buyHighFund("371021", "500000");
-        highEndBuyPage.buyHighFund("371021", "2800000", 2);
+        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
+
     }
 
 
+
+    /**
+     * 储蓄罐2笔
+     */
+    @Test(enabled = true)
+    public void buyHighFundTest004() throws Exception {
+        LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
+        login.login("320101198901017575", "qq1111");
+        HighEndBuyPageSimu highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPageSimu.class);
+
+        highEndBuyPage.buyPiggyPay("246010", "20000");
+        highEndBuyPage.buyPiggyPay("246010", "30000");
+        highEndBuyPage.buyPiggyPay("246020", "30000");
+        highEndBuyPage.buyPiggyPay("246020", "40000");
+    }
 
 }
