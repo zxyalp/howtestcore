@@ -54,29 +54,40 @@ public class BuyFundTest01 extends BaseTestCase {
     @Test(enabled = true)
     public void buyFundTest04() throws Exception {
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyByIdNo("320101198401019216", "S33873", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198401019216", "S33873", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198401019216", "S38010", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198401019216", "S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114","机构", "S33873", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","S33873", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","S37842", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","S37842", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","P12596", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","P12596", randomMillAmount(1, 3));
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyFundTest05() throws Exception {
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyByIdNo("320101197601014677", "S37842", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101197601014677", "S37842", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101197601014677", "P12596", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101197601014677", "P12596", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "S33873", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "S33873", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "S37842", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "S37842", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "P12596", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "P12596", randomMillAmount(1, 3));
     }
 
     @Test(enabled = true)
     public void buyFundTest06() throws Exception {
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyByIdNo("320101198701012817", "S21582", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198701012817", "S21582", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198701012817", "S21582", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198701012817", "S38010", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198701012817", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "S21582", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "S21582", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "S33873", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "S33873", randomMillAmount(1, 3));
+
+
 
     }
 

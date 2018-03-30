@@ -125,7 +125,7 @@ public class SignAndRiskTest05 extends BaseTestCase {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
         tradePage.signAndRiskValuation("310101198001011694");
     }
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void signAndRiskTest24() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
         tradePage.signAndRiskValuation("310101198001011934");

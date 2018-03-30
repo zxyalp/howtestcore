@@ -18,37 +18,40 @@ public class BuyFundTest02 extends BaseTestCase {
     @Test(enabled = true)
     public void buyFundTest() throws Exception {
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyByIdNo("320101198401019216", "S33873", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198401019216", "S33873", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198401019216", "S38010", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198401019216", "S38010", randomMillAmount(1, 3));
-    }
-
-    @Test(enabled = true)
-    public void buyFundTest01() throws Exception {
-        BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyByIdNo("320101197601014677", "S37842", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101197601014677", "S37842", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101197601014677", "P12596", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101197601014677", "P12596", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构","246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "246020", randomMillAmount(1, 3));
     }
 
     @Test(enabled = true)
     public void buyFundTest02() throws Exception {
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyByIdNo("320101198701012817", "S21582", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198701012817", "S21582", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198701012817", "S21582", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198701012817", "S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101199701016775", "246020", randomMillAmount(1, 3));
     }
+
 
     @Test(enabled = true)
     public void buyFundTest03() throws Exception {
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyByIdNo("320101198701012956", "S29837", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101198701012956", "S29837", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101197601016066", "S29396", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320101197601016066", "S29396", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320101198401016971", "246020", randomMillAmount(1, 3));
     }
-
 }

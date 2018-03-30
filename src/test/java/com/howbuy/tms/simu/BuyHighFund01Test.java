@@ -51,12 +51,12 @@ public class BuyHighFund01Test extends BaseTestCase {
 
 
     /**
-     * 储蓄罐支付
+     * 专户代扣支付
      */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest003() throws Exception {
         LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
-        login.login("320101198501013276", "qq1111");
+        login.login("320101197301014966", "qq1111");
         HighEndBuyPageSimu highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPageSimu.class);
 
         highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
