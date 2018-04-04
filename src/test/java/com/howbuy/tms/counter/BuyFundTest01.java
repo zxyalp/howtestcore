@@ -86,9 +86,6 @@ public class BuyFundTest01 extends BaseTestCase {
         buyPage.buyByIdNo("320101199701016775", "S38010", randomMillAmount(1, 3));
         buyPage.buyByIdNo("320101199701016775", "S33873", randomMillAmount(1, 3));
         buyPage.buyByIdNo("320101199701016775", "S33873", randomMillAmount(1, 3));
-
-
-
     }
 
     @Test(enabled = false)
