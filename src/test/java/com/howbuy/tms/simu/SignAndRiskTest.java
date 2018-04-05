@@ -15,69 +15,18 @@ public class SignAndRiskTest extends BaseTestCase {
     @Test
     public void signAndRiskTest() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101199101016413");
+        tradePage.signAndRiskValuation("330100197901016848");
     }
-
-    @Test
-    public void signAndRiskTest00() throws Exception {
-        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101198901017583");
-    }
-
 
     @Test
     public void signAndRiskTest01() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101197401019721");
+        tradePage.signAndRiskValuation("330100198101011437");
     }
 
     @Test
     public void signAndRiskTest02() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101198501013276");
+        tradePage.signAndRiskValuation("330100198701015829");
     }
-
-    @Test
-    public void signAndRiskTest03() throws Exception {
-        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("32010119790101170X");
-    }
-
-    @Test
-    public void signAndRiskTest04() throws Exception {
-        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101197101013782");
-    }
-
-    @Test
-    public void signAndRiskTest05() throws Exception {
-        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101198401019216");
-    }
-
-    @Test
-    public void signAndRiskTest06() throws Exception {
-        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("32010119940101214X");
-    }
-
-    @Test
-    public void signAndRiskTest07() throws Exception {
-        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101199601014289");
-    }
-
-    @Test
-    public void signAndRiskTest08() throws Exception {
-        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101198901017575");
-    }
-
-    @Test
-    public void signAndRiskTest09() throws Exception {
-        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
-        tradePage.signAndRiskValuation("320101199301015407");
-    }
-
-
 }
