@@ -15,27 +15,27 @@ public class SignAndRiskTest04 extends BaseTestCase {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
         tradePage.signAndRiskValuation("320101199101016413");
     }
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void signAndRiskTest02() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
         tradePage.signAndRiskValuation("320101198901017583");
     }
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void signAndRiskTest03() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
         tradePage.signAndRiskValuation("320101197401019721");
     }
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void signAndRiskTest04() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
         tradePage.signAndRiskValuation("320101198501013276");
     }
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void signAndRiskTest05() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
         tradePage.signAndRiskValuation("32010119790101170X");
     }
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void signAndRiskTest06() throws Exception {
         OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
         tradePage.signAndRiskValuation("320101197101013782");
