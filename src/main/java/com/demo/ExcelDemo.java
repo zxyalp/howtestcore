@@ -12,9 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * @author yang.zhou
@@ -207,6 +205,10 @@ public class ExcelDemo {
         InputStream inp = null;
         Workbook wb = null;
 
+        List<String> title = null;
+
+        List<List<String>> rowsList = new ArrayList<>();
+
         try{
             inp = new FileInputStream("test.xlsx");
             wb = WorkbookFactory.create(inp);
@@ -214,12 +216,9 @@ public class ExcelDemo {
             Sheet sheet = wb.getSheetAt(0);
 
             for (Row row:sheet){
-                System.out.println("第一列："+row.getFirstCellNum());
-                System.out.println("最后一列："+row.getLastCellNum());
-                System.out.println("得到行数"+row.getRowNum());
-                if (row.getRowNum()==0){
-                    continue;
-                }
+
+                title = new  ArrayList<>();
+                List<String> rowList = new ArrayList<>();
 
                 for(Cell cell: row){
 
@@ -264,14 +263,22 @@ public class ExcelDemo {
                             break;
                         default:
                     }
+
+                    if (row.getRowNum()==0){
+                        title.add(cellValue);
+                    }
+
+                    rowList.add(cellValue);
+
                     System.out.println("CellNum:"+cell.getColumnIndex()+"=>CellValue:"+cellValue);
                 }
+
+                rowsList.add(rowList);
             }
 
             try (FileOutputStream fileOut = new FileOutputStream("test1.xlsx")) {
                 wb.write(fileOut);
             }
-
 
         }finally {
 
