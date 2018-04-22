@@ -25,20 +25,20 @@ public class ExcelDemo {
     private XSSFRow row;
     private String filePath;
 
-    public ExcelDemo(String Path, String SheetName) throws Exception{
+    public ExcelDemo(String Path, String SheetName) throws Exception {
 
         FileInputStream excelFile;
         try {
             excelFile = new FileInputStream(Path);
 
             workbook = new XSSFWorkbook(excelFile);
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
     }
 
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
 //         book97();
 //        readCell();
@@ -46,7 +46,7 @@ public class ExcelDemo {
 
     }
 
-    public static void booktest() throws Exception{
+    public static void booktest() throws Exception {
         Workbook excel97 = new HSSFWorkbook();
         FileOutputStream fileOut = new FileOutputStream("demo.xls");
 
@@ -62,7 +62,7 @@ public class ExcelDemo {
         fileOut.close();
     }
 
-    public static void book97() throws Exception{
+    public static void book97() throws Exception {
         Workbook wb = new XSSFWorkbook();
 
         CreationHelper creationHelper = wb.getCreationHelper();
@@ -70,7 +70,7 @@ public class ExcelDemo {
         Sheet sheet1 = wb.createSheet("sheet1");
         String name = WorkbookUtil.createSafeSheetName("[*new sheet2/]");
         Sheet sheet2 = wb.createSheet(name);
-        Row row = sheet.createRow((short)0);
+        Row row = sheet.createRow((short) 0);
         Cell cell = row.createCell(0);
         cell.setCellValue(1);
         row.createCell(1).setCellValue(1.2);
@@ -141,10 +141,10 @@ public class ExcelDemo {
     }
 
 
-    public static void readCell() throws Exception{
+    public static void readCell() throws Exception {
         InputStream inp = null;
 
-        try{
+        try {
             inp = new FileInputStream("test.xlsx");
             Workbook wb = WorkbookFactory.create(inp);
 
@@ -152,25 +152,25 @@ public class ExcelDemo {
 
             Iterator<Row> rowIterable = sheet.rowIterator();
 
-            while (rowIterable.hasNext()){
+            while (rowIterable.hasNext()) {
                 Row r = rowIterable.next();
-                if (r==null){
+                if (r == null) {
                     System.out.println("Empty Row");
                     continue;
                 }
 
-                for(int i=r.getFirstCellNum();i<r.getLastCellNum();i++){
+                for (int i = r.getFirstCellNum(); i < r.getLastCellNum(); i++) {
                     Cell cell = r.getCell(i);
                     String cellValue = "";
 
-                    switch(cell.getCellTypeEnum()){
+                    switch (cell.getCellTypeEnum()) {
                         case STRING:
                             cellValue = cell.getRichStringCellValue().getString();
                             break;
                         case NUMERIC:
-                            if(DateUtil.isCellDateFormatted(cell)){
+                            if (DateUtil.isCellDateFormatted(cell)) {
                                 cellValue = cell.getDateCellValue().toString();
-                            }else {
+                            } else {
                                 cellValue = String.valueOf(cell.getNumericCellValue());
                             }
                             break;
@@ -185,14 +185,14 @@ public class ExcelDemo {
                         default:
                     }
 
-                    System.out.println("CellNum:"+i+"=>CellValue:"+cellValue);
+                    System.out.println("CellNum:" + i + "=>CellValue:" + cellValue);
                 }
             }
 
 
-        }finally {
+        } finally {
 
-            if (inp!=null){
+            if (inp != null) {
                 inp.close();
             }
         }
@@ -200,7 +200,7 @@ public class ExcelDemo {
 
     }
 
-    public static void readForCell() throws Exception{
+    public static void readForCell() throws Exception {
 
         InputStream inp = null;
         Workbook wb = null;
@@ -209,22 +209,22 @@ public class ExcelDemo {
 
         List<List<String>> rowsList = new ArrayList<>();
 
-        try{
+        try {
             inp = new FileInputStream("test.xlsx");
             wb = WorkbookFactory.create(inp);
 
             Sheet sheet = wb.getSheetAt(0);
 
-            for (Row row:sheet){
+            for (Row row : sheet) {
 
-                title = new  ArrayList<>();
+                title = new ArrayList<>();
                 List<String> rowList = new ArrayList<>();
 
-                for(Cell cell: row){
+                for (Cell cell : row) {
 
                     String cellValue = "";
 
-                    if (cell.getColumnIndex() == 11){
+                    if (cell.getColumnIndex() == 11) {
                         CellStyle cellStyle = wb.createCellStyle();
                         cellStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
                         cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
@@ -242,14 +242,14 @@ public class ExcelDemo {
                         cell.setCellValue("FALSE");
                     }
 
-                    switch(cell.getCellTypeEnum()){
+                    switch (cell.getCellTypeEnum()) {
                         case STRING:
                             cellValue = cell.getRichStringCellValue().getString();
                             break;
                         case NUMERIC:
-                            if(DateUtil.isCellDateFormatted(cell)){
+                            if (DateUtil.isCellDateFormatted(cell)) {
                                 cellValue = cell.getDateCellValue().toString();
-                            }else {
+                            } else {
                                 cellValue = String.valueOf(cell.getNumericCellValue());
                             }
                             break;
@@ -264,13 +264,13 @@ public class ExcelDemo {
                         default:
                     }
 
-                    if (row.getRowNum()==0){
+                    if (row.getRowNum() == 0) {
                         title.add(cellValue);
                     }
 
                     rowList.add(cellValue);
 
-                    System.out.println("CellNum:"+cell.getColumnIndex()+"=>CellValue:"+cellValue);
+                    System.out.println("CellNum:" + cell.getColumnIndex() + "=>CellValue:" + cellValue);
                 }
 
                 rowsList.add(rowList);
@@ -280,13 +280,13 @@ public class ExcelDemo {
                 wb.write(fileOut);
             }
 
-        }finally {
+        } finally {
 
-            if (inp!=null){
+            if (inp != null) {
                 inp.close();
             }
 
-            if (wb != null){
+            if (wb != null) {
                 wb.close();
             }
 

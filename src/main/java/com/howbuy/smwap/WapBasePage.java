@@ -1,9 +1,9 @@
 package com.howbuy.smwap;
 
 import com.howbuy.base.AbstractBasePage;
+import org.openqa.selenium.Dimension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openqa.selenium.Dimension;
 
 
 /**

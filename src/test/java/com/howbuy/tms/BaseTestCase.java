@@ -1,12 +1,14 @@
 package com.howbuy.tms;
 
 import com.howbuy.common.TestContext;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +21,24 @@ public class BaseTestCase {
 
     protected WebDriver driver;
 
+    public static int getRandom(int min, int max) {
+        return (int) (min + Math.random() * (Math.abs(max - min) + 1));
+    }
+
+    /**
+     * 生成随机的百万金额
+     *
+     * @param minAmount 最小金额，单位：百万
+     * @param maxAmount 最大金额，单位：百万
+     * @return
+     */
+    public static String randomMillAmount(int minAmount, int maxAmount) {
+        return String.valueOf(getRandom(minAmount * 100, maxAmount * 100) * 10000);
+    }
+
+    public static String randomAmount(int minAmount, int maxAmount) {
+        return String.valueOf(getRandom(minAmount, maxAmount) * 10000);
+    }
 
     @BeforeClass
     public void setDriverClass() throws Exception {
@@ -46,25 +66,6 @@ public class BaseTestCase {
     @AfterClass
     public void tearDownClass() throws Exception {
         logger.info(">>>Test End.");
-    }
-
-    public static int getRandom(int min, int max) {
-        return (int) (min + Math.random() * (Math.abs(max - min) + 1));
-    }
-
-    /**
-     * 生成随机的百万金额
-     *
-     * @param minAmount 最小金额，单位：百万
-     * @param maxAmount 最大金额，单位：百万
-     * @return
-     */
-    public static String randomMillAmount(int minAmount, int maxAmount) {
-        return String.valueOf(getRandom(minAmount * 100, maxAmount * 100) * 10000);
-    }
-
-    public static String randomAmount(int minAmount, int maxAmount) {
-        return String.valueOf(getRandom(minAmount, maxAmount) * 10000);
     }
 
 }

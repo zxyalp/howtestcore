@@ -1,22 +1,18 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
-import com.howbuy.tms.TmsBasePage;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.support.ui.Select;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.List;
-
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -136,7 +132,7 @@ public class QueryUserPage extends BasePage {
             count++;
             checkCust.click();
             TestUtils.sleep1s();
-            if (tipBtnList.size()>0){
+            if (tipBtnList.size() > 0) {
                 logger.info("客户未签署回款协议弹框");
                 tipBtnList.get(0).click();
             }

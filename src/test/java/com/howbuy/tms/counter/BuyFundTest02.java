@@ -19,11 +19,11 @@ public class BuyFundTest02 extends BaseTestCase {
     public void buyFundTest() throws Exception {
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
         buyPage.buyByIdNo("320497513643114", "机构", "246010", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","246010", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","246010", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "246010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "246010", randomMillAmount(1, 3));
         buyPage.buyByIdNo("320497513643114", "机构", "246020", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","246020", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "246020", randomMillAmount(1, 3));
         buyPage.buyByIdNo("320497513643114", "机构", "246020", randomMillAmount(1, 3));
         buyPage.buyByIdNo("320497513643114", "机构", "246020", randomMillAmount(1, 3));
     }

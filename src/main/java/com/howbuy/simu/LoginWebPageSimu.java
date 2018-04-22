@@ -2,15 +2,14 @@ package com.howbuy.simu;
 
 
 import com.howbuy.common.TestContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.howbuy.common.TestUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.howbuy.common.TestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 

@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
  */
 public class POIDemo {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         // xls
         Workbook excel1997 = new HSSFWorkbook();

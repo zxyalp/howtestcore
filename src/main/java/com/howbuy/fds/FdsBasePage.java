@@ -14,7 +14,7 @@ public class FdsBasePage extends AbstractBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(FdsBasePage.class);
 
-    public void open(String path){
+    public void open(String path) {
         super.open(TestContext.TP_HOST, TestContext.FDS_CONSOLE_PORT, path);
     }
 }

@@ -14,7 +14,7 @@ public class PayCheckTest extends BaseTestCase {
 
 
     @Test(enabled = true)
-    public void loginTest() throws Exception{
+    public void loginTest() throws Exception {
         LoginFdsPageFds login = PageFactory.initElements(driver, LoginFdsPageFds.class);
         login.login("s001", "1");
 

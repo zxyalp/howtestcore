@@ -4,7 +4,6 @@ import com.howbuy.common.TestUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -16,7 +15,7 @@ import java.util.List;
  * @author yang.zhou
  * @date 2018/3/9
  */
-public class PayCheckPage extends FdsBasePage{
+public class PayCheckPage extends FdsBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(PayCheckPage.class);
 
@@ -35,25 +34,24 @@ public class PayCheckPage extends FdsBasePage{
     private WebElement pmtInstSelect;
 
 
-
-    public PayCheckPage(WebDriver driver){
+    public PayCheckPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
 
     @Override
-    public void open(){
+    public void open() {
         super.open(cpPath);
     }
 
-    public void select(){
+    public void select() {
 
         open();
 
         TestUtils.sleep2s();
 
-        System.out.println("位置："+payCheckLink.getLocation().getY());
+        System.out.println("位置：" + payCheckLink.getLocation().getY());
 
         TestUtils.scrollTo(driver, 200);
 
@@ -63,11 +61,11 @@ public class PayCheckPage extends FdsBasePage{
 
         WebElement selected = pmtCode.getFirstSelectedOption();
 
-        System.out.println("默认："+selected.getText());
+        System.out.println("默认：" + selected.getText());
 
         List<WebElement> elements = pmtCode.getAllSelectedOptions();
 
-        for (WebElement element:elements){
+        for (WebElement element : elements) {
 
             System.out.println(element.getText());
         }

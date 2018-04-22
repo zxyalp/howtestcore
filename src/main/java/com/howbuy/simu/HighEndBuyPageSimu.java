@@ -2,8 +2,6 @@ package com.howbuy.simu;
 
 import com.howbuy.common.PaymentType;
 import com.howbuy.common.TestUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -11,12 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 
 /**
@@ -223,7 +221,7 @@ public class HighEndBuyPageSimu extends SimuBasePage {
     }
 
     @Override
-    public void open(){
+    public void open() {
         super.open(buyListPath);
     }
 
@@ -245,12 +243,12 @@ public class HighEndBuyPageSimu extends SimuBasePage {
                 TestUtils.sleep1s();
                 buyIndexBtn.click();
             } catch (NoSuchElementException n) {
-                TestUtils.screenshort(driver, fundCode+"产品无法购买.");
-                throw new RuntimeException("产品"+fundCode+"无法购买.");
+                TestUtils.screenshort(driver, fundCode + "产品无法购买.");
+                throw new RuntimeException("产品" + fundCode + "无法购买.");
             }
         } catch (NoSuchElementException e) {
-            TestUtils.screenshort(driver, fundCode+"查询失败.");
-            throw new RuntimeException("查询产品失败："+fundCode);
+            TestUtils.screenshort(driver, fundCode + "查询失败.");
+            throw new RuntimeException("查询产品失败：" + fundCode);
         }
 
     }
@@ -453,7 +451,7 @@ public class HighEndBuyPageSimu extends SimuBasePage {
     }
 
 
-    private Boolean isRiskTip(){
+    private Boolean isRiskTip() {
         try {
             new WebDriverWait(driver, 2).until(visibilityOf(riskTipText));
             logger.info("风险承受能力提示.");

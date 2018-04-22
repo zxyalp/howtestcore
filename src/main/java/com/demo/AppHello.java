@@ -2,7 +2,6 @@ package com.demo;
 
 
 import com.howbuy.common.DateUtils;
-import org.apache.http.client.utils.URIBuilder;
 
 /**
  * @author yang.zhou

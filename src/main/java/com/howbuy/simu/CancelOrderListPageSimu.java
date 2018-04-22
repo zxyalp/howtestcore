@@ -51,24 +51,24 @@ public class CancelOrderListPageSimu extends SimuBasePage {
     private WebElement successText;
 
 
-    public CancelOrderListPageSimu(WebDriver driver){
+    public CancelOrderListPageSimu(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
 
     @Override
-    public void open(){
+    public void open() {
         super.open(cancelListPath);
     }
 
 
-    public void cancelOrder(){
+    public void cancelOrder() {
         open();
         try {
             wait.until(invisibilityOf(dialog));
             TestUtils.sleep2s();
-            for (;cancelList.size() > 0;){
+            for (; cancelList.size() > 0; ) {
                 addStyle(cancelList.get(0));
                 cancelList.get(0).click();
                 txPasswordInput = wait.until(visibilityOf(txPasswordInput));
@@ -84,7 +84,7 @@ public class CancelOrderListPageSimu extends SimuBasePage {
                 TestUtils.sleep2s();
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             TestUtils.screenshort(driver, "撤单失败.");
             throw new RuntimeException(e);
         }

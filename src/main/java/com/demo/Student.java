@@ -5,11 +5,11 @@ public class Student {
     private int age;
     private String grade;
 
-    public Student(){
+    public Student() {
 
     }
 
-    public Student(String name, int age, String grade){
+    public Student(String name, int age, String grade) {
         this.name = name;
         this.age = age;
         this.grade = grade;
@@ -20,20 +20,20 @@ public class Student {
         return name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getGrade() {
+        return grade;
     }
 
     public void setGrade(String grade) {
@@ -42,6 +42,6 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student [name="+name+", age="+age+", grade="+grade+"]";
+        return "Student [name=" + name + ", age=" + age + ", grade=" + grade + "]";
     }
 }

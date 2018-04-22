@@ -16,10 +16,6 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(DateUtils.class.getName());
-
-    private static DateUtils dateUtils = null;
-
     public static final String TIME_FORMAT_A = "yyyy-MM-dd HH:mm:ss";
     public static final String TIME_FORMAT_B = "yyyyMMddHHmmss";
     public static final String TIME_FORMAT_C = "yyyy-MM-dd HH:mm:ss:SSS";
@@ -37,6 +33,8 @@ public class DateUtils {
     public static final String DATE_FORMAT_B = "yyMMdd";
     public static final String DATE_FORMAT_APM = "yyyy/MM/dd HH:mm a Z";
     public static final String DATE_FORMAT_A = "yyyy/MM/dd";
+    private static final Logger logger = LoggerFactory.getLogger(DateUtils.class.getName());
+    private static DateUtils dateUtils = null;
 
 
     private DateUtils() {

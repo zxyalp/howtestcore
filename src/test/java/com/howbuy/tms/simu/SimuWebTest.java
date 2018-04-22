@@ -3,10 +3,10 @@ package com.howbuy.tms.simu;
 import com.howbuy.simu.HighEndBuyPageSimu;
 import com.howbuy.simu.LoginWebPageSimu;
 import com.howbuy.tms.BaseTestCase;
+import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 /**
  * Created by yang.zhou on 2017/9/29.

@@ -31,9 +31,9 @@ public class LoginFdsPageFds extends FdsBasePage {
     @FindBy(css = "input[name='Submit']")
     private WebElement submitBtn;
 
-    public LoginFdsPageFds(WebDriver driver){
+    public LoginFdsPageFds(WebDriver driver) {
         this.driver = driver;
-        wait = new  WebDriverWait(driver, timeOutInSeconds);
+        wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class LoginFdsPageFds extends FdsBasePage {
     }
 
 
-    public void login(String userName, String password){
+    public void login(String userName, String password) {
         open();
         userNameInput = wait.until(ExpectedConditions.visibilityOf(userNameInput));
         addStyle(userNameInput);

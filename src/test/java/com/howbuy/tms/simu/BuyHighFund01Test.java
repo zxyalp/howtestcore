@@ -72,7 +72,6 @@ public class BuyHighFund01Test extends BaseTestCase {
     }
 
 
-
     /**
      * 储蓄罐2笔
      */

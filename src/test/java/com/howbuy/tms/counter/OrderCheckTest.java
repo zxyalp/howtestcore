@@ -1,9 +1,9 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.tms.BaseTestCase;
+import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 /**

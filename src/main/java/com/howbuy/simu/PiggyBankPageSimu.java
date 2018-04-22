@@ -1,19 +1,20 @@
 package com.howbuy.simu;
 
 import com.howbuy.common.TestUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 /**
  * 储蓄罐存入
+ *
  * @author yang.zhou
  * @date 2017/11/9
  */
@@ -39,7 +40,7 @@ public class PiggyBankPageSimu extends SimuBasePage {
      * 取活期
      */
     @FindBy(linkText = "取活期")
-    private  WebElement withDrawBtn;
+    private WebElement withDrawBtn;
 
     /**
      * 存入金额
@@ -72,39 +73,39 @@ public class PiggyBankPageSimu extends SimuBasePage {
     private WebElement depositSuccess;
 
 
-    public PiggyBankPageSimu(WebDriver driver){
+    public PiggyBankPageSimu(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
     @Override
-    public void open(){
+    public void open() {
         super.open(piggyPath);
     }
 
-    public void depositInform(String amount){
+    public void depositInform(String amount) {
         wait.until(visibilityOf(depositBtn)).click();
         TestUtils.sleep1s();
         wait.until(visibilityOf(amountText)).sendKeys(amount);
-        TestUtils.scrollTo(driver,nextStep.getLocation().getY());
+        TestUtils.scrollTo(driver, nextStep.getLocation().getY());
         nextStep.click();
     }
 
-    public void confirmDepositInfo(){
+    public void confirmDepositInfo() {
         wait.until(invisibilityOf(dialog));
         tradePasswordText.sendKeys("121212");
         confirmBtn.click();
         wait.until(invisibilityOf(dialog));
     }
 
-    public void savingBox(String amount){
+    public void savingBox(String amount) {
         open();
         depositInform(amount);
         confirmDepositInfo();
         try {
             wait.until(invisibilityOf(dialog));
             wait.until(visibilityOf(depositSuccess));
-        }catch (TimeoutException t){
+        } catch (TimeoutException t) {
             logger.error("储蓄罐存入活期失败.", t);
         }
         logger.info("存入活期成功");

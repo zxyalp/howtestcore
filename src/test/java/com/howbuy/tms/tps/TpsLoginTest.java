@@ -10,13 +10,13 @@ import org.testng.annotations.Test;
 /**
  * Created by yang.zhou on 2017/9/29.
  */
-public class TpsLoginTest extends BaseTestCase{
+public class TpsLoginTest extends BaseTestCase {
 
     private final Logger logger = LoggerFactory.getLogger(TpsLoginTest.class);
 
 
     @Test(enabled = true)
-    public void loginTest() throws Exception{
+    public void loginTest() throws Exception {
         LoginFdsPageFds login = PageFactory.initElements(driver, LoginFdsPageFds.class);
         login.login("s001", "1");
     }

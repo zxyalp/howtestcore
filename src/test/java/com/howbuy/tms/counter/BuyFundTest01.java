@@ -54,14 +54,14 @@ public class BuyFundTest01 extends BaseTestCase {
     @Test(enabled = true)
     public void buyFundTest04() throws Exception {
         BuyPage buyPage = PageFactory.initElements(driver, BuyPage.class);
-        buyPage.buyByIdNo("320497513643114","机构", "S33873", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","S33873", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","S38010", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","S38010", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","S37842", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","S37842", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","P12596", randomMillAmount(1, 3));
-        buyPage.buyByIdNo("320497513643114", "机构","P12596", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "S33873", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "S33873", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "S38010", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "S37842", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "S37842", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "P12596", randomMillAmount(1, 3));
+        buyPage.buyByIdNo("320497513643114", "机构", "P12596", randomMillAmount(1, 3));
     }
 
     @Test(enabled = true)

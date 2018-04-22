@@ -10,9 +10,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
-
 import java.util.concurrent.TimeUnit;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 
 /**
@@ -22,6 +22,25 @@ import java.util.concurrent.TimeUnit;
 public class CnblogDemo {
     WebDriver driver;
 
+    private static void sleep3s() {
+        sleep3s(3000);
+    }
+
+    public static void sleep3s(long s) {
+        try {
+            Thread.sleep(s);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void scrollTo(WebDriver driver, int ypos) {
+        scrollTo(driver, 0, ypos);
+    }
+
+    public static void scrollTo(WebDriver driver, int xpos, int ypos) {
+        ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(%s, %s)", xpos, ypos));
+    }
 
     @BeforeClass
     public void setDriverClass() throws Exception {
@@ -36,7 +55,6 @@ public class CnblogDemo {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
     }
-
 
     @Test
     public void loginCnblogTest() {
@@ -83,7 +101,6 @@ public class CnblogDemo {
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
         alert.dismiss();
     }
-
 
     //    @Test
     public void sendMsgTest() {
@@ -158,26 +175,6 @@ public class CnblogDemo {
 //        sleep3s();
 //        Alert alert =  wait.until(ExpectedConditions.alertIsPresent());
 //        alert.accept();
-    }
-
-    private static void sleep3s() {
-        sleep3s(3000);
-    }
-
-    public static void sleep3s(long s) {
-        try {
-            Thread.sleep(s);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void scrollTo(WebDriver driver, int ypos) {
-        scrollTo(driver, 0, ypos);
-    }
-
-    public static void scrollTo(WebDriver driver, int xpos, int ypos) {
-        ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(%s, %s)", xpos, ypos));
     }
 
 }

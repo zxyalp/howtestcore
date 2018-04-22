@@ -1,17 +1,13 @@
 package com.howbuy.tms.counter;
 
 import com.howbuy.common.TestUtils;
-import org.openqa.selenium.support.CacheLookup;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
@@ -19,7 +15,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/9/11
  */
-public class CounterHomePage extends BasePage{
+public class CounterHomePage extends BasePage {
 
     private final Logger logger = LoggerFactory.getLogger(CounterHomePage.class.getName());
 
@@ -63,19 +59,19 @@ public class CounterHomePage extends BasePage{
     }
 
 
-    public void openBuyPage(String operatorNo){
+    public void openBuyPage(String operatorNo) {
         openUp(operatorNo, buyFrame, highMenu, tradeMenu, buyMenu);
         logger.info("进入中台柜台认申购买界面.");
     }
 
-    public void openCheckPage(String operatorNo){
-        openUp(operatorNo, checkFrame,businessMenu, tradeCheckMenu, counterCheckMenu);
+    public void openCheckPage(String operatorNo) {
+        openUp(operatorNo, checkFrame, businessMenu, tradeCheckMenu, counterCheckMenu);
         logger.info("进入柜台交易复核界面.");
     }
 
-    public void openUp(String operatorNo, WebElement frame, WebElement... menus){
+    public void openUp(String operatorNo, WebElement frame, WebElement... menus) {
         openPage(counterPath, operatorNo);
-        for (WebElement menu:menus){
+        for (WebElement menu : menus) {
             (wait.until(visibilityOf(menu))).click();
         }
         driver.switchTo().frame(frame);

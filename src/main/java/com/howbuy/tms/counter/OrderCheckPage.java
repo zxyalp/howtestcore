@@ -10,12 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.Test;
 
 import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfAllElements;
 
 
 /**
@@ -152,14 +150,14 @@ public class OrderCheckPage extends BasePage {
     /**
      * 查询待审核列表
      */
-    public void queryApprovedOrdersList(String operatorNo){
+    public void queryApprovedOrdersList(String operatorNo) {
         CounterHomePage homePage = PageFactory.initElements(driver, CounterHomePage.class);
         homePage.openCheckPage(operatorNo);
         wait.until(visibilityOf(queryBtn)).click();
         TestUtils.scrollTo(driver, queryBtn.getLocation().getY());
         TestUtils.sleep1s();
         wait.until(visibilityOf(reCheckBtn));
-        logger.info("####待审核列表中订单条数：{}",reCheckBtnList.size());
+        logger.info("####待审核列表中订单条数：{}", reCheckBtnList.size());
     }
 
 

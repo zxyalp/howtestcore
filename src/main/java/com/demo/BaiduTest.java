@@ -2,9 +2,14 @@ package com.demo;
 
 import com.howbuy.common.TestContext;
 import com.howbuy.common.TestUtils;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +24,29 @@ public class BaiduTest {
 
     private WebDriver driver;
 
+    private static void sleep3s() {
+        sleep3s(3000);
+    }
+
+    private static void sleep1s() {
+        sleep3s(1000);
+    }
+
+    public static void sleep3s(long s) {
+        try {
+            Thread.sleep(s);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void scrollTo(WebDriver driver, int ypos) {
+        scrollTo(driver, 0, ypos);
+    }
+
+    public static void scrollTo(WebDriver driver, int xpos, int ypos) {
+        ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(%s, %s)", xpos, ypos));
+    }
 
     @BeforeClass
     public void setDriverClass() throws Exception {
@@ -49,29 +77,5 @@ public class BaiduTest {
     @AfterMethod
     public void tearDown() {
         System.out.println("==============END==============");
-    }
-
-    private static void sleep3s() {
-        sleep3s(3000);
-    }
-
-    private static void sleep1s() {
-        sleep3s(1000);
-    }
-
-    public static void sleep3s(long s) {
-        try {
-            Thread.sleep(s);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void scrollTo(WebDriver driver, int ypos) {
-        scrollTo(driver, 0, ypos);
-    }
-
-    public static void scrollTo(WebDriver driver, int xpos, int ypos) {
-        ((JavascriptExecutor) driver).executeScript(String.format("window.scrollTo(%s, %s)", xpos, ypos));
     }
 }

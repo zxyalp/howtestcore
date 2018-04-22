@@ -15,12 +15,12 @@ public class BasePage extends AbstractBasePage {
 
     public int timeOutInSeconds = 5;
 
-    public void open(String path, String query){
+    public void open(String path, String query) {
         super.open(TestContext.TMS_HOST, TestContext.TMS_COUNTER_PORT, path, query);
     }
 
     public void openPage(String path, String operatorNo) {
-        String  operatorQuery = "operatorNo="+operatorNo;
+        String operatorQuery = "operatorNo=" + operatorNo;
         open(path, operatorQuery);
     }
 }

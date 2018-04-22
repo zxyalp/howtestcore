@@ -12,12 +12,12 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -130,66 +130,6 @@ public class RegisterUserPageSimu extends SimuBasePage {
         this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
-
-    @Override
-    public void open() {
-        super.open(TestContext.WEB_TRADE_PORT, registerPath);
-    }
-
-    /**
-     * 免费开户
-     *
-     * @param certNo   身份证号码
-     * @param custName 姓名
-     * @param address  联系地址
-     * @param mobile   手机号码
-     * @param identify 短信验证码
-     * @param loginPwd 登录密码
-     * @param txPwd    交易密码
-     */
-    public void createNewUser(String certNo, String custName, String address, String mobile, String identify, String loginPwd, String txPwd) {
-        open();
-        try {
-            certNoInput.sendKeys(certNo);
-            custNameInput.sendKeys(custName);
-            addressInput.sendKeys(address);
-            mobileInput.sendKeys(mobile);
-            identifyInput.sendKeys(identify);
-            TestUtils.sleep1s();
-            identifyBtn.click();
-            TestUtils.sleep1s();
-            codeInput.sendKeys("1111");
-            TestUtils.sleep1s();
-            verifyBtn.click();
-
-            // 登录密码
-            TestUtils.scrollTo(driver, loginPwdInput.getLocation().getY());
-            loginPwdInput.sendKeys(loginPwd);
-            reLoginPwdInput.sendKeys(loginPwd);
-
-            // 交易密码
-            txPwdInput.sendKeys(txPwd);
-            reTxPwdInput.sendKeys(txPwd);
-            TestUtils.sleep1s();
-            submitBn.click();
-            isElementExist(driver, successMsg, 5);
-            logger.info("{}+{},开户成功.", certNo, custName);
-        } catch (Exception e) {
-            throw new RuntimeException("注册新用户失败.", e);
-        }
-
-    }
-
-
-    /**
-     * 默认设置验证码、登录密码、交易密码
-     */
-    public void createNewUser(String certNo, String custName, String mobile) {
-        createNewUser(certNo, custName, "该用户为自动化开户", mobile, "111111",
-                "qq1111", "121212");
-    }
-
-
     private static String getCodeImg() {
 
         File file = new File("D://data//1.jpeg");
@@ -280,6 +220,63 @@ public class RegisterUserPageSimu extends SimuBasePage {
         System.out.println(httpHost2.toURI());
         System.out.println(httpHost2.toHostString());
 
+    }
+
+    @Override
+    public void open() {
+        super.open(TestContext.WEB_TRADE_PORT, registerPath);
+    }
+
+    /**
+     * 免费开户
+     *
+     * @param certNo   身份证号码
+     * @param custName 姓名
+     * @param address  联系地址
+     * @param mobile   手机号码
+     * @param identify 短信验证码
+     * @param loginPwd 登录密码
+     * @param txPwd    交易密码
+     */
+    public void createNewUser(String certNo, String custName, String address, String mobile, String identify, String loginPwd, String txPwd) {
+        open();
+        try {
+            certNoInput.sendKeys(certNo);
+            custNameInput.sendKeys(custName);
+            addressInput.sendKeys(address);
+            mobileInput.sendKeys(mobile);
+            identifyInput.sendKeys(identify);
+            TestUtils.sleep1s();
+            identifyBtn.click();
+            TestUtils.sleep1s();
+            codeInput.sendKeys("1111");
+            TestUtils.sleep1s();
+            verifyBtn.click();
+
+            // 登录密码
+            TestUtils.scrollTo(driver, loginPwdInput.getLocation().getY());
+            loginPwdInput.sendKeys(loginPwd);
+            reLoginPwdInput.sendKeys(loginPwd);
+
+            // 交易密码
+            txPwdInput.sendKeys(txPwd);
+            reTxPwdInput.sendKeys(txPwd);
+            TestUtils.sleep1s();
+            submitBn.click();
+            isElementExist(driver, successMsg, 5);
+            logger.info("{}+{},开户成功.", certNo, custName);
+        } catch (Exception e) {
+            throw new RuntimeException("注册新用户失败.", e);
+        }
+
+    }
+
+    /**
+     * 默认设置验证码、登录密码、交易密码
+     */
+    public void createNewUser(String certNo, String custName, String mobile) {
+        createNewUser(certNo, custName, "该用户为自动化开户", mobile, "111111",
+                "qq1111", "121212");
     }
 
 }
