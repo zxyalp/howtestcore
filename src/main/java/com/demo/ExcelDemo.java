@@ -42,9 +42,24 @@ public class ExcelDemo {
 
 //         book97();
 //        readCell();
-        readForCell();
+//        readForCell();
 
     }
+
+
+    public static String[][] list4Array(List<List<String>> outerList){
+
+        String[][] outerArray = new String[outerList.size()][];
+
+        int i=0;
+        for(List<String> innerList:outerList){
+            String[] innerArray = innerList.toArray(new String[innerList.size()]);
+            outerArray[i]=innerArray;
+            i++;
+        }
+        return outerArray;
+    }
+
 
     public static void booktest() throws Exception {
         Workbook excel97 = new HSSFWorkbook();
@@ -61,6 +76,7 @@ public class ExcelDemo {
 
         fileOut.close();
     }
+
 
     public static void book97() throws Exception {
         Workbook wb = new XSSFWorkbook();
@@ -163,27 +179,7 @@ public class ExcelDemo {
                     Cell cell = r.getCell(i);
                     String cellValue = "";
 
-                    switch (cell.getCellTypeEnum()) {
-                        case STRING:
-                            cellValue = cell.getRichStringCellValue().getString();
-                            break;
-                        case NUMERIC:
-                            if (DateUtil.isCellDateFormatted(cell)) {
-                                cellValue = cell.getDateCellValue().toString();
-                            } else {
-                                cellValue = String.valueOf(cell.getNumericCellValue());
-                            }
-                            break;
-                        case BOOLEAN:
-                            cellValue = String.valueOf(cell.getBooleanCellValue());
-                            break;
-                        case FORMULA:
-                            cellValue = String.valueOf(cell.getCellFormula());
-                            break;
-                        case BLANK:
-                            break;
-                        default:
-                    }
+                    cellValue = SimpleExcelUtils.getCellString(cell, cellValue);
 
                     System.out.println("CellNum:" + i + "=>CellValue:" + cellValue);
                 }
@@ -197,100 +193,7 @@ public class ExcelDemo {
             }
         }
 
-
     }
 
-    public static void readForCell() throws Exception {
 
-        InputStream inp = null;
-        Workbook wb = null;
-
-        List<String> title = null;
-
-        List<List<String>> rowsList = new ArrayList<>();
-
-        try {
-            inp = new FileInputStream("test.xlsx");
-            wb = WorkbookFactory.create(inp);
-
-            Sheet sheet = wb.getSheetAt(0);
-
-            for (Row row : sheet) {
-
-                title = new ArrayList<>();
-                List<String> rowList = new ArrayList<>();
-
-                for (Cell cell : row) {
-
-                    String cellValue = "";
-
-                    if (cell.getColumnIndex() == 11) {
-                        CellStyle cellStyle = wb.createCellStyle();
-                        cellStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
-                        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-                        cellStyle.setBorderBottom(BorderStyle.THIN);
-                        cellStyle.setBottomBorderColor(IndexedColors.BLACK.getIndex());
-                        cellStyle.setBorderLeft(BorderStyle.THIN);
-                        cellStyle.setLeftBorderColor(IndexedColors.BLACK.getIndex());
-                        cellStyle.setBorderRight(BorderStyle.THIN);
-                        cellStyle.setRightBorderColor(IndexedColors.BLACK.getIndex());
-                        cellStyle.setBorderTop(BorderStyle.THIN);
-                        cellStyle.setTopBorderColor(IndexedColors.BLACK.getIndex());
-                        cellStyle.setAlignment(HorizontalAlignment.CENTER);
-                        cell.setCellStyle(cellStyle);
-                        cell.setCellType(CellType.STRING);
-                        cell.setCellValue("FALSE");
-                    }
-
-                    switch (cell.getCellTypeEnum()) {
-                        case STRING:
-                            cellValue = cell.getRichStringCellValue().getString();
-                            break;
-                        case NUMERIC:
-                            if (DateUtil.isCellDateFormatted(cell)) {
-                                cellValue = cell.getDateCellValue().toString();
-                            } else {
-                                cellValue = String.valueOf(cell.getNumericCellValue());
-                            }
-                            break;
-                        case BOOLEAN:
-                            cellValue = String.valueOf(cell.getBooleanCellValue());
-                            break;
-                        case FORMULA:
-                            cellValue = String.valueOf(cell.getCellFormula());
-                            break;
-                        case BLANK:
-                            break;
-                        default:
-                    }
-
-                    if (row.getRowNum() == 0) {
-                        title.add(cellValue);
-                    }
-
-                    rowList.add(cellValue);
-
-                    System.out.println("CellNum:" + cell.getColumnIndex() + "=>CellValue:" + cellValue);
-                }
-
-                rowsList.add(rowList);
-            }
-
-            try (FileOutputStream fileOut = new FileOutputStream("test1.xlsx")) {
-                wb.write(fileOut);
-            }
-
-        } finally {
-
-            if (inp != null) {
-                inp.close();
-            }
-
-            if (wb != null) {
-                wb.close();
-            }
-
-        }
-
-    }
 }
