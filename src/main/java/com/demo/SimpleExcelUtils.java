@@ -14,7 +14,7 @@ public class SimpleExcelUtils {
 
     public static void main(String[] args) throws Exception {
 
-        List<List<String>> strList = readExcel();
+        List<List<String>> strList = readBook("CustBuyInfo.xlsx");
 
         list2Array(strList);
 
@@ -26,18 +26,24 @@ public class SimpleExcelUtils {
 
     }
 
-    public static List<List<String>> readExcel(String fileName) throws IOException, InvalidFormatException {
+    public static Object[][] readBook2Array(String fileName) throws Exception{
+        return list2Array(readBook(fileName));
+    }
 
-        InputStream inp = null;
+    public static List<List<String>> readBook(String fileName) throws IOException, InvalidFormatException {
+        return readBook(new FileInputStream(fileName));
+    }
+
+
+        public static List<List<String>> readBook(InputStream inputStream) throws IOException, InvalidFormatException {
 
         Workbook wb = null;
 
         List<List<String>> rowsList = new ArrayList<>();
 
         try {
-            inp = new FileInputStream(fileName);
 
-            wb = WorkbookFactory.create(inp);
+            wb = WorkbookFactory.create(inputStream);
 
             Sheet sheet = wb.getSheetAt(0);
 
@@ -52,40 +58,18 @@ public class SimpleExcelUtils {
                 for (Cell cell : row) {
 
                     String cellValue = "";
-                    if (cell.getColumnIndex() == row.getLastCellNum()-1) {
-                        CellStyle cellStyle = wb.createCellStyle();
-                        cellStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
-                        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-                        cellStyle.setBorderBottom(BorderStyle.THIN);
-                        cellStyle.setBottomBorderColor(IndexedColors.BLACK.getIndex());
-                        cellStyle.setBorderLeft(BorderStyle.THIN);
-                        cellStyle.setLeftBorderColor(IndexedColors.BLACK.getIndex());
-                        cellStyle.setBorderRight(BorderStyle.THIN);
-                        cellStyle.setRightBorderColor(IndexedColors.BLACK.getIndex());
-                        cellStyle.setBorderTop(BorderStyle.THIN);
-                        cellStyle.setTopBorderColor(IndexedColors.BLACK.getIndex());
-                        cellStyle.setAlignment(HorizontalAlignment.CENTER);
-                        cell.setCellStyle(cellStyle);
-                        cell.setCellType(CellType.STRING);
-                        cell.setCellValue("FALSE");
-                    }
+
                     cellValue = SimpleExcelUtils.getCellString(cell, cellValue);
 
                     cellList.add(cellValue);
 
                 }
+
                 rowsList.add(cellList);
             }
 
-            try (FileOutputStream fileOut = new FileOutputStream("test1.xlsx")) {
-                wb.write(fileOut);
-            }
 
         } finally {
-
-            if (inp != null) {
-                inp.close();
-            }
 
             if (wb != null) {
                 wb.close();
@@ -96,7 +80,7 @@ public class SimpleExcelUtils {
     }
 
 
-    public static void writeBooleanValue(String fileName, boolean b) throws Exception{
+    public static void writeBook(String fileName, List<List<String>> bookList) throws Exception{
 
         InputStream inp = null;
 
@@ -163,7 +147,6 @@ public class SimpleExcelUtils {
             }
         }
 
-        return rowsList;
     }
 
     static String getCellString(Cell cell, String cellValue) {

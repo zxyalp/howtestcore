@@ -274,11 +274,9 @@ public class HighEndBuyPageSimu extends SimuBasePage {
      * 1、填写订单
      *
      * @param buyAmount   净购买金额
-     * @param paymentType 1-储蓄罐，2-银行转账划款，3-银行代扣
-     * @param index       选择第几张银行卡
      */
 
-    public void fillInOrder(String buyAmount, PaymentType paymentType, int index) {
+    public void fillInOrder(String buyAmount) {
         wait.until(invisibilityOf(dialog));
         TestUtils.sleep2s();
         if (isRemitPopup()) {
@@ -298,10 +296,61 @@ public class HighEndBuyPageSimu extends SimuBasePage {
                 count++;
             }
             if (count > 3) {
-                logger.error("输入申请金额失败,重试次数：" + count);
-                throw new TimeoutException("输入申请金额异常.");
+                throw new TimeoutException("输入申请金额失败,重试3次失败.");
             }
         }
+
+
+        wait.until(elementToBeClickable(nextStepBtn)).click();
+
+        if (isRiskTip()) {
+            riskTipText.click();
+            TestUtils.sleep1s();
+        }
+    }
+
+
+    /**
+     * 2、首次购买，需要签电子合同步骤,私募购买
+     */
+
+    public void signingElecContract() {
+        logger.info("需要电子合同签名.");
+        wait.until(invisibilityOf(dialog));
+
+        TestUtils.scrollEnd(driver);
+
+        if (!hetongBox.isSelected()) {
+            hetongBox.click();
+        }
+
+        TestUtils.sleep1s();
+        nextStepBtn.click();
+
+        // 私募投资者声明处理，如果不存在私募声明，跳过执行
+
+        wait.until(invisibilityOf(dialog));
+        if (checkBox.size() > 0) {
+            logger.info("勾选私募投资者声明-条款处理");
+            if (!allBox.isSelected()) {
+                allBox.click();
+            }
+            TestUtils.scrollEnd(driver);
+            nextStepBtn.click();
+        }
+    }
+
+
+    /**
+     * 3、确认订单并支付
+     *
+     * @param txPassword 交易密码，短信验证码默认111111
+     * @param paymentType 1-储蓄罐，2-银行转账划款，3-银行代扣
+     * @param index       选择第几张银行卡
+     */
+
+    public void confirmPurchase(PaymentType paymentType, int index, String txPassword) {
+
 
         logger.info("选择支付方式：" + paymentType.getName());
 
@@ -325,6 +374,7 @@ public class HighEndBuyPageSimu extends SimuBasePage {
         }
 
         int size = bankCardList.size();
+
         if (size > 1 && size >= index) {
             WebElement bankCardChecked = bankCardList.get(index - 1);
             TestUtils.scrollTo(driver, bankCardChecked.getLocation().getY());
@@ -334,60 +384,23 @@ public class HighEndBuyPageSimu extends SimuBasePage {
             }
         }
 
-        TestUtils.scrollTo(driver, nextStepBtn.getLocation().getY());
 
         if (!bankSubNameText.isEmpty()) {
+            TestUtils.scrollTo(driver, bankSubNameText.get(0).getLocation().getY());
             bankSubNameText.get(0).sendKeys("上海南京西路支行web测试");
         }
-        wait.until(elementToBeClickable(nextStepBtn)).click();
 
-        if (isRiskTip()) {
-            riskTipText.click();
-            TestUtils.sleep1s();
-        }
-    }
-
-
-    /**
-     * 2、首次购买，需要签电子合同步骤,私募购买
-     */
-
-    public void signingElecContract() {
-        logger.info("需要电子合同签名.");
-        wait.until(invisibilityOf(dialog));
-        if (!hetongBox.isSelected()) {
-            hetongBox.click();
-        }
         TestUtils.sleep1s();
-        nextStepBtn.click();
-        // 私募投资者声明处理，如果不存在私募声明，跳过执行
-        wait.until(invisibilityOf(dialog));
-        if (checkBox.size() > 0) {
-            logger.info("私募投资者声明-条款处理");
-            if (!allBox.isSelected()) {
-                allBox.click();
-            }
-            TestUtils.scrollEnd(driver);
-            nextStepBtn.click();
-        }
-    }
 
-
-    /**
-     * 3、确认购买
-     *
-     * @param txPassword 交易密码，短信验证码默认111111
-     */
-
-    public void confirmPurchase(String txPassword) {
-        wait.until(invisibilityOf(dialog));
         txPasswordText.sendKeys(txPassword);
         wait.until(elementToBeClickable(nextStepTwoBtn)).click();
+
         TestUtils.sleep2s();
         getVerifyCodeBtn.click();
         wait.until(visibilityOf(getVerifyCode));
         verifyCodeText.sendKeys("111111");
         wait.until(elementToBeClickable(checkVerifyCodeBtn)).click();
+
     }
 
 
@@ -467,11 +480,11 @@ public class HighEndBuyPageSimu extends SimuBasePage {
 
     public void buyHighFund(String fundCode, String buyAmount, PaymentType paymentType, int index, String txPassword) {
         queryFund(fundCode);
-        fillInOrder(buyAmount, paymentType, index);
+        fillInOrder(buyAmount);
         if (!signingElecText.isEmpty()) {
             signingElecContract();
         }
-        confirmPurchase(txPassword);
+        confirmPurchase(paymentType, index, txPassword);
         buyIsSuccess(fundCode, buyAmount);
     }
 
