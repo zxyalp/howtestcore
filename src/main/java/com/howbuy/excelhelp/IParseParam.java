@@ -3,6 +3,9 @@ package com.howbuy.excelhelp;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * @author yang.zhou
+ */
 public interface IParseParam {
 
     Integer FISRT_SHEET_NAME=0;
