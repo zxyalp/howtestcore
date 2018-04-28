@@ -1,6 +1,4 @@
-package com.demo;
-
-import java.util.Date;
+package com.demo.excelhelper;
 
 /***
  * cust
@@ -10,37 +8,52 @@ import java.util.Date;
 
 public class CustBuyBook {
 
+    @ExcelFiled(index = 0)
     private String id;
+
+    @ExcelFiled(index = 1)
     private String custNo;
+
+    @ExcelFiled(index = 2)
     private String idNo;
+
+    @ExcelFiled(index = 3)
     private String custName;
+
+    @ExcelFiled(index = 4)
+    private String mobole;
+
+    @ExcelFiled(index = 5)
+    private String hboneNo;
+
+    @ExcelFiled(index = 6)
+    private String bankAcct;
+
+    @ExcelFiled(index = 7)
     private String scenario;
+
+    @ExcelFiled(index = 8)
     private String fundCode;
+
+    @ExcelFiled(index = 9)
     private String appAmt;
+
+    @ExcelFiled(index = 10)
     private String bankIndex;
+
+    @ExcelFiled(index = 11)
     private String appType;
+
+    @ExcelFiled(index = 12)
     private String appDate;
-    private String result;
-    private Date ts;
 
-    public CustBuyBook(){
+    @ExcelFiled(index = 13, isRead = false)
+    private boolean result;
 
-    }
 
-    public CustBuyBook(String id, String custNo, String idNo, String custName, String scenario, String fundCode,
-                       String appAmt, String bankIndex, String appType, String appDate, String result, Date ts) {
-        this.id = id;
-        this.custNo = custNo;
-        this.idNo = idNo;
-        this.custName = custName;
-        this.scenario = scenario;
-        this.fundCode = fundCode;
-        this.appAmt = appAmt;
-        this.bankIndex = bankIndex;
-        this.appType = appType;
-        this.appDate = appDate;
-        this.result = result;
-        this.ts = ts;
+    @Override
+    public String toString() {
+        return "id"+id+"; CustName:"+custName+"; custNo:"+custNo+"; idNo:"+idNo+"; fundCode:"+fundCode+"; scenario: "+scenario;
     }
 
     public String getId() {
@@ -75,28 +88,36 @@ public class CustBuyBook {
         this.custName = custName;
     }
 
+    public String getMobole() {
+        return mobole;
+    }
+
+    public void setMobole(String mobole) {
+        this.mobole = mobole;
+    }
+
+    public String getHboneNo() {
+        return hboneNo;
+    }
+
+    public void setHboneNo(String hboneNo) {
+        this.hboneNo = hboneNo;
+    }
+
+    public String getBankAcct() {
+        return bankAcct;
+    }
+
+    public void setBankAcct(String bankAcct) {
+        this.bankAcct = bankAcct;
+    }
+
     public String getScenario() {
         return scenario;
     }
 
     public void setScenario(String scenario) {
         this.scenario = scenario;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public Date getTs() {
-        return ts;
-    }
-
-    public void setTs(Date ts) {
-        this.ts = ts;
     }
 
     public String getFundCode() {
@@ -139,4 +160,11 @@ public class CustBuyBook {
         this.appDate = appDate;
     }
 
+    public boolean getResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
+    }
 }

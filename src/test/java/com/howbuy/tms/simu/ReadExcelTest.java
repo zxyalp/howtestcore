@@ -1,12 +1,15 @@
 package com.howbuy.tms.simu;
 
-import com.demo.SimpleExcelUtils;
+import com.demo.excelhelper.CustBuyBook;
+import com.demo.excelhelper.ExcelParseHandler;
+import com.demo.excelhelper.SimpleExcelUtils;
 import com.howbuy.simu.OnlineTradePageSimu;
 import com.howbuy.tms.BaseTestCase;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
@@ -27,12 +30,17 @@ public class ReadExcelTest extends BaseTestCase {
     @Test(enabled = true)
     public void readBookTest() throws Exception {
 
-        List<List<String>> books = SimpleExcelUtils.readBook("CustBuyInfo.xlsx");
+//        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
 
-        for (List<String> rowList:books){
-           for (String cell:rowList)
-               System.out.println(cell);
+        ExcelParseHandler<CustBuyBook> parseHandler = new ExcelParseHandler<>();
+
+        List<CustBuyBook> custBuyBookList = parseHandler.doParse(new FileInputStream("test02.xlsx"), CustBuyBook.class);
+
+        for (CustBuyBook book:custBuyBookList){
+            book.setResult(true);
         }
+
+        parseHandler.doWriteBook("results.xlsx", custBuyBookList);
 
     }
 

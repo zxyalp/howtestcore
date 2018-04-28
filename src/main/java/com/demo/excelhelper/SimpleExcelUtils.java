@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.excelhelper;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
@@ -35,7 +35,7 @@ public class SimpleExcelUtils {
     }
 
 
-        public static List<List<String>> readBook(InputStream inputStream) throws IOException, InvalidFormatException {
+    public static List<List<String>> readBook(InputStream inputStream) throws IOException, InvalidFormatException {
 
         Workbook wb = null;
 
@@ -149,7 +149,7 @@ public class SimpleExcelUtils {
 
     }
 
-    static String getCellString(Cell cell, String cellValue) {
+   static String getCellString(Cell cell, String cellValue) {
 
         switch (cell.getCellTypeEnum()) {
             case STRING:

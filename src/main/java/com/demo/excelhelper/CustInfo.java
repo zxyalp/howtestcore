@@ -1,6 +1,6 @@
-package com.demo;
+package com.demo.excelhelper;
 
-import java.util.Date;
+import com.demo.excelhelper.ExcelFiled;
 
 /***
  * cust
@@ -10,8 +10,13 @@ import java.util.Date;
 
 public class CustInfo {
 
+    @ExcelFiled(index = 1)
     private String custNo;
+
+    @ExcelFiled(index = 2)
     private String idNo;
+
+    @ExcelFiled(index = 3)
     private String custName;
 
     public CustInfo(){

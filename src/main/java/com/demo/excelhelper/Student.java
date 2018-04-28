@@ -1,4 +1,4 @@
-package com.demo;
+package com.demo.excelhelper;
 
 public class Student {
     private String name;

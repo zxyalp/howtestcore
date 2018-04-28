@@ -75,9 +75,9 @@ public class CnblogDemo {
         WebElement msg = wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText("消息")));
         msg.click();
 
-//            for (String handle: driver.getWindowHandles())
-//                if (!handle.equals(homeHandle)) {
-//                    driver.switchTo().window(handle);
+//            for (String handler: driver.getWindowHandles())
+//                if (!handler.equals(homeHandle)) {
+//                    driver.switchTo().window(handler);
 //                    break;
 //                }
 
@@ -121,9 +121,9 @@ public class CnblogDemo {
         WebElement msg = wait.until(visibilityOfElementLocated(By.partialLinkText("消息")));
         msg.click();
 
-//            for (String handle: driver.getWindowHandles())
-//                if (!handle.equals(homeHandle)) {
-//                    driver.switchTo().window(handle);
+//            for (String handler: driver.getWindowHandles())
+//                if (!handler.equals(homeHandle)) {
+//                    driver.switchTo().window(handler);
 //                    break;
 //                }
 
