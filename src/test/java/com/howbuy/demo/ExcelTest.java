@@ -24,7 +24,7 @@ public class ExcelTest {
         IParseParam parseParam = DefaultParseParam.builder()
                 .excelInputStream(new FileInputStream("test.xlsx"))
                 .columnSize(13)
-                .sheetNum(IParseParam.FISRT_SHEET_NAME)
+                .sheetNum(IParseParam.FIRST_SHEET_NAME)
                 .targetClass(CustInfo.class)
                 .build();
 

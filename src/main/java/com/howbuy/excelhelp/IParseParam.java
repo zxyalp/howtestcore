@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface IParseParam {
 
-    Integer FISRT_SHEET_NAME=0;
+    Integer FIRST_SHEET_NAME=0;
 
     InputStream getExcelInputStream();
 
