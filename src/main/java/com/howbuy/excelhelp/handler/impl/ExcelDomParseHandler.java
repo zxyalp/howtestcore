@@ -34,6 +34,13 @@ public class ExcelDomParseHandler<T> extends BaseExcelParseHandle<T> {
     }
 
 
+    @Override
+    public void writeProcess(IParseParam parseParam, List<T> excelList) throws Exception {
+        Workbook wb = getWorkBook(parseParam);
+        Sheet sheet = wb.createSheet();
+
+    }
+
     private List<T> parseRowToTargetList(Iterator<Row> rowIterator, IParseParam parseParam){
         List<T> result = new ArrayList<>();
         for (; rowIterator.hasNext(); ){

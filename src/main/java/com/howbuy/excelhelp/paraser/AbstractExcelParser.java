@@ -2,11 +2,10 @@ package com.howbuy.excelhelp.paraser;
 
 import com.howbuy.excelhelp.IExcelParser;
 import com.howbuy.excelhelp.IParseParam;
-import com.howbuy.excelhelp.handler.IExcelParaseHandler;
+import com.howbuy.excelhelp.handler.IExcelParseHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ abstract class AbstractExcelParser<T> implements IExcelParser<T> {
     @Override
     public List<T> parse(IParseParam parseParam){
 
-        IExcelParaseHandler<T> handler = this.createHandler(parseParam.getExcelInputStream());
+        IExcelParseHandler<T> handler = this.createHandler();
 
         try {
             return handler.process(parseParam);
@@ -30,8 +29,21 @@ abstract class AbstractExcelParser<T> implements IExcelParser<T> {
 
     }
 
+    @Override
+    public void write(IParseParam parseParam, List<T> excelList) {
+        IExcelParseHandler<T> handler = this.createHandler();
+        try {
+            handler.writeProcess(parseParam, excelList);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
-   protected abstract IExcelParaseHandler<T> createHandler(InputStream excelInputStream);
+    /**
+     * create ExcelParseHandler
+     * @return IExcelParseHandler<T>
+     */
+    protected abstract IExcelParseHandler<T> createHandler();
 
 
 

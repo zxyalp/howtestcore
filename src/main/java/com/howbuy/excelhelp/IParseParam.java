@@ -1,6 +1,7 @@
 package com.howbuy.excelhelp;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -12,6 +13,8 @@ public interface IParseParam {
 
     InputStream getExcelInputStream();
 
+    OutputStream getExcelOutputStream();
+
     Class getTargetClass();
 
     Integer getColumnSize();
@@ -19,5 +22,4 @@ public interface IParseParam {
     Integer getSheetNum();
 
     List<String> getHeader();
-
 }

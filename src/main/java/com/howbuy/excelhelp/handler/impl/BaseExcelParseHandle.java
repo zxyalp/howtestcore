@@ -1,7 +1,7 @@
 package com.howbuy.excelhelp.handler.impl;
 
 import com.howbuy.excelhelp.IParseParam;
-import com.howbuy.excelhelp.handler.IExcelParaseHandler;
+import com.howbuy.excelhelp.handler.IExcelParseHandler;
 import com.howbuy.excelhelp.meta.ExcelField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author yang.zhou
  * @date 2018/4/28
  */
-abstract class BaseExcelParseHandle<T> implements IExcelParaseHandler<T> {
+abstract class BaseExcelParseHandle<T> implements IExcelParseHandler<T> {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 

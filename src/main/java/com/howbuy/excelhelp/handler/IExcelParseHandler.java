@@ -8,8 +8,10 @@ import java.util.List;
  * @author yang.zhou
  * @date 2018/4/27
  */
-public interface IExcelParaseHandler<T> {
+public interface IExcelParseHandler<T> {
 
     List<T> process(IParseParam parseParam) throws Exception;
+
+    void writeProcess(IParseParam parseParam, List<T> excelList) throws Exception;
 
 }

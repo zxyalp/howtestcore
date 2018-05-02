@@ -1,9 +1,7 @@
 package com.howbuy.excelhelp.paraser;
 
 import com.howbuy.excelhelp.handler.impl.ExcelDomParseHandler;
-import com.howbuy.excelhelp.handler.IExcelParaseHandler;
-
-import java.io.InputStream;
+import com.howbuy.excelhelp.handler.IExcelParseHandler;
 
 /**
  * @author yang.zhou
@@ -11,7 +9,7 @@ import java.io.InputStream;
  */
 public class ExcelDomParser<T> extends AbstractExcelParser<T>{
 
-    private IExcelParaseHandler<T> excelParseHandler;
+    private IExcelParseHandler<T> excelParseHandler;
 
     public ExcelDomParser(){
 
@@ -19,7 +17,7 @@ public class ExcelDomParser<T> extends AbstractExcelParser<T>{
     }
 
     @Override
-    protected IExcelParaseHandler<T> createHandler(InputStream excelInputStream) {
+    protected IExcelParseHandler<T> createHandler() {
         return this.excelParseHandler;
     }
 }

@@ -3,6 +3,7 @@ package com.howbuy.excelhelp.param;
 import com.howbuy.excelhelp.IParseParam;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 /**
@@ -12,13 +13,15 @@ import java.util.List;
 public class DefaultParseParam implements IParseParam {
 
     private InputStream inputStream;
+    private OutputStream outputStream;
     private Class targetClass;
     private Integer columnSize;
     private List<String> header;
     private Integer sheetNum;
 
-    public DefaultParseParam(InputStream inputStream, Class targetClass, Integer columnSize, List<String> header, Integer sheetNum) {
+    public DefaultParseParam(InputStream inputStream, OutputStream outputStream, Class targetClass, Integer columnSize, List<String> header, Integer sheetNum) {
         this.inputStream = inputStream;
+        this.outputStream = outputStream;
         this.targetClass = targetClass;
         this.columnSize = columnSize;
         this.header = header;
@@ -31,6 +34,11 @@ public class DefaultParseParam implements IParseParam {
     @Override
     public InputStream getExcelInputStream() {
         return inputStream;
+    }
+
+    @Override
+    public OutputStream getExcelOutputStream() {
+        return outputStream;
     }
 
     @Override
@@ -56,6 +64,7 @@ public class DefaultParseParam implements IParseParam {
 
     public static class Builder{
         private InputStream inputStream;
+        private OutputStream outputStream;
         private Class targetClass;
         private Integer columnSize;
         private List<String> header;
@@ -63,6 +72,11 @@ public class DefaultParseParam implements IParseParam {
 
         public Builder excelInputStream(InputStream inputStream){
             this.inputStream = inputStream;
+            return this;
+        }
+
+        public Builder excelOutputStream(OutputStream outputStream){
+            this.outputStream = outputStream;
             return this;
         }
 
@@ -87,7 +101,7 @@ public class DefaultParseParam implements IParseParam {
         }
 
         public DefaultParseParam build(){
-            return  new DefaultParseParam(inputStream, targetClass, columnSize, header, sheetNum);
+            return  new DefaultParseParam(inputStream, outputStream, targetClass, columnSize, header, sheetNum);
         }
 
 
