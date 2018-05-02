@@ -15,19 +15,19 @@ import java.util.Optional;
  * @author yang.zhou
  * @date 2018/4/28
  */
-abstract class BaseExcelParseHandle<T> implements IExcelParaseHandler<T>{
+abstract class BaseExcelParseHandle<T> implements IExcelParaseHandler<T> {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    <T> Optional<T> parseRowToTarget(IParseParam parseParam, List<String> rowData){
-        if (isRowDataEmpty(rowData)){
+    <T> Optional<T> parseRowToTarget(IParseParam parseParam, List<String> rowData) {
+        if (isRowDataEmpty(rowData)) {
             return Optional.empty();
         }
 
         try {
             T t = doParseRowToTarget(rowData, parseParam.getTargetClass());
             return Optional.of(t);
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("", e);
             return Optional.empty();
         }
@@ -35,12 +35,12 @@ abstract class BaseExcelParseHandle<T> implements IExcelParaseHandler<T>{
     }
 
     private <T> T doParseRowToTarget(List<String> rowData, Class targetClass) throws IllegalAccessException, InstantiationException {
-        T  object = (T)targetClass.newInstance();
+        T object = (T) targetClass.newInstance();
         Field[] fields = object.getClass().getDeclaredFields();
 
-        for (Field field: fields){
+        for (Field field : fields) {
 
-            if (field.isAnnotationPresent(ExcelField.class)){
+            if (field.isAnnotationPresent(ExcelField.class)) {
 
                 ExcelField excelField = field.getAnnotation(ExcelField.class);
                 int index = excelField.index();
@@ -57,15 +57,16 @@ abstract class BaseExcelParseHandle<T> implements IExcelParaseHandler<T>{
 
 
     void validHeader(IParseParam parseParam, List<String> rowData) {
-        int index=0;
 
-        if (rowData.size()!= parseParam.getHeader().size()){
-            throw new IllegalArgumentException("Excel Header检查失败.");
+        int index = 0;
+
+        if (rowData.size() != parseParam.getHeader().size()) {
+            throw new IllegalArgumentException("Excel Header 检查失败.");
         }
 
-        for (String head: parseParam.getHeader()){
-            if (!Objects.equals(rowData.get(index++), head.trim())){
-                throw new IllegalArgumentException("Excel Header检查失败.");
+        for (String head : parseParam.getHeader()) {
+            if (!Objects.equals(rowData.get(index++), head.trim())) {
+                throw new IllegalArgumentException("Excel Header 检查失败.");
             }
         }
 
@@ -73,12 +74,12 @@ abstract class BaseExcelParseHandle<T> implements IExcelParaseHandler<T>{
     }
 
     boolean isRowDataEmpty(List<String> rowData) {
-        if (rowData == null){
+        if (rowData == null) {
             return true;
         }
 
-        for (String str: rowData){
-            if (str != null && !Objects.equals("", str.trim())){
+        for (String str : rowData) {
+            if (str != null && !Objects.equals("", str.trim())) {
                 return false;
             }
         }

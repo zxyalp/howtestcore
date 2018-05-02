@@ -1,6 +1,6 @@
 package com.howbuy.demo;
 
-import com.demo.excelhelper.ExcelFiled;
+import com.howbuy.excelhelp.meta.ExcelField;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,47 +11,47 @@ import java.util.List;
  */
 public class CustInfo {
 
-    @ExcelFiled(index = 0)
+    @ExcelField(index = 0)
     private String id;
 
-    @ExcelFiled(index = 1)
+    @ExcelField(index = 1)
     private String custNo;
 
-    @ExcelFiled(index = 2)
+    @ExcelField(index = 2)
     private String idNo;
 
-    @ExcelFiled(index = 3)
+    @ExcelField(index = 3)
     private String custName;
 
-    @ExcelFiled(index = 4)
-    private String mobole;
+    @ExcelField(index = 4)
+    private String mobile;
 
-    @ExcelFiled(index = 5)
+    @ExcelField(index = 5)
     private String hboneNo;
 
-    @ExcelFiled(index = 6)
+    @ExcelField(index = 6)
     private String bankAcct;
 
-    @ExcelFiled(index = 7)
+    @ExcelField(index = 7)
     private String scenario;
 
-    @ExcelFiled(index = 8)
+    @ExcelField(index = 8)
     private String fundCode;
 
-    @ExcelFiled(index = 9)
+    @ExcelField(index = 9)
     private String appAmt;
 
-    @ExcelFiled(index = 10)
+    @ExcelField(index = 10)
     private String bankIndex;
 
-    @ExcelFiled(index = 11)
+    @ExcelField(index = 11)
     private String appType;
 
-    @ExcelFiled(index = 12)
+    @ExcelField(index = 12)
     private String appDate;
 
-    @ExcelFiled(index = 13)
-    private boolean result;
+    @ExcelField(index = 13)
+    private String result;
 
     public String getId() {
         return id;
@@ -85,12 +85,12 @@ public class CustInfo {
         this.custName = custName;
     }
 
-    public String getMobole() {
-        return mobole;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setMobole(String mobole) {
-        this.mobole = mobole;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getHboneNo() {
@@ -157,23 +157,38 @@ public class CustInfo {
         this.appDate = appDate;
     }
 
-    public boolean isResult() {
+    public String isResult() {
         return result;
     }
 
-    public void setResult(boolean result) {
+    public void setResult(String result) {
         this.result = result;
     }
 
     public static List<String> getHeader(){
 
         List<String> headers = new ArrayList<>();
-        return null;
+
+        headers.add("ID");
+        headers.add("CUST_NO");
+        headers.add("ID_NO");
+        headers.add("CUST_NAME");
+        headers.add("MOBILE");
+        headers.add("HBONE_NO");
+        headers.add("BANK_ACCT");
+        headers.add("SCENARIO");
+        headers.add("FUND_CODE");
+        headers.add("appAmt");
+        headers.add("bankIndex");
+        headers.add("appType");
+        headers.add("appDate");
+        headers.add("result");
+        return headers;
     }
 
     @Override
     public String toString() {
         return id+"::"+idNo+"::"+custNo+"::"+custName+"::"
-                +mobole+"::"+hboneNo+"::"+bankAcct+"::"+scenario+"::"+fundCode;
+                +mobile+"::"+hboneNo+"::"+bankAcct+"::"+scenario+"::"+fundCode;
     }
 }

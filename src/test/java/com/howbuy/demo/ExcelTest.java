@@ -19,18 +19,19 @@ public class ExcelTest {
     @Test
     public void testParseDom() throws Exception{
 
-        IExcelParser<CustInfo> excelParser = new ExcelDomParser<>();
+        IExcelParser<CustAppInfo> excelParser = new ExcelDomParser<>();
 
         IParseParam parseParam = DefaultParseParam.builder()
                 .excelInputStream(new FileInputStream("test.xlsx"))
-                .columnSize(13)
+                .columnSize(14)
                 .sheetNum(IParseParam.FIRST_SHEET_NAME)
-                .targetClass(CustInfo.class)
+                .targetClass(CustAppInfo.class)
+//                .header(BuyInfo.getHeader())
                 .build();
 
-        List<CustInfo> custInfoList = excelParser.parse(parseParam);
+        List<CustAppInfo> custInfoList = excelParser.parse(parseParam);
 
-        for (CustInfo custInfo : custInfoList){
+        for (CustAppInfo custInfo : custInfoList){
             System.out.println(custInfo);
         }
 
