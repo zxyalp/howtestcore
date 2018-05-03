@@ -1,6 +1,6 @@
 package com.howbuy.tms.tps;
 
-import com.howbuy.fds.LoginFdsPageFds;
+import com.howbuy.fds.LoginFdsPage;
 import com.howbuy.tms.BaseTestCase;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ public class TpsLoginTest extends BaseTestCase {
 
     @Test(enabled = true)
     public void loginTest() throws Exception {
-        LoginFdsPageFds login = PageFactory.initElements(driver, LoginFdsPageFds.class);
+        LoginFdsPage login = PageFactory.initElements(driver, LoginFdsPage.class);
         login.login("s001", "1");
     }
 

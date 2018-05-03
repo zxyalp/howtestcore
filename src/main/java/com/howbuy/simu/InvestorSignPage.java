@@ -21,9 +21,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
  * @author yang.zhou
  * @date 2017/10/17
  */
-public class InvestorSignPageSimu extends SimuBasePage {
+public class InvestorSignPage extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(InvestorSignPageSimu.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(InvestorSignPage.class.getName());
 
     private String buyListPath = "/newpcsm/buylist.html";
 
@@ -70,7 +70,7 @@ public class InvestorSignPageSimu extends SimuBasePage {
     private List<WebElement> riskValuationText;
 
 
-    public InvestorSignPageSimu(WebDriver driver) {
+    public InvestorSignPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
@@ -118,7 +118,7 @@ public class InvestorSignPageSimu extends SimuBasePage {
 
     private void riskAssess() {
         logger.info("开始做风险测评");
-        RiskValuationPageSimu risk = PageFactory.initElements(driver, RiskValuationPageSimu.class);
+        RiskValuationPage risk = PageFactory.initElements(driver, RiskValuationPage.class);
         risk.riskAssess();
     }
 

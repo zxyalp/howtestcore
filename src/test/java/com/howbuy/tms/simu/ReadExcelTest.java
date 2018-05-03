@@ -3,9 +3,7 @@ package com.howbuy.tms.simu;
 import com.demo.excelhelper.CustBuyBook;
 import com.demo.excelhelper.ExcelParseHandler;
 import com.demo.excelhelper.SimpleExcelUtils;
-import com.howbuy.simu.OnlineTradePageSimu;
 import com.howbuy.tms.BaseTestCase;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -30,7 +28,7 @@ public class ReadExcelTest extends BaseTestCase {
     @Test(enabled = true)
     public void readBookTest() throws Exception {
 
-//        OnlineTradePageSimu tradePage = PageFactory.initElements(driver, OnlineTradePageSimu.class);
+//        OnlineTradePage tradePage = PageFactory.initElements(driver, OnlineTradePage.class);
 
         ExcelParseHandler<CustBuyBook> parseHandler = new ExcelParseHandler<>();
 

@@ -1,7 +1,7 @@
 package com.howbuy.tms.simu;
 
-import com.howbuy.simu.CancelOrderListPageSimu;
-import com.howbuy.simu.LoginWebPageSimu;
+import com.howbuy.simu.CancelOrderListPage;
+import com.howbuy.simu.LoginWebPage;
 import com.howbuy.tms.BaseTestCase;
 import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
@@ -24,9 +24,9 @@ public class CancelOrderListTest extends BaseTestCase {
      */
     @Test(enabled = true)
     public void cancelOderTest() throws Exception {
-        LoginWebPageSimu login = PageFactory.initElements(driver, LoginWebPageSimu.class);
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
         login.login("32010119980101286X", "qq1111");
-        CancelOrderListPageSimu orderListPage = PageFactory.initElements(driver, CancelOrderListPageSimu.class);
+        CancelOrderListPage orderListPage = PageFactory.initElements(driver, CancelOrderListPage.class);
         orderListPage.cancelOrder();
     }
 }

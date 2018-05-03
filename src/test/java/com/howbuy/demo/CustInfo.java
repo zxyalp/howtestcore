@@ -56,7 +56,7 @@ public class CustInfo {
     @ExcelField(index = 14, isResult = true)
     private String result01;
 
-    @ExcelField(index = 15, type = ExcelField.ExcelFieldType.Date)
+    @ExcelField(index = 15)
     private String result02;
 
 

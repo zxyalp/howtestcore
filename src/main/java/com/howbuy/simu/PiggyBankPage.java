@@ -18,9 +18,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/11/9
  */
-public class PiggyBankPageSimu extends SimuBasePage {
+public class PiggyBankPage extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(PiggyBankPageSimu.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(PiggyBankPage.class.getName());
 
     private String piggyPath = "/newpc/pcfund/module/pcfund/view/piggyIndex.html";
 
@@ -73,7 +73,7 @@ public class PiggyBankPageSimu extends SimuBasePage {
     private WebElement depositSuccess;
 
 
-    public PiggyBankPageSimu(WebDriver driver) {
+    public PiggyBankPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

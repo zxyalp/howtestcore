@@ -19,9 +19,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOf;
  * @author yang.zhou
  * @date 2017/10/19
  */
-public class HighEndSellPageSimu extends SimuBasePage {
+public class HighEndSellPage extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(HighEndSellPageSimu.class);
+    private final Logger logger = LoggerFactory.getLogger(HighEndSellPage.class);
 
     /**
      * 模态框
@@ -41,7 +41,7 @@ public class HighEndSellPageSimu extends SimuBasePage {
     @FindBy(css = "tbody > tr")
     private List<WebElement> sellList;
 
-    public HighEndSellPageSimu(WebDriver driver) {
+    public HighEndSellPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }

@@ -23,9 +23,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.*;
  *
  * @author yang.zhou
  */
-public class HighEndBuyPageSimu extends SimuBasePage {
+public class HighEndBuyPage extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(HighEndBuyPageSimu.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(HighEndBuyPage.class.getName());
 
     private String buyListPath = "/newpcsm/buylist.html";
 
@@ -215,7 +215,7 @@ public class HighEndBuyPageSimu extends SimuBasePage {
     private WebElement riskTipText;
 
 
-    public HighEndBuyPageSimu(WebDriver driver) {
+    public HighEndBuyPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

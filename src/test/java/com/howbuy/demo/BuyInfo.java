@@ -20,16 +20,16 @@ public class BuyInfo {
     @ExcelField(index = 2)
     private String idNo;
 
-    @ExcelField(index = 3)
+    @ExcelField(index = 3, isResult = true)
     private String custName;
 
     public static List<String> getHeader(){
 
         List<String> headers = new ArrayList<>();
         headers.add("ID");
-        headers.add("CUSTNO");
-        headers.add("IDNO");
-        headers.add("CUST_NAME");
+        headers.add("客户号");
+        headers.add("身份证号码");
+        headers.add("客户姓名");
         return headers;
     }
 

@@ -13,9 +13,9 @@ import org.slf4j.LoggerFactory;
  * @author yang.zhou
  * @date 2018/3/9
  */
-public class LoginFdsPageFds extends FdsBasePage {
+public class LoginFdsPage extends FdsBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(LoginFdsPageFds.class);
+    private final Logger logger = LoggerFactory.getLogger(LoginFdsPage.class);
 
     private String fdsLoginPath = "/fds-console/login.do";
 
@@ -31,7 +31,7 @@ public class LoginFdsPageFds extends FdsBasePage {
     @FindBy(css = "input[name='Submit']")
     private WebElement submitBtn;
 
-    public LoginFdsPageFds(WebDriver driver) {
+    public LoginFdsPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

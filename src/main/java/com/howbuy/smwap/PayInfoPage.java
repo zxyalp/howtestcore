@@ -21,10 +21,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/12/21
  */
-public class PayInfoPageWap extends WapBasePage {
+public class PayInfoPage extends WapBasePage {
 
 
-    private final Logger logger = LoggerFactory.getLogger(PayInfoPageWap.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(PayInfoPage.class.getName());
 
 
     /**
@@ -117,7 +117,7 @@ public class PayInfoPageWap extends WapBasePage {
     @FindBy(css = "[value='继续购买']")
     private List<WebElement> twoRiskBtn;
 
-    public PayInfoPageWap(WebDriver driver) {
+    public PayInfoPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

@@ -17,9 +17,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2018/1/31
  */
-public class CancelOrderListPageSimu extends SimuBasePage {
+public class CancelOrderListPage extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(HighEndBuyPageSimu.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(HighEndBuyPage.class.getName());
 
     private String cancelListPath = "/newpcsm/cancellist.html";
 
@@ -51,7 +51,7 @@ public class CancelOrderListPageSimu extends SimuBasePage {
     private WebElement successText;
 
 
-    public CancelOrderListPageSimu(WebDriver driver) {
+    public CancelOrderListPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

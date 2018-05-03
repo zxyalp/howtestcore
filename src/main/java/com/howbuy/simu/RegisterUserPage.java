@@ -25,9 +25,9 @@ import java.io.*;
  * @author yang.zhou
  * @date 2018/1/9
  */
-public class RegisterUserPageSimu extends SimuBasePage {
+public class RegisterUserPage extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(RegisterUserPageSimu.class);
+    private final Logger logger = LoggerFactory.getLogger(RegisterUserPage.class);
 
     private String registerPath = "/trade/register/register.htm";
 
@@ -125,7 +125,7 @@ public class RegisterUserPageSimu extends SimuBasePage {
     private WebElement successMsg;
 
 
-    public RegisterUserPageSimu(WebDriver driver) {
+    public RegisterUserPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }

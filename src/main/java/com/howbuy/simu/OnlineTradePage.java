@@ -10,25 +10,25 @@ import org.slf4j.LoggerFactory;
  * @author yang.zhou
  * @date 2017/9/29
  */
-public class OnlineTradePageSimu extends SimuBasePage {
+public class OnlineTradePage extends SimuBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(OnlineTradePageSimu.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(OnlineTradePage.class.getName());
 
-    public OnlineTradePageSimu(WebDriver driver) {
+    public OnlineTradePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
 
 
     public void buyHighFund(String fundCode, String buyAmount, String txPassword) {
-        HighEndBuyPageSimu buyPage = PageFactory.initElements(driver, HighEndBuyPageSimu.class);
+        HighEndBuyPage buyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
         buyPage.buyHighFund(fundCode, buyAmount, txPassword);
     }
 
     public void signAndRiskValuation(String idNo, String password) {
-        LoginWebPageSimu loginWebPage = PageFactory.initElements(driver, LoginWebPageSimu.class);
+        LoginWebPage loginWebPage = PageFactory.initElements(driver, LoginWebPage.class);
         loginWebPage.login(idNo, password);
-        InvestorSignPageSimu signPage = PageFactory.initElements(driver, InvestorSignPageSimu.class);
+        InvestorSignPage signPage = PageFactory.initElements(driver, InvestorSignPage.class);
         signPage.confirmOfInvestors();
     }
 

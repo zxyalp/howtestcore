@@ -14,12 +14,12 @@ import org.slf4j.LoggerFactory;
  * @author yang.zhou
  * @date 2017/12/20
  */
-public class BuyFundPageWap extends WapBasePage {
+public class BuyFundPage extends WapBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(BuyFundPageWap.class);
+    private final Logger logger = LoggerFactory.getLogger(BuyFundPage.class);
 
 
-    public BuyFundPageWap(WebDriver driver) {
+    public BuyFundPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
@@ -27,10 +27,10 @@ public class BuyFundPageWap extends WapBasePage {
 
     public void buy(String fundCode, String amount, int index, PaymentType paymentType) {
 
-        SearchFundPageWap searchFundPage = PageFactory.initElements(driver, SearchFundPageWap.class);
+        SearchFundPage searchFundPage = PageFactory.initElements(driver, SearchFundPage.class);
         searchFundPage.searchFund(fundCode);
 
-        PayInfoPageWap payInfoPage = PageFactory.initElements(driver, PayInfoPageWap.class);
+        PayInfoPage payInfoPage = PageFactory.initElements(driver, PayInfoPage.class);
         payInfoPage.pay(amount, index, paymentType);
 
     }

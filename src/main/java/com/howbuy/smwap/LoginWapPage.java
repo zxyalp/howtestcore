@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
  * @author yang.zhou
  * @date 2017/12/20
  */
-public class LoginWapPageWap extends WapBasePage {
+public class LoginWapPage extends WapBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(LoginWapPageWap.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(LoginWapPage.class.getName());
 
     public String loginWapUrl = "/wap/account/login/login.htm";
 
@@ -40,7 +40,7 @@ public class LoginWapPageWap extends WapBasePage {
     private WebElement freeOpening;
 
 
-    public LoginWapPageWap(WebDriver driver) {
+    public LoginWapPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }

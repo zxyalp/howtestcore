@@ -15,9 +15,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/12/20
  */
-public class MyHomePageWap extends WapBasePage {
+public class MyHomePage extends WapBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(MyHomePageWap.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(MyHomePage.class.getName());
 
 
     @FindBy(id = "loading")
@@ -39,7 +39,7 @@ public class MyHomePageWap extends WapBasePage {
     private WebElement recordListLink;
 
 
-    public MyHomePageWap(WebDriver driver) {
+    public MyHomePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, timeOutInSeconds);
     }
