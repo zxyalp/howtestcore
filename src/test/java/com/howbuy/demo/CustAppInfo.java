@@ -21,6 +21,9 @@ public class CustAppInfo {
     @ExcelField(index = 8)
     private String fundCode;
 
+    @ExcelField(index = 13, isResult = true)
+    private String result;
+
     public static List<String> getHeader(){
 
         List<String> headers = new ArrayList<>();
@@ -48,8 +51,24 @@ public class CustAppInfo {
         this.custName = custName;
     }
 
+    public String getFundCode() {
+        return fundCode;
+    }
+
+    public void setFundCode(String fundCode) {
+        this.fundCode = fundCode;
+    }
+
+    public String isResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     @Override
     public String toString() {
-        return custNo+"::"+custName+"::"+fundCode;
+        return custNo+"::"+custName+"::"+fundCode+"::"+result;
     }
 }

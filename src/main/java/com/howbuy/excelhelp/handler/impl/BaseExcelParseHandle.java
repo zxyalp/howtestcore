@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -43,6 +44,7 @@ abstract class BaseExcelParseHandle<T> implements IExcelParseHandler<T> {
             if (field.isAnnotationPresent(ExcelField.class)) {
 
                 ExcelField excelField = field.getAnnotation(ExcelField.class);
+
                 int index = excelField.index();
                 ExcelField.ExcelFieldType type = excelField.type();
                 field.setAccessible(true);
@@ -53,6 +55,24 @@ abstract class BaseExcelParseHandle<T> implements IExcelParseHandler<T> {
 
         }
         return object;
+    }
+
+
+    List<String> doParseTargetToRow(T t) throws Exception {
+
+        List<String> rowData = new ArrayList<>(14);
+
+        Field[] fields = t.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+
+            if (field.isAnnotationPresent(ExcelField.class)) {
+                ExcelField excelField = field.getAnnotation(ExcelField.class);
+                field.setAccessible(true);
+                rowData.add(excelField.index(), field.get(t).toString());
+            }
+        }
+        return rowData;
     }
 
 
@@ -69,8 +89,15 @@ abstract class BaseExcelParseHandle<T> implements IExcelParseHandler<T> {
                 throw new IllegalArgumentException("Excel Header 检查失败.");
             }
         }
+    }
 
 
+    List<String> initRowList(int size) {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            list.add("");
+        }
+        return list;
     }
 
     boolean isRowDataEmpty(List<String> rowData) {

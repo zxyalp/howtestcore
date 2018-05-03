@@ -17,13 +17,13 @@ abstract class AbstractExcelParser<T> implements IExcelParser<T> {
     Logger logger = LoggerFactory.getLogger(AbstractExcelParser.class);
 
     @Override
-    public List<T> parse(IParseParam parseParam){
+    public List<T> parse(IParseParam parseParam) {
 
         IExcelParseHandler<T> handler = this.createHandler();
 
         try {
             return handler.process(parseParam);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -34,17 +34,17 @@ abstract class AbstractExcelParser<T> implements IExcelParser<T> {
         IExcelParseHandler<T> handler = this.createHandler();
         try {
             handler.writeProcess(parseParam, excelList);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     /**
      * create ExcelParseHandler
+     *
      * @return IExcelParseHandler<T>
      */
     protected abstract IExcelParseHandler<T> createHandler();
-
 
 
 }

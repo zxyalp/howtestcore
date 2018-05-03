@@ -28,7 +28,9 @@ public class DefaultParseParam implements IParseParam {
         this.sheetNum = sheetNum;
     }
 
-    public static Builder builder(){ return new Builder();}
+    public static Builder builder() {
+        return new Builder();
+    }
 
 
     @Override
@@ -62,7 +64,7 @@ public class DefaultParseParam implements IParseParam {
     }
 
 
-    public static class Builder{
+    public static class Builder {
         private InputStream inputStream;
         private OutputStream outputStream;
         private Class targetClass;
@@ -70,38 +72,38 @@ public class DefaultParseParam implements IParseParam {
         private List<String> header;
         private Integer sheetNum;
 
-        public Builder excelInputStream(InputStream inputStream){
+        public Builder excelInputStream(InputStream inputStream) {
             this.inputStream = inputStream;
             return this;
         }
 
-        public Builder excelOutputStream(OutputStream outputStream){
+        public Builder excelOutputStream(OutputStream outputStream) {
             this.outputStream = outputStream;
             return this;
         }
 
-        public Builder targetClass(Class clazz){
+        public Builder targetClass(Class clazz) {
             this.targetClass = clazz;
             return this;
         }
 
-        public Builder columnSize(Integer columnSize){
+        public Builder columnSize(Integer columnSize) {
             this.columnSize = columnSize;
             return this;
         }
 
-        public Builder header(List<String> header){
+        public Builder header(List<String> header) {
             this.header = header;
             return this;
         }
 
-        public Builder sheetNum(Integer sheetNum){
+        public Builder sheetNum(Integer sheetNum) {
             this.sheetNum = sheetNum;
             return this;
         }
 
-        public DefaultParseParam build(){
-            return  new DefaultParseParam(inputStream, outputStream, targetClass, columnSize, header, sheetNum);
+        public DefaultParseParam build() {
+            return new DefaultParseParam(inputStream, outputStream, targetClass, columnSize, header, sheetNum);
         }
 
 

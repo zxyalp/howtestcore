@@ -7,6 +7,7 @@ import com.howbuy.excelhelp.paraser.ExcelDomParser;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.List;
 
 /**
@@ -18,22 +19,27 @@ public class ExcelTest {
     @Test
     public void testParseDom() throws Exception{
 
-        IExcelParser<CustAppInfo> excelParser = new ExcelDomParser<>();
+        IExcelParser<CustInfo> excelParser = new ExcelDomParser<>();
 
         IParseParam parseParam = DefaultParseParam.builder()
                 .excelInputStream(new FileInputStream("test.xlsx"))
-                .columnSize(14)
+                .excelOutputStream(new FileOutputStream("result001.xlsx"))
+                .columnSize(16)
                 .sheetNum(IParseParam.FIRST_SHEET_NAME)
-                .targetClass(CustAppInfo.class)
-//                .header(BuyInfo.getHeader())
+                .targetClass(CustInfo.class)
+                .header(CustInfo.getHeader())
                 .build();
 
-        List<CustAppInfo> custInfoList = excelParser.parse(parseParam);
+        List<CustInfo> custInfoList = excelParser.parse(parseParam);
 
-        for (CustAppInfo custInfo : custInfoList){
+        for (CustInfo custInfo : custInfoList){
             System.out.println(custInfo);
+            custInfo.setResult("success");
+            custInfo.setResult01("fail");
+            custInfo.setResult02("201de");
         }
 
+        excelParser.write(parseParam, custInfoList);
 
     }
 }

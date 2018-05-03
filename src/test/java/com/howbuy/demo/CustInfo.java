@@ -50,8 +50,15 @@ public class CustInfo {
     @ExcelField(index = 12)
     private String appDate;
 
-    @ExcelField(index = 13)
+    @ExcelField(index = 13, isResult = true)
     private String result;
+
+    @ExcelField(index = 14, isResult = true)
+    private String result01;
+
+    @ExcelField(index = 15, type = ExcelField.ExcelFieldType.Date)
+    private String result02;
+
 
     public String getId() {
         return id;
@@ -165,6 +172,26 @@ public class CustInfo {
         this.result = result;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public String getResult01() {
+        return result01;
+    }
+
+    public String getResult02() {
+        return result02;
+    }
+
+    public void setResult02(String result02) {
+        this.result02 = result02;
+    }
+
+    public void setResult01(String result01) {
+        this.result01 = result01;
+    }
+
     public static List<String> getHeader(){
 
         List<String> headers = new ArrayList<>();
@@ -178,11 +205,13 @@ public class CustInfo {
         headers.add("BANK_ACCT");
         headers.add("SCENARIO");
         headers.add("FUND_CODE");
-        headers.add("appAmt");
-        headers.add("bankIndex");
-        headers.add("appType");
-        headers.add("appDate");
-        headers.add("result");
+        headers.add("APP_AMT");
+        headers.add("BANK_INDEX");
+        headers.add("APP_TYPE");
+        headers.add("APP_DATE");
+        headers.add("TEST_RESULT");
+        headers.add("TEST_RESULT2");
+        headers.add("TEST_RESULT3");
         return headers;
     }
 

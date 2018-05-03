@@ -7,11 +7,11 @@ import com.howbuy.excelhelp.handler.IExcelParseHandler;
  * @author yang.zhou
  * @date 2018/4/27
  */
-public class ExcelDomParser<T> extends AbstractExcelParser<T>{
+public class ExcelDomParser<T> extends AbstractExcelParser<T> {
 
     private IExcelParseHandler<T> excelParseHandler;
 
-    public ExcelDomParser(){
+    public ExcelDomParser() {
 
         this.excelParseHandler = new ExcelDomParseHandler<>();
     }
