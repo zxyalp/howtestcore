@@ -5,6 +5,9 @@ import com.howbuy.excelhelp.IExcelParser;
 import com.howbuy.excelhelp.IParseParam;
 import com.howbuy.excelhelp.param.DefaultParseParam;
 import com.howbuy.excelhelp.paraser.ExcelDomParser;
+import com.howbuy.databeans.BuyInfo;
+import com.howbuy.databeans.CustAppInfo;
+import com.howbuy.databeans.CustInfo;
 import org.testng.annotations.Test;
 
 import java.io.File;

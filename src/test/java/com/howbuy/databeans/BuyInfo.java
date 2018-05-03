@@ -1,4 +1,4 @@
-package com.howbuy.demo;
+package com.howbuy.databeans;
 
 import com.howbuy.excelhelp.meta.ExcelField;
 
