@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
  */
 public class CancelOrderListTest extends BaseTestCase {
 
-    private final Logger logger = LoggerFactory.getLogger(BuySimuFundTest05.class);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 
     /**

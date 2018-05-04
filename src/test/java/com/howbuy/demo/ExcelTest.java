@@ -8,6 +8,7 @@ import com.howbuy.excelhelp.paraser.ExcelDomParser;
 import com.howbuy.databeans.BuyInfo;
 import com.howbuy.databeans.CustAppInfo;
 import com.howbuy.databeans.CustInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -80,21 +81,20 @@ public class ExcelTest {
         IExcelParser<BuyInfo> excelParser = new ExcelDomParser<>();
 
         IParseParam parseParam = DefaultParseParam.builder()
-                .excelOutputStream(new FileOutputStream(new File(".","result004.xlsx")))
-                .sheetNum(IParseParam.FIRST_SHEET_NAME)
+                .excelOutputStream(new FileOutputStream(new File(".","result005.xlsx")))
                 .header(BuyInfo.getHeader())
                 .build();
 
-        BuyInfo buyInfo = new BuyInfo();
-        buyInfo.setId("100");
-        buyInfo.setCustName("张三");
-        buyInfo.setCustNo("1182882782782");
-        buyInfo.setIdNo("12828928292");
-
 
         List<BuyInfo> custInfoList = new ArrayList<>();
-        custInfoList.add(buyInfo);
-
+        for (int i=0;i<100;i++) {
+            BuyInfo buyInfo = new BuyInfo();
+            buyInfo.setId(String.valueOf(i));
+            buyInfo.setCustName("张三"+i);
+            buyInfo.setCustNo("1182882782782");
+            buyInfo.setIdNo(String.valueOf(i));
+            custInfoList.add(buyInfo);
+        }
         excelParser.write(parseParam, custInfoList);
 
     }
