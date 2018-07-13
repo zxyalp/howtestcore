@@ -36,8 +36,8 @@ public class InvestorSignPage extends SimuBasePage {
     /**
      * 合格投资者勾选
      */
-    @FindBy(css = "input[type=checkbox]")
-    private List<WebElement> checkboxs;
+    @FindBy(css = "input[type=radio]")
+    private List<WebElement> radios;
 
     /**
      * 点击下一步按钮
@@ -97,12 +97,12 @@ public class InvestorSignPage extends SimuBasePage {
     }
 
     private void checkInvestorBook() {
-        logger.info("勾选合格投资者认定书.");
-        for (WebElement element : checkboxs) {
-            if (!element.isSelected()) {
-                element.click();
-            }
-        }
+        logger.info("合格投资者认定书，选择默认勾选项.");
+//        for (WebElement element : radio) {
+//            if (!element.isSelected()) {
+//                element.click();
+//            }
+//        }
         nextSetp.click();
     }
 

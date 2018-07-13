@@ -26,6 +26,37 @@ public class BaseTestCase {
         return (int) (min + Math.random() * (Math.abs(max - min) + 1));
     }
 
+
+    @BeforeClass
+    public void setDriverClass() throws Exception {
+        System.setProperty("webdriver.chrome.driver", TestContext.CHROME_DRIVER_PATH);
+        logger.info(">>>Begin testing...");
+    }
+
+    @BeforeMethod
+    public void setUp() throws Exception {
+        logger.info(">>>init chromedriver");
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("headless");
+//        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        logger.info(">>>init complete.");
+    }
+
+    @AfterMethod
+    public void tearDown() throws Exception {
+        logger.info(">>>Quit Browser.");
+//        driver.quit();
+    }
+
+    @AfterClass
+    public void tearDownClass() throws Exception {
+        logger.info(">>>Test End.");
+    }
+
+
+
     /**
      * 生成随机的百万金额
      *
@@ -39,34 +70,6 @@ public class BaseTestCase {
 
     public static String randomAmount(int minAmount, int maxAmount) {
         return String.valueOf(getRandom(minAmount, maxAmount) * 10000);
-    }
-
-    @BeforeClass
-    public void setDriverClass() throws Exception {
-        System.setProperty("webdriver.chrome.driver", TestContext.CHROME_DRIVER_PATH);
-        logger.info(">>>Begin testing...");
-    }
-
-    @BeforeMethod
-    public void setUp() throws Exception {
-        logger.info(">>>init chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        driver = new ChromeDriver(options);
-//        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        logger.info(">>>init complete.");
-    }
-
-    @AfterMethod
-    public void tearDown() throws Exception {
-        logger.info(">>>Quit Browser.");
-        driver.quit();
-    }
-
-    @AfterClass
-    public void tearDownClass() throws Exception {
-        logger.info(">>>Test End.");
     }
 
 }

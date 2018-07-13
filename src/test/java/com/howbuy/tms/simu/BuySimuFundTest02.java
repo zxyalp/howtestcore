@@ -18,7 +18,7 @@ public class BuySimuFundTest02 extends BaseTestCase {
 
 
     /**
-     * 开放日最后一天预约自划款 S29493 S29837
+     * CS0501
      *
      * @throws Exception
      */
@@ -29,7 +29,7 @@ public class BuySimuFundTest02 extends BaseTestCase {
         login.login("330521199701019270", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
-        highEndBuyPage.buyHighFund("CS0501", "2200000");
+        highEndBuyPage.buyBankLinePay("CS0501", "2200000");
     }
 
 }

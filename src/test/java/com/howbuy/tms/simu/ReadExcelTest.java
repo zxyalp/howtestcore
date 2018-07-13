@@ -33,11 +33,9 @@ public class ReadExcelTest extends BaseTestCase {
         ExcelParseHandler<CustBuyBook> parseHandler = new ExcelParseHandler<>();
 
         List<CustBuyBook> custBuyBookList = parseHandler.doParse(new FileInputStream("test02.xlsx"), CustBuyBook.class);
-
         for (CustBuyBook book:custBuyBookList){
             book.setResult(true);
         }
-
         parseHandler.doWriteBook("results.xlsx", custBuyBookList);
 
     }
