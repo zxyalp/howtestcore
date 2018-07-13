@@ -47,7 +47,7 @@ public class BaseTestCase {
     @AfterMethod
     public void tearDown() throws Exception {
         logger.info(">>>Quit Browser.");
-//        driver.quit();
+        driver.quit();
     }
 
     @AfterClass

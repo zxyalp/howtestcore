@@ -102,7 +102,8 @@ public class ExcelDomParseHandler<T> extends BaseExcelParseHandle<T> {
                             cellStyle.setAlignment(HorizontalAlignment.CENTER);
                             cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-                            if ("success".equalsIgnoreCase(fieldValue) || "true".equalsIgnoreCase(fieldValue)) {
+                            if ("success".equalsIgnoreCase(fieldValue) || "true".equalsIgnoreCase(fieldValue)
+                                    || "成功".equalsIgnoreCase(fieldValue)) {
                                 cellStyle.setFillForegroundColor(IndexedColors.GREEN.getIndex());
                             } else {
                                 cellStyle.setFillForegroundColor(IndexedColors.RED.getIndex());
