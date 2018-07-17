@@ -22,6 +22,9 @@ public class BaseTestCase {
 
     protected WebDriver driver;
 
+    public Boolean IS_HEADLESS = false;
+
+
     public static int getRandom(int min, int max) {
         return (int) (min + Math.random() * (Math.abs(max - min) + 1));
     }
@@ -36,10 +39,13 @@ public class BaseTestCase {
     @BeforeMethod
     public void setUp() throws Exception {
         logger.info(">>>init chromedriver");
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("headless");
-//        driver = new ChromeDriver(options);
-        driver = new ChromeDriver();
+        if (IS_HEADLESS) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("headless");
+            driver = new ChromeDriver(options);
+        }else {
+            driver = new ChromeDriver();
+        }
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         logger.info(">>>init complete.");
     }

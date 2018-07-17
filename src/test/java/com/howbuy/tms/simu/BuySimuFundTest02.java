@@ -26,10 +26,69 @@ public class BuySimuFundTest02 extends BaseTestCase {
     @Test(enabled = true)
     public void loginSimuUser01() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("330521199701019270", "qq1111");
+        login.login("330521199601018481", "qq1111");
 
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
-        highEndBuyPage.buyBankLinePay("CS0501", "2200000");
+        highEndBuyPage.buyBankLinePay("CS0501", randomMillAmount(1, 3));
+        highEndBuyPage.buyBankLinePay("CS0502", randomMillAmount(1, 3));
+        highEndBuyPage.buyBankLinePay("CS0503", randomMillAmount(1, 3));
+        highEndBuyPage.buyBankLinePay("CS0504", randomMillAmount(1, 3));
+
     }
+
+    /**
+     * CS0501
+     *
+     * @throws Exception
+     */
+
+    @Test(enabled = true)
+    public void loginSimuUser02() throws Exception {
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.login("330521197501017925", "qq1111");
+
+        HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
+        highEndBuyPage.buyHighFund("CS0501", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("CS0502", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("CS0503", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("CS0504", randomMillAmount(1, 3));
+  }
+
+
+    /**
+     * CS0501
+     *
+     * @throws Exception
+     */
+
+    @Test(enabled = true)
+    public void loginSimuUser03() throws Exception {
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.login("330521198501015836", "qq1111");
+
+        HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
+        highEndBuyPage.buyBankLinePay("CS0305", randomMillAmount(1, 3));
+        highEndBuyPage.buyBankLinePay("CS0306", randomMillAmount(1, 3));
+        highEndBuyPage.buyBankLinePay("CS0307", randomMillAmount(1, 3));
+        highEndBuyPage.buyBankLinePay("CS0508", randomMillAmount(1, 3));
+    }
+
+
+    /**
+     * CS0501
+     *
+     * @throws Exception
+     */
+
+    @Test(enabled = true)
+    public void loginSimuUser04() throws Exception {
+        LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
+        login.login("330521198901017435", "qq1111");
+
+        HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
+        highEndBuyPage.buyHighFund("CS0305", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("CS0306", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("CS0307", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("CS0508", randomMillAmount(1, 3));      }
 
 }

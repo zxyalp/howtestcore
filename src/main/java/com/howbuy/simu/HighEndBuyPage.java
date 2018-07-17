@@ -236,7 +236,7 @@ public class HighEndBuyPage extends SimuBasePage {
             TestUtils.sleep2s();
             searchFundText.sendKeys(fundCode);
             wait.until(invisibilityOf(dialog));
-            TestUtils.sleep1s();
+            TestUtils.sleep2s();
             searchFundBtn.click();
             try {
                 wait.until(invisibilityOf(dialog));
