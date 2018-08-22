@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="highOrders" verbose="1" >
+    <test name="trade">
+        <groups>
+            <define name="all">
+                <include name="functest"/>
+                <include name="checkintest"/>
+                <include name="broken"/>
+            </define>
+
+            <run>
+                <include name="functest"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="com.howbuy.tms"/>
+        </packages>
+
+    </test>
+    <!--<listeners>-->
+        <!--<listener class-name="org.uncommons.reportng.HTMLReporter" />-->
+        <!--<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />-->
+    <!--</listeners>-->
+
+</suite>
