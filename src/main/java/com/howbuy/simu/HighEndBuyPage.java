@@ -300,7 +300,6 @@ public class HighEndBuyPage extends SimuBasePage {
             }
         }
 
-
         wait.until(elementToBeClickable(nextStepBtn)).click();
 
         if (isRiskTip()) {
