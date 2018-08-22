@@ -22,7 +22,7 @@ public class BaseTestCase {
 
     protected WebDriver driver;
 
-    public Boolean IS_HEADLESS = true;
+    public Boolean IS_HEADLESS = false;
 
 
     public static int getRandom(int min, int max) {

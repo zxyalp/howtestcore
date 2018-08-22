@@ -15,6 +15,8 @@ import java.io.IOException;
  */
 public class TestContext {
 
+    private static final Logger logger = LoggerFactory.getLogger(TestContext.class.getName());
+
     /**
      * 获取应用的端口
      */
@@ -24,7 +26,6 @@ public class TestContext {
     public static final int TMS_CONSOLE_PORT = PropertyUtils.getIntProperty("tms.console.port");
     public static final int WAP_SIMU_PORT = PropertyUtils.getIntProperty("wap.simu.port");
     public static final int FDS_CONSOLE_PORT = PropertyUtils.getIntProperty("fds.console.port");
-    private static final Logger logger = LoggerFactory.getLogger(TestContext.class.getName());
     public static String IMAGE_DIRECTORY = PropertyUtils.getProperty("user.dir");
     public static String IMAGE_TYPE = PropertyUtils.getProperty("image.type");
     public static String CHROME_DRIVER_PATH = PropertyUtils.getProperty("chrome.driver.path");
@@ -33,6 +34,7 @@ public class TestContext {
      */
     public static String TMS_HOST = PropertyUtils.getProperty("tms.host");
     public static String TP_HOST = PropertyUtils.getProperty("tp.host");
+
     private static TestContext testContext = null;
 
 

@@ -20,10 +20,10 @@ public class BuyHighFundTest extends BaseTestCase {
     /**
      * 单卡认购	认购028050，028051，代扣2笔、储蓄罐2笔
      */
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void buyHighFundTest001() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("320101199301018931", "qq1111");
+        login.login("440101197901019362", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
         highEndBuyPage.buyHighFund("371021", randomMillAmount(1, 3));
@@ -40,7 +40,7 @@ public class BuyHighFundTest extends BaseTestCase {
     @Test(enabled = true)
     public void buyHighFundTest002() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("320101198401016971", "qq1111");
+        login.login("440101197901012021", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
         highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
@@ -56,7 +56,7 @@ public class BuyHighFundTest extends BaseTestCase {
     @Test(enabled = true)
     public void buyHighFundTest003() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("320101197301014966", "qq1111");
+        login.login("440101199101017421", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
         highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
@@ -78,7 +78,7 @@ public class BuyHighFundTest extends BaseTestCase {
     @Test(enabled = true)
     public void buyHighFundTest004() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("320101198901017575", "qq1111");
+        login.login("440101197501011505", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
         highEndBuyPage.buyPiggyPay("246010", "20000");
