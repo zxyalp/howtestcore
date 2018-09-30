@@ -23,13 +23,11 @@ public class BuyHighFundTest extends BaseTestCase {
     @Test(enabled = true)
     public void buyHighFundTest001() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("440101197901019362", "qq1111");
+        login.login("440101197001019025", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
-        highEndBuyPage.buyHighFund("371021", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("371021", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("060330", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("060628", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028050", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028050", randomMillAmount(1, 3));
 
     }
 
@@ -40,13 +38,12 @@ public class BuyHighFundTest extends BaseTestCase {
     @Test(enabled = true)
     public void buyHighFundTest002() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("440101197901012021", "qq1111");
+        login.login("440101199901013728", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
-        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028051", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028051", randomMillAmount(1, 3));
+
     }
 
 
@@ -56,18 +53,13 @@ public class BuyHighFundTest extends BaseTestCase {
     @Test(enabled = true)
     public void buyHighFundTest003() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("440101199101017421", "qq1111");
+        login.login("440101197901014772", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
-        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246010", randomMillAmount(1, 3));
-
-        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
-        highEndBuyPage.buyHighFund("246020", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028050", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028050", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028051", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028051", randomMillAmount(1, 3));
 
     }
 
@@ -78,13 +70,13 @@ public class BuyHighFundTest extends BaseTestCase {
     @Test(enabled = true)
     public void buyHighFundTest004() throws Exception {
         LoginWebPage login = PageFactory.initElements(driver, LoginWebPage.class);
-        login.login("440101197501011505", "qq1111");
+        login.login("440101198001017964", "qq1111");
         HighEndBuyPage highEndBuyPage = PageFactory.initElements(driver, HighEndBuyPage.class);
 
-        highEndBuyPage.buyPiggyPay("246010", "20000");
-        highEndBuyPage.buyPiggyPay("246010", "30000");
-        highEndBuyPage.buyPiggyPay("246020", "30000");
-        highEndBuyPage.buyPiggyPay("246020", "40000");
+        highEndBuyPage.buyHighFund("028050", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028050", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028051", randomMillAmount(1, 3));
+        highEndBuyPage.buyHighFund("028051", randomMillAmount(1, 3));
     }
 
 }
