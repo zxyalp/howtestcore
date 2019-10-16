@@ -22,13 +22,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/9/12
  */
-public class OrderCheckPage extends CounterBasePage {
+public class OrderCheckNewPage extends CounterBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(OrderCheckPage.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(OrderCheckNewPage.class.getName());
 
-    private final String operator01 = "s001";
+    private final String operator01 = "s007";
 
-    private final String operator02 = "s002";
+    private final String operator02 = "s008";
 
 
     /**
@@ -119,7 +119,7 @@ public class OrderCheckPage extends CounterBasePage {
     private WebElement checkBackBtn;
 
 
-    public OrderCheckPage(WebDriver driver) {
+    public OrderCheckNewPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, timeOutInSeconds);
     }

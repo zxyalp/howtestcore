@@ -15,7 +15,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/9/11
  */
-public class CounterHomePage extends BasePage {
+public class CounterHomePage extends CounterBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(CounterHomePage.class.getName());
 

@@ -20,7 +20,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
  * @author yang.zhou
  * @date 2017/9/11
  */
-public class QueryUserPage extends BasePage {
+public class QueryUserPage extends CounterBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(QueryUserPage.class.getName());
 

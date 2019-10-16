@@ -22,7 +22,7 @@ import java.util.List;
  * @author yang.zhou
  * @date 2017/9/11
  */
-public class BuyPage extends BasePage {
+public class BuyPage extends CounterBasePage {
 
     private final Logger logger = LoggerFactory.getLogger(BuyPage.class.getName());
 

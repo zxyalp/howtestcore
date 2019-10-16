@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
  * @author yang.zhou
  * @date 2018/3/14
  */
-public class BasePage extends AbstractBasePage {
+public class CounterBasePage extends AbstractBasePage {
 
-    private final Logger logger = LoggerFactory.getLogger(BasePage.class);
+    private final Logger logger = LoggerFactory.getLogger(CounterBasePage.class);
 
     public int timeOutInSeconds = 5;
 
