@@ -25,10 +25,6 @@ public class PropertyUtils {
         load();
     }
 
-    private PropertyUtils() {
-
-    }
-
     private synchronized static void load() {
         logger.info("properties loading....");
         props = new Properties();
